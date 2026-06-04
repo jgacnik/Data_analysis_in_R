@@ -1,0 +1,31 @@
+.reveal .slide-logo {
+  max-height: 120px !important;
+}
+
+.reveal .date::before {
+  content: "Prepared: ";
+}
+
+.middle-box {
+  background-color: rgba(128, 128, 128, 0.85);
+  padding: 0.5em 0.7em;
+  border-radius: 3px;
+  width: 65%;
+  margin: 25vh auto 0 auto;
+  text-align: center;
+  color: white;
+  size: 10pt;
+}
+
+.image-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+}
+
+.image-row img {
+  max-width: 42%;
+  max-height: 220px;
+  object-fit: contain;
+}
