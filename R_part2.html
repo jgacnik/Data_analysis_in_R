@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="R_part1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="R_part1_files/libs/quarto-html/tabby.min.js"></script>
-<script src="R_part1_files/libs/quarto-html/popper.min.js"></script>
-<script src="R_part1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="R_part1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="R_part1_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="R_part1_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="R_part2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="R_part2_files/libs/quarto-html/tabby.min.js"></script>
+<script src="R_part2_files/libs/quarto-html/popper.min.js"></script>
+<script src="R_part2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="R_part2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="R_part2_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="R_part2_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Jan Gačnik">
-  <meta name="dcterms.date" content="2026-06-05">
-  <title>R workshop part 1</title>
+  <meta name="dcterms.date" content="2026-06-16">
+  <title>R workshop part 2 - visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="R_part1_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="R_part1_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="R_part2_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="R_part2_files/libs/revealjs/dist/reveal.css">
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -99,12 +99,14 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="R_part1_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="R_part2_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="styles.css">
-  <link href="R_part1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="R_part1_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="R_part1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="R_part1_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="R_part2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -470,7 +472,7 @@
   // Document level settings ----
 
   // Determine if we need to install R packages
-  globalThis.qwebrInstallRPackagesList = [''];
+  globalThis.qwebrInstallRPackagesList = ['ggplot2'];
 
   // Specify possible locations to search for the repository
   globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -492,7 +494,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"code":"# This calculates square root of 400\nsqrt(400)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+  globalThis.qwebrCellDetails = [{"code":"ggplot(\n  data = penguins,\n  mapping = aes(x = flipper_len,\n                y = body_mass)\n) +\n  geom_point(mapping = aes(color = species)) +\n  geom_smooth(method = \"lm\")","id":1,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass)) +\n  geom_histogram(binwidth = 200)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"2","fig-width":"6","label":"unnamed-chunk-2","message":"true","out-height":"200px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass)) +\n  geom_density() # We can also use the orientation parameter","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"2","fig-width":"6","label":"unnamed-chunk-3","message":"true","out-height":"200px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = species,\n                     y = body_mass)) +\n  geom_boxplot()\n# We can transform how boxplot looks,\n# e.g., with outlier.shape = NA or notch = TRUE, etc.","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-4","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass,\n                     color = species)) +\n  geom_density()\n# We can transform how density plot looks,\n# e.g., alpha = 0.5, etc.","id":5,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-5","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}}];
 
   </script>
   <script type="module">
@@ -2035,7 +2037,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">R workshop part 1</h1>
+  <h1 class="title">R workshop part 2 - visualization</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -2045,522 +2047,667 @@ Jan Gačnik
 </div>
 </div>
 
-  <p class="date">2026-06-05</p>
+  <p class="date">2026-06-16</p>
 </section>
-<section id="why-r" class="slide level2">
-<h2>Why R?</h2>
-<p>R is a programming language built for statistical computing</p>
-<p>If one already knows Excel, Origin, SigmaPlot, etc. - why use R?</p>
-<ul>
-<li><p><em>Free</em> to use</p></li>
-<li><p><em>Large</em> community - support and packages</p></li>
-<li><p>Analysis and visualization are <em>easy to replicate</em></p></li>
-<li><p><em>Freedom</em> - almost anything is possible and modifiable</p></li>
-<li><p><em>Automation</em> of plotting</p></li>
-</ul>
-</section>
-<section id="section" class="slide level2" data-background-image="figures/map_plots.png" data-background-size="60%" data-background-position="center">
-<h2></h2>
-<div class="middle-box" style="font-size: 0.85em;">
-<p>Do we really want to do this every year by hand?</p>
-<p><strong>Automation using R scripts</strong></p>
+<section id="visualization-in-r" class="slide level2">
+<h2>Visualization in R</h2>
+<div style="font-size: 90%;">
+<p>Base R includes a function for plotting - <kbd>plot()</kbd>. Nowadays, plotting in R is most commonly done with <kbd>ggplot()</kbd> function from the <kbd>tidyverse</kbd> package.</p>
 </div>
-</section>
-<section id="why-r-1" class="slide level2">
-<h2>Why R?</h2>
-<p>R vs python</p>
-<p>Analogy: With what can you cook rice?</p>
-<div class="fragment">
 <div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="figures/python.png" style="width:25.0%"> <img data-src="figures/pot.png" style="width:35.0%"></p>
-<div class="fragment">
-<p><span style="font-size: 0.75em;"><em>Very good</em> rice can be cooked<br>
-…but also any other dish too</span></p>
+<div class="column" style="width:60%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
+<p>Benefits:</p>
+<ul>
+<li><p>The “<strong>g</strong>rammar of <strong>g</strong>raphics” (<strong>gg</strong>) is an intuitive way of building a plot (for most people)</p></li>
+<li><p>Layering - add geometries, stats, annotations without complete replotting</p></li>
+<li><p>Faceting - splitting one chart into multiple smaller parts</p></li>
+<li><p>Modern, publication-ready default themes</p></li>
+</ul>
 </div>
-</div><div class="column" style="width:50%;">
-<p><img data-src="figures/rlogo.jpg" style="width:15.0%"> <img data-src="figures/ricecooker.png" style="width:25.0%"></p>
-<div class="fragment">
-<p><span style="font-size: 0.75em;"><em>Perfect</em> rice can be cooked<br>
-…but very few other dishes</span></p>
+</div><div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<p>Cons:</p>
+<ul>
+<li><p>Slower than base <kbd>plot()</kbd></p></li>
+<li><p>Needs “tidy” data for plotting</p></li>
+</ul>
 </div>
 </div></div>
-</div>
 </section>
-<section id="why-r-2" class="slide level2">
-<h2>Why R?</h2>
-<p>Why not just <img data-src="figures/chatgpt.png" style="vertical-align: -20px;;width:15.0%"> &amp; <img data-src="figures/claude.png" style="vertical-align: -15px;;width:13.0%"> ?</p>
-<div class="fragment" data-fragment-index="1" style="font-size: 0.75em;">
+<section id="vocabulary-of-ggplot" class="slide level2">
+<h2>Vocabulary of <kbd>ggplot()</kbd></h2>
+<p>Data → Aesthetics → Geometry</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 75%;">
+<p><strong>Data</strong></p>
+<p>The data used for the plot</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 45%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">flipper_len</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">body_mass</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">bill_len</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">3750</td>
+<td style="text-align: right;">39.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">3800</td>
+<td style="text-align: right;">39.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">3250</td>
+<td style="text-align: right;">40.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">3450</td>
+<td style="text-align: right;">36.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 75%;">
+<p><strong>Aesthetics</strong></p>
+<p>The <em>mapping</em> of variables to the aesthetics</p>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 65%;">
 <ul>
-<li>People who know R get dramatically more value from AI assistants than beginners</li>
-<li>AI as a copilot – you still need to know how to fly</li>
+<li>x axis</li>
+<li>y axis</li>
+<li>color</li>
+<li>shape</li>
+<li>line type</li>
+<li>…</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 1em;">
-<p>Other considerations</p>
+</div><div class="column" style="width:30%;">
+<div class="fragment" data-fragment-index="3" style="font-size: 75%;">
+<p><strong>Geometry</strong></p>
+<p>The <em>geometric object</em> that will represent the aesthetic mappings</p>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 0.75em;">
+<div class="fragment" data-fragment-index="3" style="font-size: 65%;">
 <ul>
-<li>R script is a reproducible record of what was done with data. AI conversation is not.</li>
+<li>scatter plot</li>
+<li>regression</li>
+<li>histogram</li>
+<li>box plot</li>
+<li>violin plot</li>
+<li>…</li>
 </ul>
 </div>
-<div class="fragment">
-<div title="ARIS and FAIR data" style="--callout-color: black;">
-<div class="callout callout-important callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>ARIS and FAIR data</strong></p>
-</div>
-<div class="callout-content">
-<p>Open access to all research outputs from publicly funded projects - <strong>data analysis and visualization included</strong></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="overview" class="slide level2">
-<h2>Overview</h2>
-<div class="fragment" data-fragment-index="0">
-<ol type="1">
-<li><p>R and R studio orientation</p></li>
-<li><p>Creating and using objects</p></li>
-<li><p>Packages</p></li>
-<li><p>Basic visualization</p></li>
-<li><p>Basic analyses</p></li>
-<li><p>Demonstration on a precipitation isotopes dataset</p></li>
-</ol>
-<div style="font-size: 0.5em; margin-top: 1em;">
-<p>Workshop materials based on:</p>
-<ul>
-<li><p>Handley Wickham, R for Data Science, https://r4ds.hadley.nz/</p></li>
-<li><p>Charles Lanfear, Introduction to R, https://clanfear.github.io/Intro_R_Workshop/</p></li>
-</ul>
+<section id="visualization-in-ggplot" class="slide level2">
+<h2>Visualization in <kbd>ggplot()</kbd></h2>
+<div class="fragment" data-fragment-index="1" style="font-size: 80%;">
+<p>Let’s run everything in text editor</p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Loads tidyverse into our environment</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-2"><a href=""></a>  <span class="at">data =</span> penguins</span>
+<span id="cb2-3"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="3">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-4-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
 </section>
-<section id="r-and-r-studio-orientation" class="title-slide slide level1 center" style="text-align: center; color: white;" data-background-color="##444444">
-<h1>1) R and R studio orientation</h1>
-
-</section>
-
-<section id="rstudio" class="slide level2">
-<h2>RStudio</h2>
-<p>RStudio is a user-friendly application that gives a visual interface for writing, editing, and running R code.</p>
-<div class="fragment">
-<div style="margin-top: 1.3em;">
-<p>RStudio can:</p>
+<section id="visualization-axes" class="slide level2">
+<h2>Visualization, axes</h2>
+<div style="font-size: 80%;">
+<p>Next, we add the mapping argument to our <kbd>ggplot()</kbd>, with which we define how variables in our dataset are mapped to visual properties (aesthetics)</p>
 </div>
-<div style="font-size:70%;">
-<ul>
-<li>Write &amp; run R code with helpful features like auto-complete and syntax highlighting</li>
-<li>Enables viewing created objects (tables, graphs)</li>
-<li>Files, code, graphs, outputs → all in one window</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="editing-and-running-code" class="slide level2">
-<h2>Editing and running code</h2>
-<p>Three ways to run R code in RStudio:</p>
-<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
-<ol type="1">
-<li><strong>Highlighting the lines in the editor window</strong> and clicking <em>Run</em> at the top. Alternatively, <kbd>Ctrl</kbd> + <kbd>Enter</kbd> for Windows or <kbd>⌘</kbd> + <kbd>Enter</kbd> for Mac</li>
-</ol>
-</div>
+<div class="columns">
+<div class="column" style="width:55%;">
 <div class="fragment" data-fragment-index="2" style="font-size: 70%;">
-<ol start="2" type="1">
-<li><strong>Clicking</strong> anywhere on the code line (in the <strong>editor window</strong>) and pressing <kbd>Ctrl</kbd> + <kbd>Enter</kbd> or <kbd>⌘</kbd> + <kbd>Enter</kbd></li>
-</ol>
+<ul>
+<li>Mapping argument is always defined in the <kbd>aes()</kbd> function</li>
+</ul>
 </div>
 <div class="fragment" data-fragment-index="3" style="font-size: 70%;">
-<ol start="3" type="1">
-<li>Typing or pasting the code directly into the <strong>console window</strong> and pressing <kbd>Enter</kbd></li>
-</ol>
-</div>
-</section>
-<section id="incomplete-code" class="slide level2">
-<h2>Incomplete code</h2>
-<p>What if you mess up (e.g., forget to close brackets)?</p>
-<div class="fragment" data-fragment-index="1" style="font-size: 80%;">
 <ul>
-<li>In console window, R might show <kbd>+</kbd> sign, indicating that the command has to be finished</li>
+<li>Let’s use <kbd>flipper_len</kbd> as our <kbd>x</kbd> aesthetic and <kbd>body_mass</kbd> as our <kbd>y</kbd> aesthetic.</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="1" style="font-size: 120%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>&gt; 12 * (2 + 6</span>
-<span id="cb1-2"><a href=""></a>+</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb3-2"><a href=""></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb3-3"><a href=""></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb3-4"><a href=""></a>                <span class="at">y =</span> body_mass)</span>
+<span id="cb3-5"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="4" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="visualization-geometries" class="slide level2">
+<h2>Visualization, geometries</h2>
+<div style="font-size: 80%;">
+<p>Next, we have to define what kind of <strong>geometry</strong> do we want to plot</p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
 <div class="fragment" data-fragment-index="2" style="font-size: 70%;">
 <ul>
-<li>You can finish the command or hit <kbd>Esc</kbd> to get out of it</li>
+<li>Defined using different <kbd>geom_</kbd> functions, for example: <kbd>geom_point()</kbd> (scatter plot), <kbd>geom_line()</kbd> (linegraph), <kbd>geom_boxplot()</kbd> (box plot), <kbd>geom_violin</kbd> (violin plot), etc.</li>
 </ul>
 </div>
+<div class="fragment" data-fragment-index="3" style="font-size: 70%;">
+<ul>
+<li>Let’s use <kbd>geom_point()</kbd> to make our plot a scatter plot:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb4-2"><a href=""></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb4-3"><a href=""></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb4-4"><a href=""></a>                <span class="at">y =</span> body_mass)</span>
+<span id="cb4-5"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="4" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-8-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
 </section>
-<section id="r-as-a-calculator" class="slide level2">
-<h2>R as a calculator</h2>
-<p>In the console, type <kbd>12 + 34 + 56</kbd> and hit <kbd>Enter</kbd>.</p>
+<section id="visualization-color-aesthetic" class="slide level2">
+<h2>Visualization, color aesthetic</h2>
+<div style="font-size: 80%;">
+<p>Next, let’s make a more informative plot, we would like to see if the relationship between body mass and flipper length differ by <em>species</em></p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<ul>
+<li>We need to add another aesthetic for species in <kbd>aes()</kbd>, for example color:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb5-2"><a href=""></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb5-3"><a href=""></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb5-4"><a href=""></a>                <span class="at">y =</span> body_mass,</span>
+<span id="cb5-5"><a href=""></a>                <span class="at">color =</span> species)</span>
+<span id="cb5-6"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="3" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-10-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="visualization-linear-regression" class="slide level2">
+<h2>Visualization, linear regression</h2>
+<div style="font-size: 80%;">
+<p>Next, let’s add a <em>linear regression</em> to the plot</p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<ul>
+<li>Since this is a new geometry, we will add it with <kbd>geom_smooth()</kbd>. The smoothing we want is a <u>l</u>inear <u>m</u>odel, specified using <kbd>method = “lm”</kbd>:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-2"><a href=""></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb6-3"><a href=""></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb6-4"><a href=""></a>                <span class="at">y =</span> body_mass,</span>
+<span id="cb6-5"><a href=""></a>                <span class="at">color =</span> species)</span>
+<span id="cb6-6"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="3" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="4" style="font-size: 75%; margin-top: 0.6em;">
+<p><strong>?</strong> How can we go from <em>three</em> linear regressions to <em>one</em> for all data <strong>?</strong></p>
+</div>
+</section>
+<section id="visualization-aesthetics-continued" class="slide level2">
+<h2>Visualization, aesthetics continued</h2>
+<div style="font-size: 80%;">
+<p>Aesthetics defined in the <kbd>ggplot()</kbd> function are <strong>global</strong></p>
+<p>Aesthetics defined in geometries are <strong>local</strong></p>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<ul>
+<li>We want: 1) points to be colored based on species, 2) no separation of regressions based on species</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 70%;">
+<ul>
+<li>So, species variable has to be a local aesthetic in the <kbd>geom_point()</kbd> mapping:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 92%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb7-2"><a href=""></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb7-3"><a href=""></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb7-4"><a href=""></a>                <span class="at">y =</span> body_mass)</span>
+<span id="cb7-5"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<div class="fragment" data-fragment-index="4" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-14-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="visualization-aesthetics-continued-1" class="slide level2">
+<h2>Visualization, aesthetics continued</h2>
+<div style="font-size: 90%;">
+<p>As we go on, we will often skip obvious argument names to make the code shorter</p>
+</div>
 <div class="fragment" data-fragment-index="1" style="font-size: 70%;">
 <ul>
-<li>The outcome should look like this:</li>
+<li>For example, <kbd>data = penguins</kbd> becomes <kbd>penguins</kbd>, and <kbd>mapping = aes(…)</kbd> becomes <kbd>aes(…)</kbd>:</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="1" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="dv">12</span> <span class="sc">+</span> <span class="dv">34</span> <span class="sc">+</span> <span class="dv">56</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 102</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
-<ul>
-<li>The <kbd>[1]</kbd> indicates the numeric index of the first element in that line</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="3">
-<p>In your editor window, try typing the line <kbd>sqrt(400)</kbd> and running it by <kbd>Ctrl</kbd> + <kbd>Enter</kbd> or <kbd>⌘</kbd> + <kbd>Enter</kbd></p>
-</div>
-<div class="fragment" data-fragment-index="4" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">sqrt</span>(<span class="dv">400</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 20</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="functions-and-help" class="slide level2">
-<h2>Functions and help</h2>
-<p><kbd>sqrt()</kbd> was an example of a <strong>function</strong> in R. To see more details about what each function does, type <kbd>?</kbd> before the function.</p>
-<div style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>?sqrt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 80%; margin-top: 1.5em;">
-<p><strong>Arguments</strong> are inputs that are passed to a function. In the case of <kbd>sqrt()</kbd>, the only argument is <kbd>x</kbd>, which can be a number, or a vector of numbers</p>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 80%;">
-<p>Functions can get complex – documentation is your friend!</p>
-</div>
-</section>
-<section id="comments-in-the-code" class="slide level2">
-<h2>Comments in the code</h2>
-<p>By using the <kbd>#</kbd> sign, you can create a comment, which will be ignored when you run code.</p>
-<div class="fragment" data-fragment-index="1" style="font-size: 80%;">
-<ul>
-<li>Comments are useful for describing what was done:</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 120%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 90%;">
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 80%;">
+</section>
+<section id="visualization-aesthetics-continued-2" class="slide level2">
+<h2>Visualization, aesthetics continued</h2>
+<div style="font-size: 80%;">
+<p>Let’s polish the look of the plot a bit</p>
+</div>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 60%;">
 <ul>
-<li>Comments are also useful to “comment-out” the code you want to ignore</li>
+<li>We can also change the <strong>shape</strong> of the points based on <kbd>species</kbd> to make things even clearer
+<ul>
+<li><span style="font-size: 85%;">Where should we add the <kbd>shape = species</kbd> aesthetic argument?</span></li>
+</ul></li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># This will be skipped</span></span>
-<span id="cb7-2"><a href=""></a><span class="co"># sqrt(400)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment" data-fragment-index="4" style="font-size: 60%;">
+<ul>
+<li>Additionally, we can change the labels of axes and legend in the <kbd>labs()</kbd> function</li>
+</ul>
 </div>
-</div>
-</section>
-<section id="creating-and-using-objects" class="title-slide slide level1 center" style="text-align: center; color: white;" data-background-color="#444444">
-<h1>2) Creating and using objects</h1>
-
-</section>
-
-<section id="creating-and-using-objects-1" class="slide level2">
-<h2>Creating and using objects</h2>
-<p>R stores <em>everything</em> as an object - data, functions, models, output. Objects are created using the assignment operator <kbd>&lt;-</kbd>, shortcut for it: <kbd>Alt</kbd> + <kbd>-</kbd></p>
 <div class="swap-area">
 <div class="fragment fade-out" data-fragment-index="3">
-<div class="fragment fade-in" data-fragment-index="1">
 <div style="font-size: 80%;">
-<ul>
-<li>Try creating an object named <kbd>new_object</kbd>:</li>
-</ul>
-</div>
-<div style="font-size: 120%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>new_object <span class="ot">&lt;-</span> <span class="dv">144</span> <span class="co"># This stores 144 as an object</span></span>
-<span id="cb8-2"><a href=""></a>new_object <span class="co"># This calls the content of the object</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 144</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a href=""></a>  penguins,</span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb8-4"><a href=""></a>      <span class="at">y =</span> body_mass)</span>
+<span id="cb8-5"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="fragment fade-in" data-fragment-index="3">
-<div style="font-size: 80%;">
-<ul>
-<li>Try using objects in one of the following ways:</li>
-</ul>
-</div>
-<div style="font-size: 120%;">
+<div class="fragment fade-out" data-fragment-index="4">
+<div class="fragment fade-in" data-fragment-index="3" style="font-size: 80%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>new_object <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 154</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>new_object <span class="sc">+</span> new_object</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 288</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">sqrt</span>(new_object)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 12</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb9-2"><a href=""></a>  penguins,</span>
+<span id="cb9-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb9-4"><a href=""></a>      <span class="at">y =</span> body_mass)</span>
+<span id="cb9-5"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb9-7"><a href=""></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="fragment fade-out" data-fragment-index="3">
-<div class="fragment fade-in" data-fragment-index="2">
-<div style="font-size: 80%;">
-<ul>
-<li>If you want to display or “call” an object, simply type its name in console</li>
-</ul>
-</div>
-<div style="font-size: 120%;">
+<div class="fragment fade-in" data-fragment-index="4" style="font-size: 80%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>new_object</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 144</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" data-code-line-numbers="9-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-2"><a href=""></a>  penguins,</span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb10-4"><a href=""></a>      <span class="at">y =</span> body_mass)</span>
+<span id="cb10-5"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb10-7"><a href=""></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb10-9"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb10-10"><a href=""></a>       <span class="at">y =</span> <span class="st">"Body mass (g)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="5" style="font-size: 80%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-18-1.png" width="480"></p>
+</figure>
 </div>
 </div>
 </div>
 </div>
-</div>
+</div></div>
 </section>
-<section id="creating-vectors" class="slide level2">
-<h2>Creating vectors</h2>
-<p>A <strong>vector</strong> is a series of elements, such as numbers or characters</p>
-<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
-<p>You can create a vector and store is as an object. Creating vectors is done using the function <kbd>c()</kbd> which stands for “combine” or “concatenate”:</p>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">25</span>, <span class="dv">36</span>)</span>
-<span id="cb18-2"><a href=""></a>numeric_vector</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  4  9 16 25 36</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 70%; margin-top: 1.5em;">
-<ul>
-<li>If you name an object the same name as an existing object <em>it will overwrite it</em></li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="3" style="font-size: 70%;">
-<ul>
-<li>You can provide vectors as arguments to many functions:</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="3" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">sqrt</span>(numeric_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 3 4 5 6</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="creating-character-vectors" class="slide level2">
-<h2>Creating character vectors</h2>
-<div style="font-size: 85%;">
-<p>We often work with categorical data. A vector of text elements (called <strong>strings</strong> in programming jargon) is created by putting text in quotes:</p>
-</div>
-<div style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>string_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Atlantic"</span>, <span class="st">"Pacific"</span>, <span class="st">"Arctic"</span>)</span>
-<span id="cb22-2"><a href=""></a>string_vector</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Atlantic" "Pacific"  "Arctic"  </code></pre>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
-<ul>
-<li>Functions can also be used on character vectors, such as the <kbd>sort()</kbd> function</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">sort</span>(string_vector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Arctic"   "Atlantic" "Pacific" </code></pre>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
-<ul>
-<li>As we go on, we will see functions which accept more than just one argument, such as the <kbd>decreasing = TRUE</kbd> argument of the <kbd>sort()</kbd> function:</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">sort</span>(string_vector, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Pacific"  "Atlantic" "Arctic"  </code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="more-complex-objects" class="slide level2">
-<h2>More complex objects</h2>
-<p>Same principles show with vectors can be used with more complex objects, such as <strong>matrices</strong>, <strong>arrays</strong>, <strong>lists</strong>, and <strong>dataframes</strong></p>
-<div style="font-size: 70%;">
-<ul>
-<li><strong>Dataframe</strong> is the object we will focus on the most</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="1">
-<p>Easiest way to import data into R – <em>delimited text files</em> (e.g., .csv), but many data formats can be imported (.xlsx, .nc, .shp, .json, …)</p>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
-<ul>
-<li>For <em>delimited text files</em>, <kbd>read.table()</kbd> and <kbd>read.csv()</kbd> are common import functions</li>
-</ul>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>new_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Some_spreasheet.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="accessing-data-in-objects" class="slide level2">
-<h2>Accessing data in objects</h2>
-<div style="font-size: 80%;">
-<p>There are two main ways to access data inside objects: square brackets (<kbd>[]</kbd> or <kbd>[[]]</kbd>), and <kbd>$</kbd>. How you access an object depends on its <em>dimensions</em>.</p>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 80%;">
-<p>Dataframes have <em>2</em> dimensions: <strong>rows</strong> and <strong>columns</strong>. Using square brackets we can <strong>subset</strong> it using the format: <kbd>object[row, column]</kbd>. If you leave row or column place empty, all elements in that dimension will be selected.</p>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 100%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>penguins[<span class="dv">2</span>,] <span class="co"># Second row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  species    island bill_len bill_dep flipper_len body_mass    sex year
-2  Adelie Torgersen     39.5     17.4         186      3800 female 2007</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment" data-fragment-index="2" style="font-size: 100%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>penguins[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># Rows 1-3 and columns 3-5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  bill_len bill_dep flipper_len
-1     39.1     18.7         181
-2     39.5     17.4         186
-3     40.3     18.0         195</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="packages" class="title-slide slide level1 center" style="text-align: center; color: white;" data-background-color="#444444">
-<h1>3) Packages</h1>
-
-</section>
-
-<section id="installing-and-loading-packages" class="slide level2">
-<h2>Installing and loading packages</h2>
-<p>Packages contain useful functions (and sometimes data) created by the community</p>
+<section id="visualizing-distributions" class="slide level2">
+<h2>Visualizing distributions</h2>
+<p>How a distribution is visualized depends on the variable type: <strong>categorical</strong> or <strong>numerical</strong></p>
 <div class="fragment" data-fragment-index="1" style="font-size: 80%;">
 <ul>
-<li><p>These are not included in base R</p></li>
-<li><p>The Comprehensive R Archive Network (CRAN): packages go through a <em>peer-review process by statisticians and computer scientists</em></p></li>
+<li>For <strong>categorical</strong> variables, a <em>bar chart</em> can be used where the height is proportional to the number of observations of the variable</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2">
-<p>CRAN packages are installed using <kbd>install.packages()</kbd> – only once is needed</p>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 120%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>) <span class="co"># Run first</span></span>
-<span id="cb33-2"><a href=""></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>) <span class="co"># Run second</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </div>
 </section>
-<section id="useful-r-packages" class="slide level2">
-<h2>Useful R packages</h2>
-<p>Too many to list, but <kbd>tidyverse</kbd> is by far the most useful</p>
-<p>A package that includes a <em>family of packages</em>:</p>
+<section id="visualizing-distributions-1" class="slide level2">
+<h2>Visualizing distributions</h2>
+<p>How a distribution is visualized depends on the variable type: <strong>categorical</strong> or <strong>numerical</strong></p>
 <div class="fragment" data-fragment-index="1" style="font-size: 80%;">
 <ul>
-<li><p><kbd>ggplot2</kbd> for <em>plotting</em></p></li>
-<li><p><kbd>dplyr</kbd> and <kbd>tidyr</kbd> for <em>data manipulation</em></p></li>
-<li><p><kbd>lubridate</kbd> for working with <em>dates</em></p></li>
-<li><p>…</p></li>
+<li><strong>Numerical</strong> variables can be discrete or continuous. For continuous numerical variables, <em>histograms</em> are commonly used (<kbd>geom_histogram()</kbd>).</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 80%;">
-<p>Other notable packages: <kbd>readxl</kbd> (reading Excel files), <kbd>sf</kbd> (spatial data), <kbd>tidymodels</kbd> (modelling &amp; machine learning), <kbd>data.table</kbd> (big data handling), and many more.</p>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </section>
-<section id="loading-packages" class="slide level2">
-<h2>Loading packages</h2>
+<section id="visualizing-distributions-2" class="slide level2">
+<h2>Visualizing distributions</h2>
+<p>How a distribution is visualized depends on the variable type: <strong>categorical</strong> or <strong>numerical</strong></p>
+<div style="font-size: 80%;">
+<ul>
+<li><strong>Numerical</strong> variables can be discrete or continuous. For continuous numerical variables, <em>histograms</em> are commonly used (<kbd>geom_histogram()</kbd>).</li>
+<li>Alternative to a histogram is a <em>density plot</em> (<kbd>geom_density()</kbd>)</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 110%;">
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</section>
+<section id="visualizing-relationships" class="slide level2">
+<h2>Visualizing relationships</h2>
 <div style="font-size: 90%;">
-<p>After installation, packages have to be loaded into the environment using <kbd>library()</kbd>:</p>
+<p>To visualize a relationship, we need at least <em>two variables</em> mapped to an aesthetic in a plot (unlike for simple distributions)</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
+<p>For a relationship between a numerical and a categorical variable, a <strong>boxplot</strong> is commonly used</p>
+</div>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<ul>
+<li>What even is a boxplot?</li>
+</ul>
+</div>
+</div><div class="column" style="width:70%;">
+<div class="fragment boxplot-figure" data-fragment-index="2">
+<p><img data-src="figures/boxplot.png" class="boxplot-img"></p>
+<div class="boxplot-source">
+<p>Source: Hadley Wickham, <em>R for Data Science</em></p>
+</div>
+</div>
+</div></div>
+</section>
+<section id="visualizing-relationships-boxplot" class="slide level2">
+<h2>Visualizing relationships: boxplot</h2>
+<div style="font-size: 90%;">
+<p>Let’s make a simple boxplot using the <kbd>geom_boxplot()</kbd> geometry</p>
+</div>
+<div style="font-size: 110%;">
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+</section>
+<section id="visualizing-relationships-density-plot" class="slide level2">
+<h2>Visualizing relationships: density plot</h2>
+<div style="font-size: 90%;">
+<p>We can again use the density plot using the <kbd>geom_density()</kbd> geometry</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
+<ul>
+<li>Remember, 2 aesthetics need to be specified - what happens if only one is specified?</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
+<ul>
+<li>We can also add the <kbd>fill</kbd> aesthetic</li>
+</ul>
 </div>
 <div style="font-size: 100%;">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
+</section>
+<section id="visualizing-relationships-2-numerical-variables" class="slide level2">
+<h2>Visualizing relationships: 2 numerical variables</h2>
+<div style="font-size: 90%;">
+<p>Scatter plot is the most common way of visualizing a relationship between 2 numerical variables, using <kbd>geom_point()</kbd> geometry</p>
 </div>
-<div class="fragment" data-fragment-index="1" style="font-size: 90%;">
-<p>Once a package is loaded, you can use functions and/or data inside them:</p>
+<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
+<ul>
+<li>A revisited example:</li>
+</ul>
 </div>
 <div class="fragment" data-fragment-index="1" style="font-size: 100%;">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb12-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-relationships-3-or-more-numerical-variables" class="slide level2">
+<h2>Visualizing relationships: 3 or more numerical variables</h2>
+<div style="font-size: 80%;">
+<p>We can incorporate more variables into the plot by mapping them to additional aesthetics, for example <kbd>color = species</kbd> and <kbd>shape = island</kbd></p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 90%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">data</span>(<span class="st">"diamonds"</span>) <span class="co"># Places data in your global environment</span></span>
-<span id="cb35-2"><a href=""></a><span class="fu">head</span>(diamonds) <span class="co"># Displays first six elements of an object</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 10
-  carat cut       color clarity depth table price     x     y     z
-  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb13-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb13-4"><a href=""></a>                   <span class="at">shape =</span> island))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 90%;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
+</figure>
 </div>
 </div>
 </div>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="2" style="font-size: 90%;">
+<p>Plot is becoming more and more cluttered, what to do? <strong>FACETING</strong></p>
+</div>
+</section>
+<section id="visualizing-relationships-faceting" class="slide level2">
+<h2>Visualizing relationships: faceting</h2>
+<div style="font-size: 80%;">
+<p>Splitting the plot into multiple subplots - <strong>faceting</strong> - can be very useful to improve readability of plots</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 65%;">
+<ul>
+<li><p>Faceting by a <em>single variable</em> uses <kbd>facet_wrap()</kbd> — specify the variable with <kbd>~</kbd> followed by its name.</p></li>
+<li><p>The faceting variable has to be <em>categorical</em></p></li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 90%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb14-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb14-4"><a href=""></a>                 <span class="at">shape =</span> island)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="fragment" data-fragment-index="3" style="font-size: 90%;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="figures/MPS_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Introductory presentation</p>
+<p>Visualization presentation</p>
 </div>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="R_part1_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="R_part2_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="R_part1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="R_part1_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="R_part1_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="R_part2_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -2575,7 +2722,8 @@ Jan Gačnik
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -2746,7 +2894,7 @@ Jan Gačnik
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

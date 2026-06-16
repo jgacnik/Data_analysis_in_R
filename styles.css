@@ -29,3 +29,91 @@
   max-height: 220px;
   object-fit: contain;
 }
+
+kbd {
+  background: #c9c9c9;
+  color: #111;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.05em 0.18em;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.swap-area {
+  position: relative;
+  min-height: 190px;
+  margin-top: 1em;
+}
+
+.swap-area > .fragment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.reveal .slide-number {
+  font-size: 25px !important;
+}
+
+.reveal .boxplot-figure p {
+  margin: 0;
+}
+
+.reveal .boxplot-img {
+  display: block;
+  max-height: 430px;
+  margin: 0 auto;
+}
+
+.reveal .boxplot-source {
+  margin-top: 0.15em;
+  text-align: center;
+  font-size: 45%;
+  line-height: 1.1;
+  color: #555;
+}
+
+.reveal .qwebr-noninteractive-area.relationship-density-output pre {
+  display: none;
+}
+
+.reveal .qwebr-noninteractive-area.relationship-density-output figure {
+  margin: 0;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right {
+  display: grid !important;
+  grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+  grid-template-rows: max-content max-content;
+  grid-template-areas:
+    "toolbar graph"
+    "console graph";
+  gap: 0.8em;
+  align-items: start;
+  align-content: start;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right .qwebr-editor-toolbar {
+  grid-area: toolbar;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right .qwebr-console-area {
+  grid-area: console;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right .qwebr-output-graph-area {
+  grid-area: graph;
+  align-self: start;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right .qwebr-output-graph-area figure {
+  margin: 0;
+}
+
+.reveal .qwebr-interactive-area.webr-plot-right .qwebr-output-graph-area canvas {
+  max-width: 100%;
+  height: auto !important;
+}
