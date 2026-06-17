@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Jan Gačnik">
-  <meta name="dcterms.date" content="2026-06-16">
+  <meta name="dcterms.date" content="2026-06-17">
   <title>R workshop part 2 - visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -494,7 +494,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"code":"ggplot(\n  data = penguins,\n  mapping = aes(x = flipper_len,\n                y = body_mass)\n) +\n  geom_point(mapping = aes(color = species)) +\n  geom_smooth(method = \"lm\")","id":1,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass)) +\n  geom_histogram(binwidth = 200)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"2","fig-width":"6","label":"unnamed-chunk-2","message":"true","out-height":"200px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass)) +\n  geom_density() # We can also use the orientation parameter","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"2","fig-width":"6","label":"unnamed-chunk-3","message":"true","out-height":"200px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = species,\n                     y = body_mass)) +\n  geom_boxplot()\n# We can transform how boxplot looks,\n# e.g., with outlier.shape = NA or notch = TRUE, etc.","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-4","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass,\n                     color = species)) +\n  geom_density()\n# We can transform how density plot looks,\n# e.g., alpha = 0.5, etc.","id":5,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-5","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}}];
+  globalThis.qwebrCellDetails = [{"code":"ggplot(\n  data = penguins,\n  mapping = aes(x = flipper_len,\n                y = body_mass)\n) +\n  geom_point(mapping = aes(color = species)) +\n  geom_smooth(method = \"lm\")","id":1,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass)) +\n  geom_histogram(binwidth = 200)","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"2","fig-width":"6","label":"unnamed-chunk-2","message":"true","out-height":"200px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = species,\n                     y = body_mass)) +\n  geom_boxplot()\n# We can transform how boxplot looks,\n# e.g., with outlier.shape = NA or notch = TRUE, etc.","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-3","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}},{"code":"ggplot(penguins, aes(x = body_mass,\n                     color = species)) +\n  geom_density()\n# We can transform how density plot looks,\n# e.g., alpha = 0.5, etc.","id":4,"options":{"autorun":"false","classes":"webr-plot-right","comment":"","context":"interactive","dpi":72,"echo":"true","editor-font-scale":"0.5","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-align":"center","fig-cap":"","fig-height":"3","fig-width":"6","label":"unnamed-chunk-4","message":"true","out-height":"300px","out-width":"600px","output":"true","read-only":"false","results":"markup","warning":"false"}}];
 
   </script>
   <script type="module">
@@ -2047,7 +2047,7 @@ Jan Gačnik
 </div>
 </div>
 
-  <p class="date">2026-06-16</p>
+  <p class="date">2026-06-17</p>
 </section>
 <section id="visualization-in-r" class="slide level2">
 <h2>Visualization in R</h2>
@@ -2533,8 +2533,17 @@ Jan Gačnik
 </ul>
 </div>
 <div class="fragment" data-fragment-index="1" style="font-size: 110%;">
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="visualizing-relationships" class="slide level2">
@@ -2567,7 +2576,7 @@ Jan Gačnik
 <p>Let’s make a simple boxplot using the <kbd>geom_boxplot()</kbd> geometry</p>
 </div>
 <div style="font-size: 110%;">
-<div id="qwebr-insertion-location-4"></div>
+<div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </section>
@@ -2587,7 +2596,7 @@ Jan Gačnik
 </ul>
 </div>
 <div style="font-size: 100%;">
-<div id="qwebr-insertion-location-5"></div>
+<div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </section>
@@ -2603,13 +2612,13 @@ Jan Gačnik
 </div>
 <div class="fragment" data-fragment-index="1" style="font-size: 100%;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
-<span id="cb12-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb13-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="480"></p>
 </figure>
 </div>
 </div>
@@ -2622,22 +2631,22 @@ Jan Gačnik
 <p>We can incorporate more variables into the plot by mapping them to additional aesthetics, for example <kbd>color = species</kbd> and <kbd>shape = island</kbd></p>
 </div>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:53%;">
 <div class="fragment" data-fragment-index="1" style="font-size: 90%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
-<span id="cb13-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
-<span id="cb13-4"><a href=""></a>                   <span class="at">shape =</span> island))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb14-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb14-4"><a href=""></a>                   <span class="at">shape =</span> island))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:47%;">
 <div class="fragment" data-fragment-index="1" style="font-size: 90%;">
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
 <figure>
-<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
 </figure>
 </div>
 </div>
@@ -2660,29 +2669,136 @@ Jan Gačnik
 </ul>
 </div>
 <div class="columns">
-<div class="column" style="width:40%;">
-<div class="fragment" data-fragment-index="2" style="font-size: 90%;">
+<div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 85%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
-<span id="cb14-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
-<span id="cb14-4"><a href=""></a>                 <span class="at">shape =</span> island)) <span class="sc">+</span></span>
-<span id="cb14-5"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb15-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb15-4"><a href=""></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</div><div class="column" style="width:60%;">
-<div class="fragment" data-fragment-index="3" style="font-size: 90%;">
+</div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="3">
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
 <figure>
-<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div></div>
+<div class="fragment" data-fragment-index="4" style="font-size: 65%;">
+<p>The x axis text overlaps, homework - try solving this by adjusting <kbd>theme()</kbd> parameters</p>
+</div>
+</section>
+<section id="visualizing-relationships-faceting-1" class="slide level2">
+<h2>Visualizing relationships: faceting</h2>
+<div style="font-size: 80%;">
+<p>Splitting the plot into multiple subplots - <strong>faceting</strong> - can be very useful to improve readability of plots</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 65%;">
+<ul>
+<li>Faceting by a <em>two variables</em> is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula <kbd>variable1 ~ variable2</kbd>.</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 85%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_len,</span>
+<span id="cb16-2"><a href=""></a>                     <span class="at">y =</span> body_mass)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species,</span>
+<span id="cb16-4"><a href=""></a>                 <span class="at">shape =</span> species))</span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">facet_wrap</span>(island <span class="sc">~</span> sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="4" style="font-size: 65%;">
+<ul>
+<li><p>The <kbd>NA</kbd> column on the plot indicates entries with missing sex data, we have to <strong>filter</strong> them out</p></li>
+<li><p>Filtering part of next presentation - <strong>data transformation</strong></p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment" data-fragment-index="3">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="R_part2_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-right" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="saving-generated-plots" class="slide level2">
+<h2>Saving generated plots</h2>
+<p>Multiple ways to do it, commonly done using <kbd>ggsave()</kbd> functon</p>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin_plot.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 75%;">
+<ul>
+<li>Specifying <kbd>width</kbd>, <kbd>height</kbd>, and <kbd>units</kbd> arguments will make your plot reproducible</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"penguin_plot.png"</span>,</span>
+<span id="cb18-2"><a href=""></a>       <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">"cm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 75%;">
+<ul>
+<li>Without specifying dimensions, <kbd>ggsave()</kbd> will guess the size based on current size of your graphics device</li>
+</ul>
+</div>
+</section>
+<section id="examples-of-r-plots" class="slide level2">
+<h2>Examples of R plots</h2>
+<div style="font-size: 80%;">
+<p><em>Global Hg measurements of reactive Hg, modeled vs measured values</em> Bar plot combined with scatter plot, shapes, lines, and text labels</p>
+</div>
+
+<img data-src="figures/example_barplot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:58.0%"></section>
+<section id="examples-of-r-plots-1" class="slide level2">
+<h2>Examples of R plots</h2>
+<div style="font-size: 85%;">
+<p><strong>Map plots in R</strong></p>
+</div>
+<div style="font-size: 70%;">
+<ul>
+<li><p>More control over map appearance, layers, and custom features than in QGIS/ArcGIS</p></li>
+<li><p>Requires more coding knowledge and experience to create polished maps</p></li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 80%;">
+<p>Strontium isotope ratio map of Romania</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/example_map.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="examples-of-r-plots-2" class="slide level2">
+<h2>Examples of R plots</h2>
+<div style="font-size: 85%;">
+<p>Creativity is the limit with visualization in R</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/example_basketball.png" class="quarto-figure quarto-figure-center" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
 
 </section>
     </div>

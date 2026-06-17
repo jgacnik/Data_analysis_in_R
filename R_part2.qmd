@@ -595,16 +595,13 @@ How a distribution is visualized depends on the variable type: **categorical** o
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
-```{webr-r}
+```{r}
 #| echo: true
 #| fig-width: 6
 #| fig-height: 2
-#| out-width: 600px
-#| out-height: 200px
 #| fig-align: center
-#| warning: false
 ggplot(penguins, aes(x = body_mass)) +
-  geom_density() # We can also use the orientation parameter
+  geom_density()
 ```
 :::
 
@@ -623,7 +620,7 @@ For a relationship between a numerical and a categorical variable, a **boxplot**
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
 -   What even is a boxplot?
 :::
-:::
+::::
 
 :::: {.column width="70%" }
 ::: {.fragment .boxplot-figure data-fragment-index="2"}
@@ -720,7 +717,7 @@ We can incorporate more variables into the plot by mapping them to additional ae
 :::
 
 ::::::: columns
-:::: {.column width="50%" }
+:::: {.column width="53%" }
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
 ```{r}
 #| echo: true
@@ -735,7 +732,7 @@ ggplot(penguins, aes(x = flipper_len,
 :::
 ::::
 
-:::: {.column width="50%" }
+:::: {.column width="47%" }
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
 ```{r}
 #| echo: false
@@ -770,8 +767,8 @@ Splitting the plot into multiple subplots - **faceting**  - can be very useful t
 :::
 
 ::::::: columns
-:::: {.column width="40%" }
-::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+:::: {.column width="50%" }
+::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 ```{r}
 #| echo: true
 #| eval: false
@@ -780,14 +777,14 @@ Splitting the plot into multiple subplots - **faceting**  - can be very useful t
 ggplot(penguins, aes(x = flipper_len,
                      y = body_mass)) +
   geom_point(aes(color = species,
-                 shape = island)) +
-  facet_wrap(~island)
+                 shape = species)) +
+  facet_wrap(~ island)
 ```
 :::
 ::::
 
-:::: {.column width="60%" }
-::: {.fragment data-fragment-index="3" style="font-size: 90%;"}
+:::: {.column width="50%" }
+::: {.fragment data-fragment-index="3"}
 ```{r}
 #| echo: false
 #| fig-width: 5
@@ -796,10 +793,132 @@ ggplot(penguins, aes(x = flipper_len,
 ggplot(penguins, aes(x = flipper_len,
                      y = body_mass)) +
   geom_point(aes(color = species,
-                 shape = island)) +
-  facet_wrap(~island)
+                 shape = species)) +
+  facet_wrap(~ island)
 ```
 :::
 ::::
-
 :::::::
+
+::: {.fragment data-fragment-index="4" style="font-size: 65%;"}
+The x axis text overlaps, homework - try solving this by adjusting <kbd>theme()</kbd> parameters
+:::
+
+
+## Visualizing relationships: faceting
+
+::: {style="font-size: 80%;"}
+Splitting the plot into multiple subplots - **faceting**  - can be very useful to improve readability of plots 
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 65%;"}
+-  Faceting by a _two variables_ is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula  <kbd>variable1 ~ variable2</kbd>.
+:::
+
+::::::: columns
+:::: {.column width="50%" }
+::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
+```{r}
+#| echo: true
+#| eval: false
+#| fig-width: 5
+#| fig-height: 2.5
+ggplot(penguins, aes(x = flipper_len,
+                     y = body_mass)) +
+  geom_point(aes(color = species,
+                 shape = species))
+  facet_wrap(island ~ sex)
+```
+:::
+
+::: {.fragment data-fragment-index="4" style="font-size: 65%;"}
+- The <kbd>NA</kbd> column on the plot indicates entries with missing sex data, we have to **filter** them out
+
+- Filtering part of next presentation - **data transformation**
+:::
+
+::::
+
+:::: {.column width="50%" }
+::: {.fragment data-fragment-index="3"}
+```{r}
+#| echo: false
+#| fig-width: 5
+#| fig-height: 4
+#| fig-align: right
+ggplot(penguins, aes(x = flipper_len,
+                     y = body_mass)) +
+  geom_point(aes(color = species,
+                 shape = species)) +
+  facet_grid(island ~ sex)
+```
+:::
+::::
+:::::::
+
+
+## Saving generated plots
+
+Multiple ways to do it, commonly done using <kbd>ggsave()</kbd> functon
+
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+ggsave(filename = "penguin_plot.png")
+```
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- Specifying <kbd>width</kbd>, <kbd>height</kbd>, and <kbd>units</kbd> arguments will make your plot reproducible
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 100%;"}
+```{r}
+#| echo: true
+ggsave(filename = "penguin_plot.png",
+       width = 15, height = 10, units = "cm")
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+- Without specifying dimensions, <kbd>ggsave()</kbd> will guess the size based on current size of your graphics device
+:::
+
+## Examples of R plots
+
+::: {style="font-size: 80%;"}
+_Global Hg measurements of reactive Hg, modeled vs measured values_
+Bar plot combined with scatter plot, shapes, lines, and text labels
+:::
+
+![](figures/example_barplot.png){fig-align="center" width="58%"}
+
+
+## Examples of R plots
+
+::: {style="font-size: 85%;"}
+**Map plots in R**
+:::
+
+::: {style="font-size: 70%;"}
+- More control over map appearance, layers, and custom features than in QGIS/ArcGIS  
+
+- Requires more coding knowledge and experience to create polished maps
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+Strontium isotope ratio map of Romania
+
+![](figures/example_map.png){fig-align="center" width="55%"}
+:::
+
+## Examples of R plots
+
+::: {style="font-size: 85%;"}
+Creativity is the limit with visualization in R
+
+![](figures/example_basketball.png){fig-align="center" width="55%"}
+:::
+
+
+
