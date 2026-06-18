@@ -17,6 +17,34 @@
   size: 10pt;
 }
 
+.reveal .transition-slide {
+  color: white;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.reveal .transition-slide h1,
+.reveal .transition-slide h2 {
+  color: white;
+}
+
+.reveal .transition-title {
+  color: white;
+  font-size: 2.4em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reveal img.summarise-img {
+  display: block;
+  width: 70% !important;
+  max-width: 70% !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
 .image-row {
   display: flex;
   align-items: center;

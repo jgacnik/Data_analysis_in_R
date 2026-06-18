@@ -1,0 +1,468 @@
+---
+title: "R workshop part 3 - data transformation"
+author: "Jan Gačnik"
+date: last-modified
+format:
+  revealjs:
+    slide-number: true
+    footer: "Data transformation presentation"
+    logo: "figures/MPS_logo.png"
+    css: styles.css
+    chalkboard: true
+filters:
+  - webr
+webr:
+  show-startup-message: false
+  packages: ["dplyr"]
+editor: visual
+---
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+data("penguins", package = "datasets")
+```
+
+## Data transformation in R
+
+::: {style="font-size: 90%;"}
+Data visualization is a great way to explore data, but the data is rarely in exact form as needed for making graphs.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+In this presentation, we will learn how to:
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+
+- Filter the data
+
+- Transform existing columns and create new ones
+
+- Group data and make grouped summary statistics
+
+- How to make data pipelines
+:::
+
+## Data transformation in R
+
+Illustration of the data transformation process
+
+![](figures/pipeline.png){fig-align="center" width="85%"}
+
+::: {style="font-size: 50%; color: grey; text-align: center;"}
+Source: Celina Cheng, _R for Ecology_
+:::
+
+## Data transformation in R
+
+::: {style="font-size: 90%;"}
+We are staying in the <kbd>tidyverse</kbd> environment using the sub-package <kbd>dplyr</kbd> ![](figures/dplyr.png){style="vertical-align: -40px;" width="8%"}
+:::
+
+::::::: columns
+:::: {.column width="50%"}
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+Benefits:
+
+- Human-readable syntax using predictable English verbs
+
+- Intuitive piping, code as a sequence of steps
+
+- Option to translate dplyr syntax to SQL query for databases
+
+:::
+::::
+
+:::: {.column width="50%"}
+::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
+Cons:
+
+- Slower than some other packages, can't handle giant data (>1 million rows)
+
+- Functions keep improving and updating - old code may not work
+:::
+::::
+:::::::
+
+## Data transformation in R
+
+Broadly, first functions studied today can be classified into these families:
+
+::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
+
+- Functions that operate on **rows** of a data frame
+
+- Functions that operate on **columns** of a data frame
+
+:::
+
+## {.transition-slide background-color="#444444"}
+
+::: {.transition-title}
+1\) Functions that operate on ROWS
+:::
+
+## Filtering {data-auto-animate="true"}
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+```{.r data-id="filter-code"}
+penguins_filtered <- filter(penguins, island == "Dream")
+```
+
+::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
+
+| Logical operator | Meaning |
+|---|---|
+| `<` | Less than |
+| `<=` | Less than or equal to |
+| `>` | More than |
+| `>=` | More than or equal to |
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `A | B` | A or B |
+| `A & B` | A and B |
+:::
+
+## Filtering {data-auto-animate="true"}
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+```{.r data-id="filter-code"}
+penguins_filtered <- filter(penguins, island == "Dream")
+penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
+```
+
+::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
+
+| Logical operator | Meaning |
+|---|---|
+| `<` | Less than |
+| `<=` | Less than or equal to |
+| `>` | More than |
+| `>=` | More than or equal to |
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `A | B` | A or B |
+| `A & B` | A and B |
+:::
+
+## Filtering {data-auto-animate="true"}
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+```{.r data-id="filter-code"}
+penguins_filtered <- filter(penguins, island == "Dream")
+penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
+penguins_filtered_3 <- filter(penguins, island == "Dream" & flipper_len >= 190)
+```
+
+::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
+
+| Logical operator | Meaning |
+|---|---|
+| `<` | Less than |
+| `<=` | Less than or equal to |
+| `>` | More than |
+| `>=` | More than or equal to |
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `A | B` | A or B |
+| `A & B` | A and B |
+:::
+
+## {.transition-slide background-color="#444444"}
+
+::: {.transition-title}
+2\) Functions that operate on COLUMNS
+:::
+
+## Transform & create columns
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+:::
+
+```{.r data-id="filter-code"}
+penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
+```
+
+## Transform & create columns
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+:::
+
+```{.r data-id="filter-code"}
+penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
+penguins_mutated_2 <- mutate(penguins, body_mass_kg / mody_mass / 1000)
+```
+
+## Transform & create columns
+
+::: {style="font-size: 90%;" data-id="filter-intro"}
+Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+:::
+
+```{.r data-id="filter-code"}
+penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
+penguins_mutated_2 <- mutate(penguins, body_mass_kg / mody_mass / 1000)
+penguins_mutated_3 <- mutate(penguins, ifelse(body_mass > 4000, "Large", "Small"))
+```
+
+## {.transition-slide background-color="#444444"}
+
+::: {.transition-title}
+3\) Grouping
+:::
+
+## Group & summarise data
+
+::: {style="font-size: 85%;"}
+Function <kbd>group_by()</kbd> _silently_ creates grouping of data by a specified variable
+
+Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+- We need to pass grouped data (<kbd>penguins</kbd> grouped by <kbd>species</kbd> variable) to the <kbd>summarise()</kbd> functon  
+
+- Before: function(data, argument), now: function(grouped_data, argument)
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: true
+penguins_summary <- summarise(group_by(penguins, species),
+                              mean_flipper = mean(flipper_len))
+```
+:::
+
+##
+
+::: {style="font-size: 85%;"}
+The data has <kbd>NA</kbd>s instead of real means - we did not tell R what to do with missing values
+:::
+
+<div style="text-align: center;">
+  <img src="figures/summarise_NA.png" style="width: 70%;">
+</div>
+
+## Group & summarise data
+
+::: {style="font-size: 85%;"}
+Function <kbd>group_by()</kbd> _silently_ creates grouping of data by a specified variable
+
+Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+- Another argument needs to be added to <kbd>mean()</kbd> function, which tells it how to handle NAs
+
+- Using <kbd>na.rm = TRUE</kbd> argument inside <kbd>mean()</kbd> the will ignore NAs
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 100%;"}
+```{r}
+#| echo: true
+penguins_summary <- summarise(group_by(penguins, species),
+                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+```
+:::
+
+##
+
+::: {style="font-size: 85%;"}
+Now, the summarised data includes accurate means of penguin flipper length by species
+:::
+
+![](figures/summarise.png){.summarise-img}
+
+::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
+Our code chunks are slowly becoming longer and longer and more nested → less readable. Solution? **Data pipelines**
+:::
+
+## {.transition-slide background-color="#444444"}
+
+::: {.transition-title}
+4\) Pipelines
+:::
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {.fragment data-fragment-index="1" style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 70%;" data-id="old-code-label"}
+- Let's demonstrate this on the previous example:
+:::
+
+::: {.fragment data-fragment-index="3"}
+```{.r data-id="old-code"}
+penguins_summary <- summarise(group_by(penguins, species),
+                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+```
+:::
+
+::: {.fragment data-fragment-index="4" style="font-size: 70%;" data-id="pipeline-code-label"}
+- Same example with pipeline approach:
+:::
+
+::: {.fragment data-fragment-index="5"}
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE)
+```
+:::
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {style="font-size: 70%;" data-id="old-code-label"}
+- Let's demonstrate this on the previous example:
+:::
+
+```{.r data-id="old-code"}
+penguins_summary <- summarise(group_by(penguins, species),
+                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+```
+
+::: {style="font-size: 70%;" data-id="pipeline-code-label"}
+- Same example with pipeline approach:
+:::
+
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE) %>% 
+  group_by(species)
+```
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {style="font-size: 70%;" data-id="old-code-label"}
+- Let's demonstrate this on the previous example:
+:::
+
+```{.r data-id="old-code"}
+penguins_summary <- summarise(group_by(penguins, species),
+                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+```
+
+::: {style="font-size: 70%;" data-id="pipeline-code-label"}
+- Same example with pipeline approach:
+:::
+
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE) %>% 
+  group_by(species) %>% 
+  summarise(mean_flipper = mean(flipper_len))
+```
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;" data-id="old-code-label"}
+- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+:::
+
+::: {.fragment data-fragment-index="2"}
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE)
+```
+:::
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {style="font-size: 70%;" data-id="old-code-label"}
+- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+:::
+
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE) %>% 
+  group_by(species, sex)
+```
+
+## Data pipelines {data-auto-animate="true"}
+
+::: {style="font-size: 85%;" data-id="pipeline-intro"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+:::
+
+::: {style="font-size: 70%;" data-id="old-code-label"}
+- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+:::
+
+```{.r data-id="pipeline-code"}
+penguins_summary <- penguins %>% 
+  filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE) %>% 
+  group_by(species, sex) %>% 
+  summarise(median_flipper = median(flipper_len),
+            q25 = quantile(flipper_len, 0.25),
+            q75 = quantile(flipper_len, 0.75))
+```
+
+##
+
+::: {style="font-size: 85%;"}
+The summarised data should now look like this:
+:::
+
+<div style="text-align: center;">
+  <img src="figures/summarise_2.png" style="width: 80%;">
+</div>
+
+
+::: {style="font-size: 85%;"}
+Important functions and concepts, let's revise briefly before moving to next topics
+:::

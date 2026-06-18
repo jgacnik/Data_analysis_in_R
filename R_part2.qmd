@@ -16,6 +16,7 @@ webr:
   packages: ["ggplot2"]
 editor: visual
 ---
+
 ```{r}
 #| label: setup
 #| include: false
@@ -27,17 +28,12 @@ library(knitr)
 ## Visualization in R
 
 ::: {style="font-size: 90%;"}
-
 Base R includes a function for plotting - <kbd>plot()</kbd>. Nowadays, plotting in R is most commonly done with <kbd>ggplot()</kbd> function from the <kbd>tidyverse</kbd> package.
-
 :::
 
-:::::::: columns
-
-::::: {.column width="60%"}
-
+::::::: columns
+:::: {.column width="60%"}
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
-
 Benefits:
 
 - The "**g**rammar of **g**raphics" (**gg**) is an intuitive way of building a plot (for most people)
@@ -47,45 +43,33 @@ Benefits:
 - Faceting - splitting one chart into multiple smaller parts
 
 - Modern, publication-ready default themes
-
 :::
+::::
 
-:::::
-
-::::: {.column width="40%"}
-
+:::: {.column width="40%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
-
 Cons:
 
 - Slower than base <kbd>plot()</kbd>
 
 - Needs "tidy" data for plotting
-
 :::
-
-:::::
-
-::::::::
+::::
+:::::::
 
 ## Vocabulary of <kbd>ggplot()</kbd>
 
-Data   →   Aesthetics   →   Geometry
+Data → Aesthetics → Geometry
 
-:::::::: columns
-
+:::::::::::: columns
 ::::: {.column width="40%"}
-
 ::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
-
 **Data**
 
 The data used for the plot
-
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 45%;"}
-
 ```{r}
 #| echo: false
 #| message: false
@@ -96,56 +80,42 @@ penguins |>
   kable(format = "html")
 ```
 :::
-
 :::::
 
 ::::: {.column width="30%"}
-
 ::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
-
 **Aesthetics**
 
-The _mapping_ of variables to the aesthetics
-
+The *mapping* of variables to the aesthetics
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 65%;"}
-
 - x axis
 - y axis
 - color
 - shape
 - line type
 - ...
-
 :::
-
 :::::
 
 ::::: {.column width="30%"}
-
 ::: {.fragment data-fragment-index="3" style="font-size: 75%;"}
-
 **Geometry**
 
-The _geometric object_ that will represent the aesthetic mappings 
-
+The *geometric object* that will represent the aesthetic mappings
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 65%;"}
-
 - scatter plot
 - regression
 - histogram
 - box plot
 - violin plot
 - ...
-
 :::
-
 :::::
-
-::::::::
+::::::::::::
 
 ## Visualization in <kbd>ggplot()</kbd>
 
@@ -197,11 +167,11 @@ Next, we add the mapping argument to our <kbd>ggplot()</kbd>, with which we defi
 ::::::::: columns
 :::::: {.column width="55%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   Mapping argument is always defined in the <kbd>aes()</kbd> function
+- Mapping argument is always defined in the <kbd>aes()</kbd> function
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 70%;"}
--   Let's use <kbd>flipper_len</kbd> as our <kbd>x</kbd> aesthetic and <kbd>body_mass</kbd> as our <kbd>y</kbd> aesthetic.
+- Let's use <kbd>flipper_len</kbd> as our <kbd>x</kbd> aesthetic and <kbd>body_mass</kbd> as our <kbd>y</kbd> aesthetic.
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 110%;"}
@@ -242,11 +212,11 @@ Next, we have to define what kind of **geometry** do we want to plot
 ::::::::: columns
 :::::: {.column width="55%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   Defined using different <kbd>geom\_</kbd> functions, for example: <kbd>geom_point()</kbd> (scatter plot), <kbd>geom_line()</kbd> (linegraph), <kbd>geom_boxplot()</kbd> (box plot), <kbd>geom_violin</kbd> (violin plot), etc.
+- Defined using different <kbd>geom\_</kbd> functions, for example: <kbd>geom_point()</kbd> (scatter plot), <kbd>geom_line()</kbd> (linegraph), <kbd>geom_boxplot()</kbd> (box plot), <kbd>geom_violin</kbd> (violin plot), etc.
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 70%;"}
--   Let's use <kbd>geom_point()</kbd> to make our plot a scatter plot:
+- Let's use <kbd>geom_point()</kbd> to make our plot a scatter plot:
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 110%;"}
@@ -289,7 +259,7 @@ Next, let's make a more informative plot, we would like to see if the relationsh
 :::::::: columns
 ::::: {.column width="55%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   We need to add another aesthetic for species in <kbd>aes()</kbd>, for example color:
+- We need to add another aesthetic for species in <kbd>aes()</kbd>, for example color:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -334,7 +304,7 @@ Next, let's add a *linear regression* to the plot
 :::::::: columns
 ::::: {.column width="55%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   Since this is a new geometry, we will add it with <kbd>geom_smooth()</kbd>. The smoothing we want is a [l]{.underline}inear [m]{.underline}odel, specified using <kbd>method = "lm"</kbd>:
+- Since this is a new geometry, we will add it with <kbd>geom_smooth()</kbd>. The smoothing we want is a [l]{.underline}inear [m]{.underline}odel, specified using <kbd>method = "lm"</kbd>:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -387,11 +357,11 @@ Aesthetics defined in geometries are **local**
 ::::::::: columns
 :::::: {.column width="55%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   We want: 1) points to be colored based on species, 2) no separation of regressions based on species
+- We want: 1) points to be colored based on species, 2) no separation of regressions based on species
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 70%;"}
--   So, species variable has to be a local aesthetic in the <kbd>geom_point()</kbd> mapping:
+- So, species variable has to be a local aesthetic in the <kbd>geom_point()</kbd> mapping:
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 92%;"}
@@ -434,7 +404,7 @@ As we go on, we will often skip obvious argument names to make the code shorter
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
--   For example, <kbd>data = penguins</kbd> becomes <kbd>penguins</kbd>, and <kbd>mapping = aes(...)</kbd> becomes <kbd>aes(...)</kbd>:
+- For example, <kbd>data = penguins</kbd> becomes <kbd>penguins</kbd>, and <kbd>mapping = aes(...)</kbd> becomes <kbd>aes(...)</kbd>:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
@@ -457,18 +427,18 @@ ggplot(
 Let's polish the look of the plot a bit
 :::
 
-:::::::::::: columns
-::::::::: {.column width="60%"}
+:::::::::::::: columns
+::::::::::: {.column width="60%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 60%;"}
--   We can also change the **shape** of the points based on <kbd>species</kbd> to make things even clearer
-    -   [Where should we add the <kbd>shape = species</kbd> aesthetic argument?]{style="font-size: 85%;"}
+- We can also change the **shape** of the points based on <kbd>species</kbd> to make things even clearer
+  - [Where should we add the <kbd>shape = species</kbd> aesthetic argument?]{style="font-size: 85%;"}
 :::
 
 ::: {.fragment data-fragment-index="4" style="font-size: 60%;"}
--   Additionally, we can change the labels of axes and legend in the <kbd>labs()</kbd> function
+- Additionally, we can change the labels of axes and legend in the <kbd>labs()</kbd> function
 :::
 
-:::::: swap-area
+:::::::: swap-area
 :::: {.fragment .fade-out data-fragment-index="3"}
 ::: {style="font-size: 80%;"}
 ```{r}
@@ -520,8 +490,8 @@ ggplot(
        y = "Body mass (g)")
 ```
 :::
-::::::
-:::::::::
+::::::::
+:::::::::::
 
 :::: {.column width="40%"}
 ::: {.fragment data-fragment-index="5" style="font-size: 80%;"}
@@ -542,14 +512,14 @@ ggplot(
 ```
 :::
 ::::
-::::::::::::
+::::::::::::::
 
 ## Visualizing distributions
 
 How a distribution is visualized depends on the variable type: **categorical** or **numerical**
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   For **categorical** variables, a *bar chart* can be used where the height is proportional to the number of observations of the variable
+- For **categorical** variables, a *bar chart* can be used where the height is proportional to the number of observations of the variable
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -568,7 +538,7 @@ ggplot(penguins, aes(x = species)) +
 How a distribution is visualized depends on the variable type: **categorical** or **numerical**
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   **Numerical** variables can be discrete or continuous. For continuous numerical variables, *histograms* are commonly used (<kbd>geom_histogram()</kbd>).
+- **Numerical** variables can be discrete or continuous. For continuous numerical variables, *histograms* are commonly used (<kbd>geom_histogram()</kbd>).
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -590,8 +560,8 @@ ggplot(penguins, aes(x = body_mass)) +
 How a distribution is visualized depends on the variable type: **categorical** or **numerical**
 
 ::: {style="font-size: 80%;"}
--   **Numerical** variables can be discrete or continuous. For continuous numerical variables, _histograms_ are commonly used (<kbd>geom_histogram()</kbd>).
--   Alternative to a histogram is a _density plot_ (<kbd>geom_density()</kbd>)
+- **Numerical** variables can be discrete or continuous. For continuous numerical variables, *histograms* are commonly used (<kbd>geom_histogram()</kbd>).
+- Alternative to a histogram is a *density plot* (<kbd>geom_density()</kbd>)
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
@@ -608,30 +578,30 @@ ggplot(penguins, aes(x = body_mass)) +
 ## Visualizing relationships
 
 ::: {style="font-size: 90%;"}
-To visualize a relationship, we need at least _two variables_ mapped to an aesthetic in a plot (unlike for simple distributions)
+To visualize a relationship, we need at least *two variables* mapped to an aesthetic in a plot (unlike for simple distributions)
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
-For a relationship between a numerical and a categorical variable, a **boxplot** is commonly used 
+For a relationship between a numerical and a categorical variable, a **boxplot** is commonly used
 :::
 
-::::::: columns
-:::: {.column width="30%" }
+:::::::: columns
+:::: {.column width="30%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   What even is a boxplot?
+- What even is a boxplot?
 :::
 ::::
 
-:::: {.column width="70%" }
-::: {.fragment .boxplot-figure data-fragment-index="2"}
+::::: {.column width="70%"}
+:::: {.fragment .boxplot-figure data-fragment-index="2"}
 ![](figures/boxplot.png){.boxplot-img}
 
-::: {.boxplot-source}
-Source: Hadley Wickham, _R for Data Science_
-:::
+::: boxplot-source
+Source: Hadley Wickham, *R for Data Science*
 :::
 ::::
-:::::::
+:::::
+::::::::
 
 ## Visualizing relationships: boxplot
 
@@ -663,11 +633,11 @@ We can again use the density plot using the <kbd>geom_density()</kbd> geometry
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
--   Remember, 2 aesthetics need to be specified - what happens if only one is specified?
+- Remember, 2 aesthetics need to be specified - what happens if only one is specified?
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   We can also add the <kbd>fill</kbd> aesthetic
+- We can also add the <kbd>fill</kbd> aesthetic
 :::
 
 ::: {style="font-size: 100%;"}
@@ -695,7 +665,7 @@ Scatter plot is the most common way of visualizing a relationship between 2 nume
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
--   A revisited example:
+- A revisited example:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%;"}
@@ -717,7 +687,7 @@ We can incorporate more variables into the plot by mapping them to additional ae
 :::
 
 ::::::: columns
-:::: {.column width="53%" }
+:::: {.column width="53%"}
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
 ```{r}
 #| echo: true
@@ -732,7 +702,7 @@ ggplot(penguins, aes(x = flipper_len,
 :::
 ::::
 
-:::: {.column width="47%" }
+:::: {.column width="47%"}
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
 ```{r}
 #| echo: false
@@ -746,28 +716,26 @@ ggplot(penguins, aes(x = flipper_len,
 ```
 :::
 ::::
-
 :::::::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
-Plot is becoming more and more cluttered, what to do?  **FACETING**
+Plot is becoming more and more cluttered, what to do? **FACETING**
 :::
-
 
 ## Visualizing relationships: faceting
 
 ::: {style="font-size: 80%;"}
-Splitting the plot into multiple subplots - **faceting**  - can be very useful to improve readability of plots 
+Splitting the plot into multiple subplots - **faceting** - can be very useful to improve readability of plots
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 65%;"}
--  Faceting by a _single variable_ uses <kbd>facet_wrap()</kbd> — specify the variable with <kbd>~</kbd> followed by its name.
+- Faceting by a *single variable* uses <kbd>facet_wrap()</kbd> — specify the variable with <kbd>\~</kbd> followed by its name.
 
-- The faceting variable has to be _categorical_
+- The faceting variable has to be *categorical*
 :::
 
 ::::::: columns
-:::: {.column width="50%" }
+:::: {.column width="50%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 ```{r}
 #| echo: true
@@ -783,7 +751,7 @@ ggplot(penguins, aes(x = flipper_len,
 :::
 ::::
 
-:::: {.column width="50%" }
+:::: {.column width="50%"}
 ::: {.fragment data-fragment-index="3"}
 ```{r}
 #| echo: false
@@ -804,19 +772,18 @@ ggplot(penguins, aes(x = flipper_len,
 The x axis text overlaps, homework - try solving this by adjusting <kbd>theme()</kbd> parameters
 :::
 
-
 ## Visualizing relationships: faceting
 
 ::: {style="font-size: 80%;"}
-Splitting the plot into multiple subplots - **faceting**  - can be very useful to improve readability of plots 
+Splitting the plot into multiple subplots - **faceting** - can be very useful to improve readability of plots
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 65%;"}
--  Faceting by a _two variables_ is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula  <kbd>variable1 ~ variable2</kbd>.
+- Faceting by a *two variables* is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula <kbd>variable1 \~ variable2</kbd>.
 :::
 
-::::::: columns
-:::: {.column width="50%" }
+:::::::: columns
+::::: {.column width="50%"}
 ::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 ```{r}
 #| echo: true
@@ -836,10 +803,9 @@ ggplot(penguins, aes(x = flipper_len,
 
 - Filtering part of next presentation - **data transformation**
 :::
+:::::
 
-::::
-
-:::: {.column width="50%" }
+:::: {.column width="50%"}
 ::: {.fragment data-fragment-index="3"}
 ```{r}
 #| echo: false
@@ -854,8 +820,7 @@ ggplot(penguins, aes(x = flipper_len,
 ```
 :::
 ::::
-:::::::
-
+::::::::
 
 ## Saving generated plots
 
@@ -887,12 +852,10 @@ ggsave(filename = "penguin_plot.png",
 ## Examples of R plots
 
 ::: {style="font-size: 80%;"}
-_Global Hg measurements of reactive Hg, modeled vs measured values_
-Bar plot combined with scatter plot, shapes, lines, and text labels
+*Global Hg measurements of reactive Hg, modeled vs measured values* Bar plot combined with scatter plot, shapes, lines, and text labels
 :::
 
 ![](figures/example_barplot.png){fig-align="center" width="58%"}
-
 
 ## Examples of R plots
 
@@ -901,7 +864,7 @@ Bar plot combined with scatter plot, shapes, lines, and text labels
 :::
 
 ::: {style="font-size: 70%;"}
-- More control over map appearance, layers, and custom features than in QGIS/ArcGIS  
+- More control over map appearance, layers, and custom features than in QGIS/ArcGIS
 
 - Requires more coding knowledge and experience to create polished maps
 :::
@@ -919,6 +882,3 @@ Creativity is the limit with visualization in R
 
 ![](figures/example_basketball.png){fig-align="center" width="55%"}
 :::
-
-
-
