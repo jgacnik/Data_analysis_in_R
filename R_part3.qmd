@@ -22,7 +22,7 @@ editor: visual
 
 library(tidyverse)
 library(knitr)
-data("penguins", package = "datasets")
+data("penguins", package = "datasets", envir = environment())
 ```
 
 ## Data transformation in R
@@ -105,10 +105,10 @@ Broadly, first functions studied today can be classified into these families:
 1\) Functions that operate on ROWS
 :::
 
-## Filtering {data-auto-animate="true"}
+## <kbd>filter()</kbd> {data-auto-animate="true"}
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+Subsets a data frame, retaining all rows that satisfy your conditions.
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
 :::
@@ -131,10 +131,10 @@ penguins_filtered <- filter(penguins, island == "Dream")
 | `A & B` | A and B |
 :::
 
-## Filtering {data-auto-animate="true"}
+## <kbd>filter()</kbd> {data-auto-animate="true"}
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+Subsets a data frame, retaining all rows that satisfy your conditions.
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
 :::
@@ -158,10 +158,10 @@ penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
 | `A & B` | A and B |
 :::
 
-## Filtering {data-auto-animate="true"}
+## <kbd>filter()</kbd> {data-auto-animate="true"}
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>filter</kbd> function: subsets a data frame, retaining all rows that satisfy your conditions.
+Subsets a data frame, retaining all rows that satisfy your conditions.
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
 :::
@@ -186,16 +186,97 @@ penguins_filtered_3 <- filter(penguins, island == "Dream" & flipper_len >= 190)
 | `A & B` | A and B |
 :::
 
+## <kbd>filter()</kbd> {data-auto-animate="true"}
+
+::: {style="font-size: 90%;"}
+Subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- Writing many <kbd>|</kbd> and <kbd>==</kbd> can get tedious:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| error: true
+penguins_filtered_4 <- filter(penguins, year == 2007 | year == 2008)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+- Useful shortcut to do the same as above: <kbd>%in%</kbd>
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| error: true
+penguins_filtered_4 <- filter(penguins, year %in% c(2007, 2008))
+```
+:::
+
+## <kbd>filter()</kbd>
+
+::: {style="font-size: 90%;"}
+Subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+Common mistakes:
+
+-  Using <kbd>=</kbd> instead of <kbd>==</kbd>:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+filter(penguins, year = 2007)
+```
+:::
+
+## <kbd>filter()</kbd>
+
+::: {style="font-size: 90%;"}
+Subsets a data frame, retaining all rows that satisfy your conditions.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+:::
+
+::: {style="font-size: 75%;"}
+Common mistakes:
+
+-  Using "OR" statements like you would in English (will result in "silent error"):
+:::
+
+::: {style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| max-height: 100px
+filter(penguins, year == 2007 | 2008)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+This does not give a direct error, but does not evaluate the logic the way you want.
+:::
+
 ## {.transition-slide background-color="#444444"}
 
 ::: {.transition-title}
 2\) Functions that operate on COLUMNS
 :::
 
-## Transform & create columns
+## <kbd>mutate()</kbd>
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
@@ -204,10 +285,10 @@ Done using the <kbd>mutate()</kbd> function: creates new or modifies existing va
 penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
 ```
 
-## Transform & create columns
+## <kbd>mutate()</kbd>
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
@@ -217,10 +298,10 @@ penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
 penguins_mutated_2 <- mutate(penguins, body_mass_kg / mody_mass / 1000)
 ```
 
-## Transform & create columns
+## <kbd>mutate()</kbd>
 
 ::: {style="font-size: 90%;" data-id="filter-intro"}
-Done using the <kbd>mutate()</kbd> function: creates new or modifies existing variables in the object
+Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
