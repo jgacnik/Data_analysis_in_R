@@ -235,6 +235,15 @@ Common mistakes:
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
 ```{r}
 #| echo: true
+#| eval: false
+#| error: false
+filter(penguins, year = 2007)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: false
 #| eval: true
 #| error: true
 filter(penguins, year = 2007)
@@ -258,14 +267,111 @@ Common mistakes:
 ::: {style="font-size: 110%;"}
 ```{r}
 #| echo: true
+#| eval: false
 #| max-height: 100px
 filter(penguins, year == 2007 | 2008)
 ```
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
 This does not give a direct error, but does not evaluate the logic the way you want.
 :::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: false
+#| eval: true
+#| max-height: 100px
+filter(penguins, year == 2007 | 2008)
+```
+:::
+
+## <kbd>distinct()</kbd>
+
+::: {style="font-size: 90%;"}
+Keeps only unique/distinct rows from a data frame
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: variables from the data frame for which a distinct combination is wanted
+:::
+
+::: {.fragment data-fragment-index="1"style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: false
+distinct(penguins, species, island)
+```
+:::
+
+::: {.fragment data-fragment-index="2"style="font-size: 110%;"}
+```{r}
+#| echo: false
+#| eval: true
+options(width = 140)
+distinct(penguins, species, island)
+```
+:::
+
+## <kbd>count()</kbd>
+
+::: {style="font-size: 90%;"}
+Similar to <kbd>distinct()</kbd>, but rather than showing you unique instances it counts the number of occurrences
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: variables whose unique combinations are counted
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{webr-r}
+#| echo: true
+#| eval: true
+count(penguins, species, island)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
+
+- Optionally, you can arrange the results in descending order using <kbd>sort = TRUE</kbd> argument.
+:::
+
+## <kbd>slice()</kbd>
+
+::: {style="font-size: 90%;"}
+Allows you to select, remove, and duplicate rows based on their (integer) location. E.g., rows 1-5, rows 20-last row, etc.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: integers of the row location.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- **positive** integers indicate you want to keep rows, **negative** integers indicate you want to remove rows
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: true
+slice(penguins, 2:4)
+```
+:::
+
+## <kbd>slice()</kbd>
+
+::: {style="font-size: 90%;"}
+Allows you to select, remove, and duplicate rows based on their (integer) location. E.g., rows 1-5, rows 20-last row, etc.
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: integers of the row location.
+:::
+
+::: {style="font-size: 80%;"}
+- **positive** integers indicate you want to keep rows, **negative** integers indicate you want to remove rows
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: true
+slice(penguins, -(2:4))
+```
+:::
+
 
 ## {.transition-slide background-color="#444444"}
 
@@ -275,42 +381,180 @@ This does not give a direct error, but does not evaluate the logic the way you w
 
 ## <kbd>mutate()</kbd>
 
-::: {style="font-size: 90%;" data-id="filter-intro"}
+::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
 
-```{.r data-id="filter-code"}
+::: {.fragment data-fragment-index="1" style="font-size: 95%;"}
+```{r}
+#| echo: true
 penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
 ```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+```{r}
+#| echo: false
+#| eval: true
+options(width = 140)
+head(penguins_mutated)
+```
+:::
 
 ## <kbd>mutate()</kbd>
 
-::: {style="font-size: 90%;" data-id="filter-intro"}
+::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
 
-```{.r data-id="filter-code"}
+::: {style="font-size: 95%;"}
+```{r}
+#| echo: true
 penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
-penguins_mutated_2 <- mutate(penguins, body_mass_kg / mody_mass / 1000)
+penguins_mutated_2 <- mutate(penguins, body_mass_kg = body_mass / 1000)
 ```
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+```{r}
+#| echo: false
+#| eval: true
+options(width = 140)
+head(penguins_mutated_2)
+```
+:::
 
 ## <kbd>mutate()</kbd>
 
-::: {style="font-size: 90%;" data-id="filter-intro"}
+::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
 <span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
 :::
 
-```{.r data-id="filter-code"}
+::: {style="font-size: 90%;"}
+```{r}
+#| echo: true
 penguins_mutated <- mutate(penguins, ratio = flipper_len / body_mass)
-penguins_mutated_2 <- mutate(penguins, body_mass_kg / mody_mass / 1000)
-penguins_mutated_3 <- mutate(penguins, ifelse(body_mass > 4000, "Large", "Small"))
+penguins_mutated_2 <- mutate(penguins, body_mass_kg = body_mass / 1000)
+penguins_mutated_3 <- mutate(penguins, size = ifelse(body_mass > 4000, "Large", "Small"))
 ```
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+```{r}
+#| echo: false
+#| eval: true
+options(width = 140)
+head(penguins_mutated_3)
+```
+:::
+
+## <kbd>select()</kbd>
+
+::: {style="font-size: 90%;"}
+Select (and optionally rename) variables in a data frame
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: false
+select(penguins, species, bill_len, bill_dep)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%; max-height: 320px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+select(penguins, species, bill_len, bill_dep)
+```
+:::
+
+## <kbd>select()</kbd>
+
+::: {style="font-size: 90%;"}
+Select/remove variables in a data frame
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- Useful functions that can be used as arguments of <kbd>select()</kbd>:  
+<kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: false
+select(penguins, starts_with("bill"))
+```
+:::
+
+::: {.fragment data-fragment-index="3" style="font-size: 90%; max-height: 200px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+select(penguins, starts_with("bill"))
+```
+:::
+
+## <kbd>select()</kbd>
+
+::: {style="font-size: 90%;"}
+Select/remove variables (columns) in a data frame
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+:::
+
+::: {style="font-size: 80%;"}
+- Useful functions that can be used as arguments of <kbd>select()</kbd>:  
+<kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
+:::
+
+::: {style="font-size: 110%; max-height: 200px; overflow-y: auto;"}
+```{webr-r}
+#| echo: true
+#| eval: false
+select(penguins, contains("_"))
+```
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- As before, putting <kbd>-</kbd> in front of the argument will remove the specified columns
+:::
+
+## <kbd>rename()</kbd>
+
+::: {style="font-size: 90%;"}
+Rename variables in a data frame
+
+<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: "new_name" = old_name, "new_name_2" = old_name_2, ...
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: false
+rename(penguins, "bill_len_mm" = bill_len)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%; max-height: 200px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+rename(penguins, "bill_len_mm" = bill_len)
+```
+:::
 
 ## {.transition-slide background-color="#444444"}
 
