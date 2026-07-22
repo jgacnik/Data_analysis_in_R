@@ -1,5 +1,5 @@
 ---
-title: "R workshop part 2 - visualization"
+title: "R workshop part 2 - Visualization"
 author: "Jan Gačnik"
 date: last-modified
 format:
@@ -824,7 +824,7 @@ ggplot(penguins, aes(x = flipper_len,
 
 ## Saving generated plots
 
-Multiple ways to do it, commonly done using <kbd>ggsave()</kbd> functon
+Multiple ways to do it, commonly done using the <kbd>ggsave()</kbd> function
 
 ::: {style="font-size: 100%;"}
 ```{r}

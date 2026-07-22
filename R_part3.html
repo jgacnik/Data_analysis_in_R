@@ -10,8 +10,8 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Jan Gačnik">
-  <meta name="dcterms.date" content="2026-06-22">
-  <title>R workshop part 3 - data transformation</title>
+  <meta name="dcterms.date" content="2026-07-22">
+  <title>R workshop part 3 - Data transformation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -2037,7 +2037,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">R workshop part 3 - data transformation</h1>
+  <h1 class="title">R workshop part 3 - Data transformation</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -2047,7 +2047,7 @@ Jan Gačnik
 </div>
 </div>
 
-  <p class="date">2026-06-22</p>
+  <p class="date">2026-07-22</p>
 </section>
 <section id="data-transformation-in-r" class="slide level2">
 <h2>Data transformation in R</h2>
@@ -4336,60 +4336,148 @@ Jan Gačnik
 <h2>Group &amp; summarise data</h2>
 <div style="font-size: 85%;">
 <p>Function <kbd>group_by()</kbd> <em>silently</em> creates grouping of data by a specified variable</p>
-<p>Function <kbd>summarise()</kbd> then collapses many rows into single summary value <em>per group</em>, the summary statistic can be mean, median, quartiles, etc.</p>
-</div>
-<div class="fragment" data-fragment-index="1" style="font-size: 70%;">
-<ul>
-<li><p>We need to pass grouped data (<kbd>penguins</kbd> grouped by <kbd>species</kbd> variable) to the <kbd>summarise()</kbd> functon</p></li>
-<li><p>Before: function(data, argument), now: function(grouped_data, argument)</p></li>
-</ul>
+<p>This means you will see only <kbd># Groups</kbd> added to the data frame header, nothing will change with data itself</p>
 </div>
 <div class="fragment" data-fragment-index="2" style="font-size: 110%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
-<span id="cb28-2"><a href=""></a>                              <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">group_by</span>(penguins, species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<div style="font-size: 85%;">
-<p>The data has <kbd>NA</kbd>s instead of real means - we did not tell R what to do with missing values</p>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+# Groups:   species [3]
+   species island    bill_len bill_dep flipper_len body_mass sex     year
+   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
+ 1 Adelie  Torgersen     39.1     18.7         181      3750 male    2007
+ 2 Adelie  Torgersen     39.5     17.4         186      3800 female  2007
+ 3 Adelie  Torgersen     40.3     18           195      3250 female  2007
+ 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;    2007
+ 5 Adelie  Torgersen     36.7     19.3         193      3450 female  2007
+ 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007
+ 7 Adelie  Torgersen     38.9     17.8         181      3625 female  2007
+ 8 Adelie  Torgersen     39.2     19.6         195      4675 male    2007
+ 9 Adelie  Torgersen     34.1     18.1         193      3475 &lt;NA&gt;    2007
+10 Adelie  Torgersen     42       20.2         190      4250 &lt;NA&gt;    2007
+# ℹ 334 more rows</code></pre>
 </div>
-<div style="text-align: center;">
-<p><img src="figures/summarise_NA.png" style="width: 70%;"></p>
+</div>
 </div>
 </section>
 <section id="group-summarise-data-1" class="slide level2">
 <h2>Group &amp; summarise data</h2>
 <div style="font-size: 85%;">
-<p>Function <kbd>group_by()</kbd> <em>silently</em> creates grouping of data by a specified variable</p>
 <p>Function <kbd>summarise()</kbd> then collapses many rows into single summary value <em>per group</em>, the summary statistic can be mean, median, quartiles, etc.</p>
+<p>If data is not grouped, the function will be used on complete data.</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 75%;">
+<ul>
+<li>Let’s first demonstrate the summarise on non-grouped data:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">summarise</span>(penguins, <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  avg_len
+1      NA</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="group-summarise-data-2" class="slide level2">
+<h2>Group &amp; summarise data</h2>
+<div style="font-size: 85%;">
+<p>Function <kbd>summarise()</kbd> then collapses many rows into single summary value <em>per group</em>, the summary statistic can be mean, median, quartiles, etc.</p>
+<p>If data is not grouped, the function will be used on complete data.</p>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 75%;">
+<ul>
+<li>That did not work, R does not know how to deal with <kbd>NA</kbd> values when applying summary functions</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 75%;">
+<ul>
+<li>Ignoring <kbd>NA</kbd> values can be specified using <kbd>na.rm = TRUE</kbd> argument:</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">summarise</span>(penguins, <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   avg_len
+1 200.9152</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="group-summarise-data-3" class="slide level2">
+<h2>Group &amp; summarise data</h2>
+<div style="font-size: 85%;">
+<p><kbd>group_by()</kbd> and <kbd>summarise()</kbd> usually work in tandem, where data is first grouped, and then summarised by group.</p>
 </div>
 <div class="fragment" data-fragment-index="1" style="font-size: 70%;">
 <ul>
-<li><p>Another argument needs to be added to <kbd>mean()</kbd> function, which tells it how to handle NAs</p></li>
-<li><p>Using <kbd>na.rm = TRUE</kbd> argument inside <kbd>mean()</kbd> the will ignore NAs</p></li>
+<li>Let’s pass <kbd>penguins</kbd> grouped by <kbd>species</kbd> to the <kbd>summarise()</kbd> function</li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 100%;">
+<div class="fragment" data-fragment-index="2" style="font-size: 110%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
-<span id="cb29-2"><a href=""></a>                              <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
+<span id="cb34-2"><a href=""></a>          <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 110%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species   avg_len
+  &lt;fct&gt;       &lt;dbl&gt;
+1 Adelie       190.
+2 Chinstrap    196.
+3 Gentoo       217.</code></pre>
+</div>
 </div>
 </div>
 </section>
-<section id="section-4" class="slide level2">
-<h2></h2>
+<section id="code-readability" class="slide level2">
+<h2>Code readability</h2>
 <div style="font-size: 85%;">
-<p>Now, the summarised data includes accurate means of penguin flipper length by species</p>
+<p>Our code chunks will slowly become longer and <em>more nested</em>, or we will encounter <em>naming issues</em>. Examples:</p>
 </div>
-
-<img data-src="figures/summarise.png" class="summarise-img r-stretch"><div class="fragment" data-fragment-index="1" style="font-size: 85%;">
-<p>Our code chunks are slowly becoming longer and longer and more nested → less readable. Solution? <strong>Data pipelines</strong></p>
+<div class="fragment" data-fragment-index="1" style="font-size: 90%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># A nested code chunk</span></span>
+<span id="cb36-2"><a href=""></a><span class="fu">select</span>(</span>
+<span id="cb36-3"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-4"><a href=""></a>    <span class="fu">filter</span>(</span>
+<span id="cb36-5"><a href=""></a>      penguins,</span>
+<span id="cb36-6"><a href=""></a>      year <span class="sc">&gt;=</span> <span class="dv">2008</span></span>
+<span id="cb36-7"><a href=""></a>    ),</span>
+<span id="cb36-8"><a href=""></a>    <span class="at">size =</span> <span class="fu">ifelse</span>(body_mass <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">"large"</span>, <span class="st">"small"</span>)</span>
+<span id="cb36-9"><a href=""></a>  ),</span>
+<span id="cb36-10"><a href=""></a>  species, year, size</span>
+<span id="cb36-11"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 90%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="co"># So many similar names!</span></span>
+<span id="cb37-2"><a href=""></a>penguins_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, year <span class="sc">&gt;=</span> <span class="dv">2008</span>)</span>
+<span id="cb37-3"><a href=""></a>penguins_2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(penguins_1, <span class="at">size =</span> <span class="fu">ifelse</span>(body_mass <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">"large"</span>, <span class="st">"small"</span>))</span>
+<span id="cb37-4"><a href=""></a>penguins_3 <span class="ot">&lt;-</span> <span class="fu">select</span>(penguins_2, species, year, size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="3" style="font-size: 85%;">
+<p>Solution? <strong>Data pipelines</strong></p>
 </div>
 </section>
-<section id="section-5" class="slide level2 transition-slide" data-background-color="#444444">
+<section id="section-3" class="slide level2 transition-slide" data-background-color="#444444">
 <h2></h2>
 <div class="transition-title">
 <p>4) Pipelines</p>
@@ -4397,132 +4485,157 @@ Jan Gačnik
 </section>
 <section id="data-pipelines" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div class="fragment" data-fragment-index="1" style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
+<div class="fragment" data-fragment-index="1" style="font-size: 85%;">
+<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd> (tidyverse) or <kbd>|&gt;</kbd> (base R).</p>
 <p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
 </div>
-<div class="fragment" data-fragment-index="2" style="font-size: 70%;" data-id="old-code-label">
+<div class="fragment" data-fragment-index="2" style="font-size: 70%;">
 <ul>
 <li>Let’s demonstrate this on the previous example:</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-id="old-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
-<span id="cb30-2"><a href=""></a>                              <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
+<span id="cb38-2"><a href=""></a>          <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="fragment" data-fragment-index="4" style="font-size: 70%;" data-id="pipeline-code-label">
+</div>
+<div class="fragment" data-fragment-index="4" style="font-size: 70%;">
 <ul>
 <li>Same example with pipeline approach:</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </section>
 <section id="data-pipelines-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
+<div style="font-size: 85%;">
+<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd> (tidyverse) or <kbd>|&gt;</kbd> (base R).</p>
 <p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
 </div>
-<div style="font-size: 70%;" data-id="old-code-label">
+<div style="font-size: 70%;">
 <ul>
 <li>Let’s demonstrate this on the previous example:</li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-id="old-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
-<span id="cb32-2"><a href=""></a>                              <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
+<span id="cb40-2"><a href=""></a>          <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 <div style="font-size: 70%;" data-id="pipeline-code-label">
 <ul>
 <li>Same example with pipeline approach:</li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-3"><a href=""></a>  <span class="fu">group_by</span>(species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href=""></a>  <span class="fu">group_by</span>(species, sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </section>
 <section id="data-pipelines-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
+<div style="font-size: 85%;">
+<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd> (tidyverse) or <kbd>|&gt;</kbd> (base R).</p>
 <p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
 </div>
-<div style="font-size: 70%;" data-id="old-code-label">
+<div style="font-size: 70%;">
 <ul>
 <li>Let’s demonstrate this on the previous example:</li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-id="old-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
-<span id="cb34-2"><a href=""></a>                              <span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(penguins, species),</span>
+<span id="cb42-2"><a href=""></a>          <span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 <div style="font-size: 70%;" data-id="pipeline-code-label">
 <ul>
 <li>Same example with pipeline approach:</li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-3"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb35-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">mean_flipper =</span> <span class="fu">mean</span>(flipper_len))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="data-pipelines-3" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
-<p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb43-3"><a href=""></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">avg_len =</span> <span class="fu">mean</span>(flipper_len))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="fragment" data-fragment-index="1" style="font-size: 70%;" data-id="old-code-label">
+</div>
+</section>
+<section id="data-pipelines-3" class="slide level2">
+<h2>Data pipelines</h2>
+<div style="font-size: 80%;">
 <ul>
 <li>Let’s try to get medians with interquartile ranges <em>per penguin species</em> and <em>per penguin sex</em></li>
 </ul>
 </div>
-<div class="fragment" data-fragment-index="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb36-1" class="hljs-ln-code"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment" data-fragment-index="1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </div>
 </section>
-<section id="data-pipelines-4" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
-<p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
-</div>
-<div style="font-size: 70%;" data-id="old-code-label">
+<section id="data-pipelines-4" class="slide level2">
+<h2>Data pipelines</h2>
+<div style="font-size: 80%;">
 <ul>
 <li>Let’s try to get medians with interquartile ranges <em>per penguin species</em> and <em>per penguin sex</em></li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb37-1" class="hljs-ln-code"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">group_by</span>(species, sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="data-pipelines-5" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Data pipelines</h2>
-<div style="font-size: 85%;" data-id="pipeline-intro">
-<p>Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%&gt;%</kbd>.</p>
-<p>A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.</p>
+<div style="font-size: 100%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href=""></a>  <span class="fu">group_by</span>(species, sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div style="font-size: 70%;" data-id="old-code-label">
+</div>
+</section>
+<section id="data-pipelines-5" class="slide level2">
+<h2>Data pipelines</h2>
+<div style="font-size: 80%;">
 <ul>
 <li>Let’s try to get medians with interquartile ranges <em>per penguin species</em> and <em>per penguin sex</em></li>
 </ul>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-id="pipeline-code"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb38-1" class="hljs-ln-code"><a href=""></a>penguins_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">median_flipper =</span> <span class="fu">median</span>(flipper_len),</span>
-<span id="cb38-5" class="hljs-ln-code"><a href=""></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(flipper_len, <span class="fl">0.25</span>),</span>
-<span id="cb38-6" class="hljs-ln-code"><a href=""></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(flipper_len, <span class="fl">0.75</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="section-6" class="slide level2">
-<h2></h2>
-<div style="font-size: 85%;">
-<p>The summarised data should now look like this:</p>
+<div style="font-size: 90%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(flipper_len) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(sex) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href=""></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-4"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">median_flipper =</span> <span class="fu">median</span>(flipper_len),</span>
+<span id="cb46-5"><a href=""></a>            <span class="at">q25 =</span> <span class="fu">quantile</span>(flipper_len, <span class="fl">0.25</span>),</span>
+<span id="cb46-6"><a href=""></a>            <span class="at">q75 =</span> <span class="fu">quantile</span>(flipper_len, <span class="fl">0.75</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div style="text-align: center;">
-<p><img src="figures/summarise_2.png" style="width: 80%;"></p>
 </div>
-<div style="font-size: 85%;">
+<div class="fragment" data-fragment-index="1" style="font-size: 80%; max-height: 250px;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+# Groups:   species [3]
+  species   sex    median_flipper   q25   q75
+  &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie    female           188   185   191 
+2 Adelie    male             193   189   197 
+3 Chinstrap female           192   187.  196.
+4 Chinstrap male             200.  196   203 
+5 Gentoo    female           212   210   215 
+6 Gentoo    male             221   218   225 </code></pre>
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 85%;">
 <p>Important functions and concepts, let’s revise briefly before moving to next topics</p>
 </div>
 

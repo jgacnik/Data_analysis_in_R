@@ -1,5 +1,5 @@
 ---
-title: "R workshop part 3 - data transformation"
+title: "R workshop part 3 - Data transformation"
 author: "Jan Gačnik"
 date: last-modified
 format:
@@ -562,70 +562,149 @@ rename(penguins, "bill_len_mm" = bill_len)
 3\) Grouping
 :::
 
+
 ## Group & summarise data
 
 ::: {style="font-size: 85%;"}
 Function <kbd>group_by()</kbd> _silently_ creates grouping of data by a specified variable
 
-Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
-:::
-
-::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
-- We need to pass grouped data (<kbd>penguins</kbd> grouped by <kbd>species</kbd> variable) to the <kbd>summarise()</kbd> functon  
-
-- Before: function(data, argument), now: function(grouped_data, argument)
+This means you will see only <kbd># Groups</kbd> added to the data frame header, nothing will change with data itself
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
 ```{r}
 #| echo: true
-penguins_summary <- summarise(group_by(penguins, species),
-                              mean_flipper = mean(flipper_len))
+#| eval: false
+group_by(penguins, species)
 ```
 :::
 
-##
-
-::: {style="font-size: 85%;"}
-The data has <kbd>NA</kbd>s instead of real means - we did not tell R what to do with missing values
+::: {.fragment data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+group_by(penguins, species)
+```
 :::
-
-<div style="text-align: center;">
-  <img src="figures/summarise_NA.png" style="width: 70%;">
-</div>
 
 ## Group & summarise data
 
 ::: {style="font-size: 85%;"}
-Function <kbd>group_by()</kbd> _silently_ creates grouping of data by a specified variable
-
 Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+
+If data is not grouped, the function will be used on complete data.
 :::
 
-::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
-- Another argument needs to be added to <kbd>mean()</kbd> function, which tells it how to handle NAs
-
-- Using <kbd>na.rm = TRUE</kbd> argument inside <kbd>mean()</kbd> the will ignore NAs
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- Let's first demonstrate the summarise on non-grouped data:
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 100%;"}
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
 ```{r}
 #| echo: true
-penguins_summary <- summarise(group_by(penguins, species),
-                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+#| eval: false
+summarise(penguins, avg_len = mean(flipper_len))
 ```
 :::
 
-##
-
-::: {style="font-size: 85%;"}
-Now, the summarised data includes accurate means of penguin flipper length by species
+::: {.fragment data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+summarise(penguins, avg_len = mean(flipper_len))
+```
 :::
 
-![](figures/summarise.png){.summarise-img}
+## Group & summarise data
 
-::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
-Our code chunks are slowly becoming longer and longer and more nested → less readable. Solution? **Data pipelines**
+::: {style="font-size: 85%;"}
+Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+
+If data is not grouped, the function will be used on complete data.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- That did not work, R does not know how to deal with <kbd>NA</kbd> values when applying summary functions
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+- Ignoring <kbd>NA</kbd> values can be specified using <kbd>na.rm = TRUE</kbd> argument:
+:::
+
+::: {.fragment data-fragment-index="3" style="font-size: 110%; max-height: 300px; overflow-y: auto;"}
+```{r}
+#| echo: true
+#| eval: true
+summarise(penguins, avg_len = mean(flipper_len, na.rm = TRUE))
+```
+:::
+
+## Group & summarise data
+
+::: {style="font-size: 85%;"}
+<kbd>group_by()</kbd> and <kbd>summarise()</kbd> usually work in tandem, where data is first grouped, and then summarised by group.
+
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+- Let's pass <kbd>penguins</kbd> grouped by <kbd>species</kbd> to the <kbd>summarise()</kbd> function
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+```{r}
+#| echo: true
+#| eval: false
+summarise(group_by(penguins, species),
+          avg_len = mean(flipper_len, na.rm = TRUE))
+```
+:::
+
+::: {.fragment data-fragment-index="3" style="font-size: 110%;"}
+```{r}
+#| echo: false
+#| eval: true
+summarise(group_by(penguins, species),
+          avg_len = mean(flipper_len, na.rm = TRUE))
+```
+:::
+
+## Code readability
+
+::: {style="font-size: 85%;"}
+Our code chunks will slowly become longer and _more nested_, or we will encounter _naming issues_. Examples:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+```{r}
+#| echo: true
+#| eval: false
+# A nested code chunk
+select(
+  mutate(
+    filter(
+      penguins,
+      year >= 2008
+    ),
+    size = ifelse(body_mass > 4000, "large", "small")
+  ),
+  species, year, size
+)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+```{r}
+#| echo: true
+#| eval: false
+# So many similar names!
+penguins_1 <- filter(penguins, year >= 2008)
+penguins_2 <- mutate(penguins_1, size = ifelse(body_mass > 4000, "large", "small"))
+penguins_3 <- select(penguins_2, species, year, size)
+```
+:::
+
+::: {.fragment data-fragment-index="3" style="font-size: 85%;"}
+Solution? **Data pipelines**
 :::
 
 ## {.transition-slide background-color="#444444"}
@@ -636,158 +715,173 @@ Our code chunks are slowly becoming longer and longer and more nested → less r
 
 ## Data pipelines {data-auto-animate="true"}
 
-::: {.fragment data-fragment-index="1" style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
 
 A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 70%;" data-id="old-code-label"}
+::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
 - Let's demonstrate this on the previous example:
 :::
 
 ::: {.fragment data-fragment-index="3"}
-```{.r data-id="old-code"}
-penguins_summary <- summarise(group_by(penguins, species),
-                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+```{r}
+#| echo: true
+#| eval: false
+summarise(group_by(penguins, species),
+          avg_len = mean(flipper_len, na.rm = TRUE))
 ```
 :::
 
-::: {.fragment data-fragment-index="4" style="font-size: 70%;" data-id="pipeline-code-label"}
+::: {.fragment data-fragment-index="4" style="font-size: 70%;"}
 - Same example with pipeline approach:
 :::
 
 ::: {.fragment data-fragment-index="5"}
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE)
 ```
 :::
 
 ## Data pipelines {data-auto-animate="true"}
 
-::: {style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+::: {style="font-size: 85%;"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
 
 A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
 :::
 
-::: {style="font-size: 70%;" data-id="old-code-label"}
+::: {style="font-size: 70%;"}
 - Let's demonstrate this on the previous example:
 :::
 
-```{.r data-id="old-code"}
-penguins_summary <- summarise(group_by(penguins, species),
-                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+#| eval: false
+summarise(group_by(penguins, species),
+          avg_len = mean(flipper_len, na.rm = TRUE))
 ```
+:::
 
 ::: {style="font-size: 70%;" data-id="pipeline-code-label"}
 - Same example with pipeline approach:
 :::
 
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE) %>% 
-  group_by(species)
+  group_by(species, sex)
 ```
+:::
 
 ## Data pipelines {data-auto-animate="true"}
 
-::: {style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
+::: {style="font-size: 85%;"}
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
 
 A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
 :::
 
-::: {style="font-size: 70%;" data-id="old-code-label"}
+::: {style="font-size: 70%;"}
 - Let's demonstrate this on the previous example:
 :::
 
-```{.r data-id="old-code"}
-penguins_summary <- summarise(group_by(penguins, species),
-                              mean_flipper = mean(flipper_len, na.rm = TRUE))
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+#| eval: false
+summarise(group_by(penguins, species),
+          avg_len = mean(flipper_len, na.rm = TRUE))
 ```
+:::
 
 ::: {style="font-size: 70%;" data-id="pipeline-code-label"}
 - Same example with pipeline approach:
 :::
 
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE) %>% 
-  group_by(species) %>% 
-  summarise(mean_flipper = mean(flipper_len))
+  group_by(species, sex) %>%
+  summarise(avg_len = mean(flipper_len))
 ```
-
-## Data pipelines {data-auto-animate="true"}
-
-::: {style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
-
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
 :::
 
-::: {.fragment data-fragment-index="1" style="font-size: 70%;" data-id="old-code-label"}
+## Data pipelines
+
+::: {style="font-size: 80%;"}
 - Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
 :::
 
-::: {.fragment data-fragment-index="2"}
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+::: {.fragment data-fragment-index="1"}
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE)
 ```
 :::
 
-## Data pipelines {data-auto-animate="true"}
+## Data pipelines
 
-::: {style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
-
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
-:::
-
-::: {style="font-size: 70%;" data-id="old-code-label"}
+::: {style="font-size: 80%;"}
 - Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
 :::
 
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+::: {style="font-size: 100%;"}
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE) %>% 
   group_by(species, sex)
 ```
-
-## Data pipelines {data-auto-animate="true"}
-
-::: {style="font-size: 85%;" data-id="pipeline-intro"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd>.
-
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
 :::
 
-::: {style="font-size: 70%;" data-id="old-code-label"}
+## Data pipelines
+
+::: {style="font-size: 80%;"}
 - Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
 :::
 
-```{.r data-id="pipeline-code"}
-penguins_summary <- penguins %>% 
+::: {style="font-size: 90%;"}
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
   filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE) %>% 
   group_by(species, sex) %>% 
   summarise(median_flipper = median(flipper_len),
             q25 = quantile(flipper_len, 0.25),
             q75 = quantile(flipper_len, 0.75))
 ```
-
-##
-
-::: {style="font-size: 85%;"}
-The summarised data should now look like this:
 :::
 
-<div style="text-align: center;">
-  <img src="figures/summarise_2.png" style="width: 80%;">
-</div>
+::: {.fragment data-fragment-index="1" style="font-size: 80%; max-height: 250px;"}
+```{r}
+#| echo: false
+#| eval: true
+penguins %>%
+  filter(is.na(flipper_len) == FALSE & is.na(sex) == FALSE) %>%
+  group_by(species, sex) %>%
+  summarise(median_flipper = median(flipper_len),
+            q25 = quantile(flipper_len, 0.25),
+            q75 = quantile(flipper_len, 0.75))
+```
+:::
 
 
-::: {style="font-size: 85%;"}
+::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 Important functions and concepts, let's revise briefly before moving to next topics
 :::

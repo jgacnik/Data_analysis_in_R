@@ -1,5 +1,5 @@
 ---
-title: "R workshop part 1"
+title: "R workshop part 1 - Introduction"
 author: "Jan Gačnik"
 date: last-modified
 format:

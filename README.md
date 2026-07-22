@@ -1,31 +1,33 @@
 # Data Analysis in R
 
-This repository contains materials for an introductory **Data Analysis in R** workshop. The course is split into multiple Quarto Reveal.js presentations.
+This repository contains materials for an introductory **Data Analysis in R** workshop. The course is organized as four Quarto Reveal.js presentations with interactive R examples powered by webR.
 
 ## Presentations
 
-- `R_part1.html` - rendered slides for part 1, covering the introduction to R and basic data analysis.
-- `R_part1.qmd` - editable Quarto source for part 1.
-- `R_part2.html` - rendered slides for part 2, covering visualization in R.
-- `R_part2.qmd` - editable Quarto source for part 2.
+| Part | Topic | Source | Rendered slides |
+| --- | --- | --- | --- |
+| 1 | Introduction to R | [`R_part1.qmd`](R_part1.qmd) | [`R_part1.html`](R_part1.html) |
+| 2 | Data visualization | [`R_part2.qmd`](R_part2.qmd) | [`R_part2.html`](R_part2.html) |
+| 3 | Data transformation | [`R_part3.qmd`](R_part3.qmd) | [`R_part3.html`](R_part3.html) |
+| 4 | Data tidying | [`R_part4.qmd`](R_part4.qmd) | [`R_part4.html`](R_part4.html) |
 
-Open the `.html` files in a web browser to view or present the slides. Edit the `.qmd` files when changing slide content, then render them again to update the corresponding `.html` files.
+Open an `.html` file in a web browser to view or present the slides. Edit its `.qmd` source when changing content, then render it again to update the presentation.
 
-## Supporting Files
+## Rendering
 
-- `styles.css` - shared custom CSS for the presentations.
-- `figures/` - images and graphics used in the slides.
-- `R_part1_files/` and `R_part2_files/` - generated JavaScript, CSS, fonts, figures, and Reveal.js assets used by the rendered presentations.
-- `_extensions/` - Quarto extension files used by the presentations.
+Install [R 4.6.0 or later](https://cran.r-project.org/) (the slides use the base-R `penguins` dataset), [Quarto](https://quarto.org/), and the R packages used by the slides, including `tidyverse` and `knitr`. Render a presentation from the repository root with:
 
-## Sharing or Publishing
+```sh
+quarto render R_part4.qmd
+```
 
-When sharing a rendered presentation, keep the HTML file together with its matching support folder, plus the shared assets:
+Replace `R_part4.qmd` with the presentation you want to render.
 
-- `R_part1.html` with `R_part1_files/`
-- `R_part2.html` with `R_part2_files/`
-- `figures/`
-- `styles.css`
-- `_extensions/`
+## Supporting files
 
-Without the supporting folders and shared assets, the HTML presentations may not display or run correctly.
+- `styles.css` contains the shared presentation styling.
+- `figures/` contains images and graphics used by the slides.
+- `R_partN_files/` contains generated Reveal.js and web assets for the matching presentation.
+- `_extensions/` contains the Quarto extensions used by the presentations.
+
+When sharing a rendered presentation, keep its `.html` file together with the matching `R_partN_files/` folder, `figures/`, `styles.css`, and `_extensions/`. The presentation may not display or run correctly without these supporting assets.

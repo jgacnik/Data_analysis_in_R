@@ -1,0 +1,376 @@
+---
+title: "R workshop part 4 - Data tidying"
+author: "Jan Gačnik"
+date: last-modified
+format:
+  revealjs:
+    slide-number: true
+    footer: "Data tidying presentation"
+    logo: "figures/MPS_logo.png"
+    css: styles.css
+    chalkboard: true
+filters:
+  - webr
+webr:
+  show-startup-message: false
+  packages: ["tidyverse"]
+editor: visual
+---
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+data("penguins", package = "datasets", envir = environment())
+```
+
+## Data tidying in R
+
+_Happy families are all alike; every unhappy family is unhappy in its own way._
+— Leo Tolstoy
+
+_Tidy datasets are all alike, but every messy dataset is messy in its own way._
+— Hadley Wickham
+
+::: {.fragment data-fragment-index="1"}
+![](figures/tidy_data.png){fig-align="center"}
+
+<p style="font-size: 50%; color: grey; margin-top: -1em;">
+Source: Hadley Wickham, _R for Data Science_
+</p>
+:::
+
+## Data tidying in R
+
+What makes a dataset **tidy**?
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+- Each **variable** represents a **column**
+
+- Each **observation** represents a **row**
+
+- Each **value** is a **cell**; each cell containing a single value
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+- _Variable names_ are descriptive: e.g. <kbd>temperature</kbd> and not <kbd>t1</kbd>
+
+- _Missing values_ are treated consistently: e.g. <kbd>NA</kbd> only, without <kbd>NULL</kbd>, <kbd>-9999</kbd>, <kbd>none</kbd>, etc.
+:::
+
+## Tidy data
+
+Let's take a look at some example datasets that demonstrate both messy and tidy data, again coming from the <kbd>tidyverse</kbd> package:
+
+:::::: {columns}
+
+:::: {.column width="45%" .fragment data-fragment-index="1"}
+```{r}
+#| echo: true
+#| eval: true
+library(tidyverse)
+table1
+```
+::::
+
+:::: {.column width="55%" .fragment data-fragment-index="2"}
+```{r}
+#| echo: true
+#| eval: true
+table2
+```
+::::
+
+::::::
+
+## Tidy data
+
+Let's take a look at some example datasets that demonstrate both messy and tidy data, again coming from the <kbd>tidyverse</kbd> package:
+
+:::::: {columns}
+
+:::: {.column width="45%"}
+```{r}
+#| echo: true
+#| eval: true
+library(tidyverse)
+table1
+```
+::::
+
+:::: {.column width="55%"}
+```{r}
+#| echo: true
+#| eval: true
+table3
+```
+::::
+
+::::::
+
+## Benefits of tidy data
+
+- Easier data exploration
+
+- Simplified data transformation and visualization
+
+- Improved reproducibility
+
+- Many R functions work easily with tidy data formats
+
+## Data pivoting
+
+Unfortunately, real-life datasets are messy, because:
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
+- Data is usually organized with some goal in mind other than analysis, e.g. data entry, human readability, storage, ...
+
+- Most people are not familiar with principles of tidy data
+:::
+
+::: {.fragment data-fragment-index="2"}
+We will learn how to **pivot** the data into a tidy form by _lengthening_ or _widening_.
+:::
+
+## Data lengthening
+First, we will learn data lengthening using <kbd>pivot_longer()</kbd> function
+
+::: {.fragment data-fragment-index="1"}
+![](figures/pivot_longer.png){fig-align="center" width="85%"}
+<p style="font-size: 50%; color: grey; margin-top: -1em;">
+Source: Batra, Neale, et al. _The Epidemiologist R Handbook_. 2021
+</p>
+:::
+
+## Data lengthening
+
+We will use the <kbd>billboard</kbd> dataset to demonstrate lengthening principles
+
+::: {.fragment data-fragment-index="1"}
+```{r}
+#| echo: true
+#| eval: true
+billboard
+```
+:::
+
+## Data lengthening
+
+The <kbd>pivot_longer()</kbd> function requires minimum 3 arguments:
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- <kbd>cols</kbd>:  a vector of columns to be pivoted
+:::
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+- <kbd>names_to</kbd>: a character vector which specifies the name of the new column containing column NAMES from <kbd>cols</kbd> argument
+:::
+::: {.fragment data-fragment-index="3" style="font-size: 75%;"}
+- <kbd>values_to</kbd>: a character vector which specifies the name of the new column containing column VALUES from <kbd>cols</kbd> argument
+:::
+
+::: {.fragment data-fragment-index="4"}
+```{r}
+#| echo: true
+#| eval: false
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    )
+```
+:::
+
+## Data lengthening
+
+Result, long data:
+
+```{r}
+#| echo: false
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    )
+```
+
+::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
+A lot of <kbd>NA</kbd> values in the resulting data; weeks when songs were not on billboard anymore - not really useful info - let's remove them.
+:::
+
+## Data lengthening
+
+::: {style="font-size: 85%;"}
+Removing <kbd>NA</kbd> values can be done using a handy optional argument <kbd>values_drop_na</kbd>:
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6"
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  )
+```
+
+::: {.fragment data-fragment-index="1" style="max-height: 260px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+    )
+```
+:::
+
+## Data lengthening
+
+::: {style="font-size: 85%;"}
+Of course, <kbd>NAs</kbd> can also be removed using the already known <kbd>filter()</kbd> function:
+:::
+
+::: {style="max-height: 450px; overflow-y: auto;"}
+
+```{webr-r}
+#| echo: true
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank"
+  ) %>%
+  filter(!is.na(rank))
+```
+
+:::
+
+## Data lengthening
+
+::: {style="font-size: 80%;"}
+We can further transform the obtained long data.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+- For example, it would be useful if the <kbd>week</kbd> column would contain <kbd>1, 2, 3, ...</kbd> instead of <kbd>wk1, wk2, wk3, ...</kbd>
+
+- Function <kbd>parse_number()</kbd>: finds the first number and keeps it, e.g. <kbd>wk12</kbd> transforms to <kbd>12</kbd>
+:::
+
+:::::: {.columns}
+
+::: {.column width="45%"}
+:::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "7-8"
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>%
+  mutate(week = parse_number(week))
+```
+::::
+:::
+
+::: {.column width="55%"}
+:::: {.fragment data-fragment-index="3" style="font-size: 75%; max-height: 300px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>%
+  mutate(week = parse_number(week))
+```
+::::
+:::
+
+::::::
+
+## Data lengthening
+
+::: {style="font-size: 80%;"}
+We can further transform the obtained long data.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
+- Finally, we could check how many songs stayed on top 100 billboard for more than a year (52 weeks)
+:::
+
+:::::: {.columns}
+
+::: {.column width="45%"}
+:::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "9-10"
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>%
+  mutate(week = parse_number(week)) %>%
+  filter(week > 52) %>%
+  distinct(artist, track)
+```
+::::
+:::
+
+::: {.column width="55%"}
+:::: {.fragment data-fragment-index="3" style="max-height: 300px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>%
+  mutate(week = parse_number(week)) %>%
+  filter(week > 52) %>%
+  distinct(artist, track)
+```
+::::
+:::
+
+::::::
+
+## Data widening
+
+::: {style="font-size: 90%;"}
+Data widening is less common than lengthening, but is often needed for working with governmental data.
+
+Data widening is done using the <kbd>pivot_wider()</kbd> function
+:::
+
+::: {.fragment data-fragment-index="1"}
+![](figures/pivot_wider.png){fig-align="center" width="80%"}
+<p style="font-size: 50%; color: grey; margin-top: -1em;">
+Source: Batra, Neale, et al. _The Epidemiologist R Handbook_. 2021
+</p>
+:::
