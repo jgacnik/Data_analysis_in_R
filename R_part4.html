@@ -2416,7 +2416,7 @@ Source: Batra, Neale, et al.&nbsp;<em>The Epidemiologist R Handbook</em>. 2021
 <section id="data-widening" class="slide level2">
 <h2>Data widening</h2>
 <div style="font-size: 90%;">
-<p>Data widening is less common than lengthening, but is often needed for working with governmental data.</p>
+<p>Data widening is less common than lengthening, but is sometimes used for presentation purposes and other special cases.</p>
 <p>Data widening is done using the <kbd>pivot_wider()</kbd> function</p>
 </div>
 <div class="fragment" data-fragment-index="1">
@@ -2424,6 +2424,270 @@ Source: Batra, Neale, et al.&nbsp;<em>The Epidemiologist R Handbook</em>. 2021
 <p style="font-size: 50%; color: grey; margin-top: -1em;">
 Source: Batra, Neale, et al.&nbsp;<em>The Epidemiologist R Handbook</em>. 2021
 </p>
+</div>
+</section>
+<section id="data-widening-1" class="slide level2">
+<h2>Data widening</h2>
+<p>We will use the <kbd>Orange</kbd> dataset to demonstrate widening principles</p>
+<div class="fragment" data-fragment-index="1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>Orange</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Tree  age circumference
+1     1  118            30
+2     1  484            58
+3     1  664            87
+4     1 1004           115
+5     1 1231           120
+6     1 1372           142
+7     1 1582           145
+8     2  118            33
+9     2  484            69
+10    2  664           111
+11    2 1004           156
+12    2 1231           172
+13    2 1372           203
+14    2 1582           203
+15    3  118            30
+16    3  484            51
+17    3  664            75
+18    3 1004           108
+19    3 1231           115
+20    3 1372           139
+21    3 1582           140
+22    4  118            32
+23    4  484            62
+24    4  664           112
+25    4 1004           167
+26    4 1231           179
+27    4 1372           209
+28    4 1582           214
+29    5  118            30
+30    5  484            49
+31    5  664            81
+32    5 1004           125
+33    5 1231           142
+34    5 1372           174
+35    5 1582           177</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="data-widening-2" class="slide level2">
+<h2>Data widening</h2>
+<p>The <kbd>pivot_wider()</kbd> function requires at least two arguments:</p>
+<div class="fragment" data-fragment-index="1" style="font-size: 75%;">
+<ul>
+<li><kbd>names_from</kbd>: specifies the column whose values will become the new column names</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="2" style="font-size: 75%;">
+<ul>
+<li><kbd>values_from</kbd>: specifies the column whose values will fill the new columns</li>
+</ul>
+</div>
+<div class="fragment" data-fragment-index="4">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb21-3"><a href=""></a>    <span class="at">names_from =</span> age,</span>
+<span id="cb21-4"><a href=""></a>    <span class="at">values_from =</span> circumference</span>
+<span id="cb21-5"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="data-widening-3" class="slide level2">
+<h2>Data widening</h2>
+<p>Result, wide data:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 8
+  Tree  `118` `484` `664` `1004` `1231` `1372` `1582`
+  &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 1        30    58    87    115    120    142    145
+2 2        33    69   111    156    172    203    203
+3 3        30    51    75    108    115    139    140
+4 4        32    62   112    167    179    209    214
+5 5        30    49    81    125    142    174    177</code></pre>
+</div>
+</div>
+<div class="fragment" data-fragment-index="1" style="font-size: 85%;">
+<p>The column names now represent the <kbd>age</kbd> of the tree, but they are not descriptive enough for somebody else to understand what is going on.</p>
+</div>
+</section>
+<section id="data-widening-4" class="slide level2">
+<h2>Data widening</h2>
+<div style="font-size: 85%;">
+<p>We can add a prefix for each new column name using the optional <kbd>names_prefix</kbd> argument:</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href=""></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb23-3"><a href=""></a>    <span class="at">names_from =</span> age,</span>
+<span id="cb23-4"><a href=""></a>    <span class="at">values_from =</span> circumference,</span>
+<span id="cb23-5"><a href=""></a>    <span class="at">names_prefix =</span> <span class="st">"age_days_"</span></span>
+<span id="cb23-6"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment" data-fragment-index="1" style="max-height: 260px; overflow-y: auto;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 8
+  Tree  age_days_118 age_days_484 age_days_664 age_days_1004 age_days_1231
+  &lt;ord&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+1 1               30           58           87           115           120
+2 2               33           69          111           156           172
+3 3               30           51           75           108           115
+4 4               32           62          112           167           179
+5 5               30           49           81           125           142
+# ℹ 2 more variables: age_days_1372 &lt;dbl&gt;, age_days_1582 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="data-widening-5" class="slide level2">
+<h2>Data widening</h2>
+<div style="font-size: 85%;">
+<p>For complex names, we can use the optional <kbd>names_glue</kbd> argument (advanced), which uses a placeholder inside <kbd>{ }</kbd>:</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb25-3"><a href=""></a>    <span class="at">names_from =</span> age,</span>
+<span id="cb25-4"><a href=""></a>    <span class="at">values_from =</span> circumference,</span>
+<span id="cb25-5"><a href=""></a>    <span class="at">names_glue =</span> <span class="st">"{age} [days]"</span></span>
+<span id="cb25-6"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment" data-fragment-index="1" style="max-height: 260px; overflow-y: auto;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 8
+  Tree  `118 [days]` `484 [days]` `664 [days]` `1004 [days]` `1231 [days]`
+  &lt;ord&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+1 1               30           58           87           115           120
+2 2               33           69          111           156           172
+3 3               30           51           75           108           115
+4 4               32           62          112           167           179
+5 5               30           49           81           125           142
+# ℹ 2 more variables: `1372 [days]` &lt;dbl&gt;, `1582 [days]` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="tidy-code" class="slide level2">
+<h2>Tidy code</h2>
+<p>Messy code can run just as well as clean code. However, clean code makes life easier for you and others when it is revisited in the future.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/clean_code.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+<div style="font-size: 50%; color: grey; text-align: center;">
+<p>Source: freeCodeCamp.org</p>
+</div>
+</section>
+<section id="tidy-code-spacing" class="slide level2">
+<h2>Tidy code: spacing</h2>
+<p>Use spaces on both sides of mathematical operators (<kbd>+</kbd>, <kbd>-</kbd>, etc.), assignment operators (<kbd>&lt;-</kbd>), and pipes (<kbd>%&gt;%</kbd>).</p>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Strive for</span></span>
+<span id="cb27-2"><a href=""></a>z <span class="ot">&lt;-</span> (a <span class="sc">+</span> b)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> d</span>
+<span id="cb27-3"><a href=""></a></span>
+<span id="cb27-4"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb27-5"><a href=""></a>z<span class="ot">&lt;-</span>( a <span class="sc">+</span> b ) <span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<p>Do not put a space between a function name and its opening parenthesis. Put a space after commas, as in standard English.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># Strive for</span></span>
+<span id="cb28-2"><a href=""></a><span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href=""></a></span>
+<span id="cb28-4"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb28-5"><a href=""></a><span class="fu">median</span> (x ,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="tidy-code-pipes" class="slide level2">
+<h2>Tidy code: pipes</h2>
+<p>Pipes (<kbd>%&gt;%</kbd>) should be surrounded by spaces and typically placed at the end of a line.</p>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Strive for</span></span>
+<span id="cb29-2"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex), <span class="sc">!</span><span class="fu">is.na</span>(body_mass)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">count</span>(sex)</span>
+<span id="cb29-5"><a href=""></a></span>
+<span id="cb29-6"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb29-7"><a href=""></a>penguins<span class="sc">%&gt;%</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex), <span class="sc">!</span><span class="fu">is.na</span>(body_mass))<span class="sc">%&gt;%</span><span class="fu">count</span>(sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="tidy-code-pipes-1" class="slide level2">
+<h2>Tidy code: pipes</h2>
+<div style="font-size: 75%;">
+<p>If the function you’re piping into has named arguments (like <kbd>mutate()</kbd> or <kbd>summarize()</kbd>), put each argument on a new line. If the function doesn’t have named arguments (like <kbd>select()</kbd> or <kbd>filter()</kbd>), keep everything on one line unless it doesn’t fit, in which case you should put each argument on its own line.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="co"># Strive for</span></span>
+<span id="cb30-2"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href=""></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href=""></a>  <span class="fu">summarize</span>(</span>
+<span id="cb30-5"><a href=""></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-6"><a href=""></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb30-7"><a href=""></a>  )</span>
+<span id="cb30-8"><a href=""></a></span>
+<span id="cb30-9"><a href=""></a><span class="co"># Avoid</span></span>
+<span id="cb30-10"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb30-11"><a href=""></a>  <span class="fu">group_by</span>(</span>
+<span id="cb30-12"><a href=""></a>    sex</span>
+<span id="cb30-13"><a href=""></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-14"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="tidy-code-pipes-2" class="slide level2">
+<h2>Tidy code: pipes</h2>
+<p>Some of these rules can be relaxed if your pipeline fits easily on one line.</p>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="co"># This fits compactly on one line</span></span>
+<span id="cb31-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb31-3"><a href=""></a></span>
+<span id="cb31-4"><a href=""></a><span class="co"># While this takes more lines, it is easily extended to</span></span>
+<span id="cb31-5"><a href=""></a><span class="co"># more variables and more steps in the future</span></span>
+<span id="cb31-6"><a href=""></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-8"><a href=""></a>    <span class="at">y =</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb31-9"><a href=""></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="tidy-code-ggplot2" class="slide level2">
+<h2>Tidy code: ggplot2</h2>
+<p>The same rules apply as for pipes: treat <kbd>+</kbd> the same way as <kbd>%&gt;%</kbd>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass, <span class="at">y =</span> flipper_len)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-5"><a href=""></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb32-6"><a href=""></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb32-7"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
+<span id="cb32-8"><a href=""></a>    <span class="at">color =</span> <span class="st">"pink"</span></span>
+<span id="cb32-9"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb32-10"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="tidy-code-sectioning" class="slide level2">
+<h2>Tidy code: sectioning</h2>
+<p>As scripts get longer, <em>sectioning</em> makes them easier to navigate.</p>
+<p>Create a section using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on Windows or <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on macOS.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># Load data --------------------------------------</span></span>
+<span id="cb33-2"><a href=""></a></span>
+<span id="cb33-3"><a href=""></a><span class="co"># Plot data --------------------------------------</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 </section>

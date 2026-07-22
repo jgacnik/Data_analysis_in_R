@@ -363,7 +363,7 @@ billboard %>%
 ## Data widening
 
 ::: {style="font-size: 90%;"}
-Data widening is less common than lengthening, but is often needed for working with governmental data.
+Data widening is less common than lengthening, but is sometimes used for presentation purposes and other special cases.
 
 Data widening is done using the <kbd>pivot_wider()</kbd> function
 :::
@@ -374,3 +374,251 @@ Data widening is done using the <kbd>pivot_wider()</kbd> function
 Source: Batra, Neale, et al. _The Epidemiologist R Handbook_. 2021
 </p>
 :::
+
+## Data widening
+
+We will use the <kbd>Orange</kbd> dataset to demonstrate widening principles
+
+::: {.fragment data-fragment-index="1"}
+```{r}
+#| echo: true
+#| eval: true
+Orange
+```
+:::
+
+## Data widening
+
+The <kbd>pivot_wider()</kbd> function requires at least two arguments:
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- <kbd>names_from</kbd>: specifies the column whose values will become the new column names
+:::
+::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
+- <kbd>values_from</kbd>: specifies the column whose values will fill the new columns
+:::
+
+::: {.fragment data-fragment-index="4"}
+```{r}
+#| echo: true
+#| eval: false
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference
+  )
+```
+:::
+
+## Data widening
+
+Result, wide data:
+
+```{r}
+#| echo: false
+#| eval: true
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference
+  )
+```
+
+::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
+The column names now represent the <kbd>age</kbd> of the tree, but they are not descriptive enough for somebody else to understand what is going on.
+:::
+
+## Data widening
+::: {style="font-size: 85%;"}
+We can add a prefix for each new column name using the optional <kbd>names_prefix</kbd> argument:
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "5"
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference,
+    names_prefix = "age_days_"
+  )
+```
+
+::: {.fragment data-fragment-index="1" style="max-height: 260px; overflow-y: auto;"}
+```{r}
+#| echo: false
+#| eval: true
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference,
+    names_prefix = "age_days_"
+  )
+```
+:::
+
+## Data widening
+::: {style="font-size: 85%;"}
+For complex names, we can use the optional <kbd>names_glue</kbd> argument (advanced), which uses a placeholder inside <kbd>{ }</kbd>:
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "5"
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference,
+    names_glue = "{age} [days]"
+  )
+```
+
+::: {.fragment data-fragment-index="1" style="max-height: 260px; overflow-y: auto;"}
+```{r}
+#| echo: false
+Orange %>%
+  pivot_wider(
+    names_from = age,
+    values_from = circumference,
+    names_glue = "{age} [days]"
+  )
+```
+:::
+
+## Tidy code
+Messy code can run just as well as clean code. However, clean code makes life easier for you and others when it is revisited in the future.
+
+![](figures/clean_code.png){.nostretch fig-align="center" width="50%"}
+
+::: {style="font-size: 50%; color: grey; text-align: center;"}
+Source: freeCodeCamp.org
+:::
+
+## Tidy code: spacing
+Use spaces on both sides of mathematical operators (<kbd>+</kbd>, <kbd>-</kbd>, etc.), assignment operators (<kbd>&lt;-</kbd>), and pipes (<kbd>%>%</kbd>).
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+# Strive for
+z <- (a + b)^2 / d
+
+# Avoid
+z<-( a + b ) ^2/d
+```
+
+. . .
+
+Do not put a space between a function name and its opening parenthesis. Put a space after commas, as in standard English.
+
+```{r}
+#| echo: true
+#| eval: false
+# Strive for
+median(x, na.rm = TRUE)
+
+# Avoid
+median (x ,na.rm=TRUE)
+```
+
+## Tidy code: pipes
+Pipes (<kbd>%>%</kbd>) should be surrounded by spaces and typically placed at the end of a line.
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+# Strive for
+penguins %>%
+  filter(!is.na(sex), !is.na(body_mass)) %>%
+  count(sex)
+
+# Avoid
+penguins%>%filter(!is.na(sex), !is.na(body_mass))%>%count(sex)
+```
+
+## Tidy code: pipes
+
+::: {style="font-size: 75%;"}
+If the function you’re piping into has named arguments (like <kbd>mutate()</kbd> or <kbd>summarize()</kbd>), put each argument on a new line. If the function doesn’t have named arguments (like <kbd>select()</kbd> or <kbd>filter()</kbd>), keep everything on one line unless it doesn’t fit, in which case you should put each argument on its own line.
+:::
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+# Strive for
+penguins %>%
+  group_by(sex) %>%
+  summarize(
+    avg_mass = mean(body_mass, na.rm = TRUE),
+    n = n()
+  )
+
+# Avoid
+penguins %>%
+  group_by(
+    sex
+  ) %>%
+  summarize(avg_mass = mean(body_mass, na.rm = TRUE), n = n())
+```
+
+
+## Tidy code: pipes
+
+Some of these rules can be relaxed if your pipeline fits easily on one line.
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+# This fits compactly on one line
+df %>% mutate(y = x + 1)
+
+# While this takes more lines, it is easily extended to
+# more variables and more steps in the future
+df %>%
+  mutate(
+    y = x + 1
+  )
+```
+
+## Tidy code: ggplot2
+
+The same rules apply as for pipes: treat <kbd>+</kbd> the same way as <kbd>%>%</kbd>.
+
+```{r}
+#| echo: true
+#| eval: false
+penguins %>%
+  filter(!is.na(body_mass)) %>%
+  ggplot(aes(x = body_mass, y = flipper_len)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    linewidth = 0.8,
+    color = "pink"
+  ) +
+  theme_minimal()
+```
+
+## Tidy code: sectioning
+
+As scripts get longer, *sectioning* makes them easier to navigate.
+
+Create a section using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on Windows or <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on macOS.
+
+```{r}
+#| echo: true
+#| eval: false
+# Load data --------------------------------------
+
+# Plot data --------------------------------------
+```
