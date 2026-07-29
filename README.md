@@ -1,6 +1,6 @@
 # Data Analysis in R
 
-This repository contains materials for an introductory **Data Analysis in R** workshop. The course is organized as four Quarto Reveal.js presentations with interactive R examples powered by webR.
+This repository contains materials for an introductory **Data Analysis in R** workshop. The course is organized as Quarto Reveal.js presentations with interactive R examples powered by webR.
 
 ## Presentations
 
@@ -10,6 +10,7 @@ This repository contains materials for an introductory **Data Analysis in R** wo
 | 2 | Data visualization | [`R_part2.qmd`](R_part2.qmd) | [`R_part2.html`](R_part2.html) |
 | 3 | Data transformation | [`R_part3.qmd`](R_part3.qmd) | [`R_part3.html`](R_part3.html) |
 | 4 | Data tidying | [`R_part4.qmd`](R_part4.qmd) | [`R_part4.html`](R_part4.html) |
+| 5 | Paths, projects, and data import | [`R_part5.qmd`](R_part5.qmd) | [`R_part5.html`](R_part5.html) |
 
 Open an `.html` file in a web browser to view or present the slides. Edit its `.qmd` source when changing content, then render it again to update the presentation.
 
@@ -29,5 +30,7 @@ Replace `R_part4.qmd` with the presentation you want to render.
 - `figures/` contains images and graphics used by the slides.
 - `R_partN_files/` contains generated Reveal.js and web assets for the matching presentation.
 - `_extensions/` contains the Quarto extensions used by the presentations.
+- `workshop/Example_project/` contains the editable source of the participant starter project.
+- `downloads/Example_project.zip` is the ready-to-download participant starter project used in Part 5.
 
 When sharing a rendered presentation, keep its `.html` file together with the matching `R_partN_files/` folder, `figures/`, `styles.css`, and `_extensions/`. The presentation may not display or run correctly without these supporting assets.

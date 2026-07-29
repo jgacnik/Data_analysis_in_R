@@ -1,0 +1,151 @@
+---
+title: "R workshop part 5 - Paths, projects, and data import"
+author: "Jan Gačnik"
+date: last-modified
+format:
+  revealjs:
+    slide-number: true
+    footer: "Projects & data import presentation"
+    logo: "figures/MPS_logo.png"
+    css: styles.css
+    chalkboard: true
+filters:
+  - webr
+webr:
+  show-startup-message: false
+  packages: ["tidyverse"]
+editor: visual
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+data("penguins", package = "datasets", envir = environment())
+```
+
+## Paths
+
+Paths are directions that tell R where to look for data or place outputs on our computer.
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- Example Windows path: <kbd>C:&#92;Users&#92;gacnik&#92;Desktop</kbd>
+- Example Mac path: <kbd>/Users/gacnik/Desktop</kbd>
+:::
+
+::: {.fragment data-fragment-index="2"}
+R only accepts paths with forward slash character (<kbd>/</kbd>), meaning that:
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
+- Windows paths cannot be used as is, replacement with <kbd>/</kbd> characters
+- Mac paths can be used as is
+:::
+
+## Paths
+
+Use <kbd>getwd()</kbd> to **get** your _current_ R working directory. This is where R currently looks for data and saves outputs to.
+```{r}
+#| echo: true
+#| eval: true
+getwd()
+```
+
+
+::: {.fragment data-fragment-index="1" style="margin-top: 1em;"}
+Use <kbd>setwd()</kbd> to **set** your _new_ R working directory.
+```{r}
+#| echo: true
+#| eval: false
+setwd("C:/ENTER/YOUR/PATH/HERE")
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="margin-top: 1em;"}
+There is an easier and better way to manage paths through **RStudio projects**
+:::
+
+## Organizing your analysis project
+
+::: {style="font-size: 85%;"}
+As your data analysis skill improve, tasks become larger, and supporting files start growing.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+
+- We started our work in an R script, then we generated some plots, tables... if we started saving these outputs and adding new data, things could get disorganized fast:
+
+![Personal archive, my first messy R project](figures/messy_project.png)
+:::
+
+## Organizing your analysis project
+
+::: {style="font-size: 80%;"}
+Project organization for larger tasks/projects:
+:::
+
+::: {.incremental style="font-size: 75%;"}
+- everything in **one project folder**, with standard **sub folders**
+  - subfolders <kbd>data</kbd>, <kbd>scripts</kbd>, <kbd>outputs</kbd>, ...
+- use of **RStudio project file** (<kbd>.Rproj</kbd> file)
+  - relative instead of absolute paths
+  - preserves specific rstudio environment and setup just for the project
+:::
+
+::: {.fragment style="font-size: 80%;"}
+(Showcase the use of RStudio project)
+:::
+
+## Relative paths make projects portable
+
+::: {style="font-size: 90%;"}
+We said RStudio project uses relative paths, not absolute, what does it mean?
+:::
+
+::: {.incremental style="font-size: 80%;"}
+
+- **Absolute path:** starts from a fixed location on one computer  
+  <kbd>C:/Users/gacnik/Desktop/Example_project/data/penguins.csv</kbd>
+
+- **Relative path:** starts from the project folder  
+  <kbd>data/penguins.csv</kbd>
+
+:::
+
+::: {.fragment style="font-size: 80%; margin-top: 1em;"}
+**Rule:** Always use relative paths in project scripts. Avoid hard-coded absolute paths—they usually break when a project is moved, shared, or opened on another computer.
+:::
+
+## Data import
+
+Working with data already provided by R was neat, but you will need to apply the learned concept on your data.
+
+Here, we will focus on plain-text rectangular files such as CSV, TSV, and Excel files
+
+![Example of a simple CSV file](figures/mercury_text_data.png)
+
+## Data import
+
+Working with data already provided by R was neat, but you will need to apply the learned concept on your data.
+
+Here, we will focus on plain-text rectangular files such as CSV, TSV, and Excel files
+
+![Same example, viewed as a table](figures/mercury_table_data.png)
+
+## Import data with a relative path
+
+Download and extract the prepared [**Example RStudio project**](https://raw.githubusercontent.com/jgacnik/Data_analysis_in_R/main/downloads/Example_project.zip).
+
+Open <kbd>Example_project.Rproj</kbd>. Then import the file with <kbd>read_csv()</kbd> using a relative path:
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidyverse)
+
+mercury_air <- read_csv("data/mercury_air.csv")
+```
+
