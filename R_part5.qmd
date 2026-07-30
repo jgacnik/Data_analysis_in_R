@@ -193,9 +193,6 @@ The names of columns have white space, and as it is annoying to manually rename 
 ```{r}
 #| echo: true
 #| eval: true
-install.packages("janitor")
-library("janitor")
-
 mercury_air <- read_csv("data/mercury_air.csv", na = c("N/A", "")) %>% 
   clean_names()
 
