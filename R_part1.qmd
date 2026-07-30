@@ -230,11 +230,21 @@ By using the <kbd>\#</kbd> sign, you can create a comment, which will be ignored
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 # This calculates square root of 400
 sqrt(400)
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+# This calculates square root of 400
+sqrt(400)
+```
+:::
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
@@ -259,6 +269,7 @@ sqrt(400)
 
 R stores *everything* as an object - data, functions, models, output. Objects are created using the assignment operator <kbd>\<-</kbd>, shortcut for it: <kbd>Alt</kbd> + <kbd>-</kbd>
 
+::: {.screen-only}
 :::::::::: swap-area
 :::::: {.fragment .fade-out data-fragment-index="3"}
 ::::: {.fragment .fade-in data-fragment-index="1"}
@@ -305,6 +316,21 @@ new_object # This calls the contents of the object
 :::
 :::::
 ::::::
+:::
+
+::: {.print-only}
+::: {style="font-size: 80%;"}
+- Create an object, display it, and use it in calculations:
+:::
+
+```{r}
+#| echo: true
+new_object <- 144
+new_object
+new_object + 10
+sqrt(new_object)
+```
+:::
 
 ## Creating vectors
 

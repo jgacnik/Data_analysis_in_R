@@ -320,11 +320,21 @@ Similar to <kbd>distinct()</kbd>, but rather than showing you unique instances i
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| eval: true
 count(penguins, species, island)
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| eval: true
+count(penguins, species, island)
+```
+:::
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
@@ -521,11 +531,21 @@ Select/remove variables (columns) in a data frame
 :::
 
 ::: {style="font-size: 110%; max-height: 200px; overflow-y: auto;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| eval: false
 select(penguins, contains("_"))
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| eval: false
+select(penguins, contains("_"))
+```
+:::
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}

@@ -145,3 +145,36 @@ kbd {
   max-width: 100%;
   height: auto !important;
 }
+
+/* Interactive webR cells are replaced by pre-rendered R output in PDFs. */
+.print-only {
+  display: none;
+}
+
+html.print-pdf .screen-only {
+  display: none !important;
+}
+
+html.print-pdf .print-only {
+  display: block !important;
+}
+
+html.print-pdf .swap-area > .fragment {
+  display: none !important;
+}
+
+html.print-pdf .swap-area > .fragment.fade-in[data-fragment-index="3"] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media print {
+  .screen-only {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}

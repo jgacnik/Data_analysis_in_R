@@ -9,6 +9,7 @@ format:
     logo: "figures/MPS_logo.png"
     css: styles.css
     chalkboard: true
+    pdf-max-pages-per-slide: 1
 filters:
   - webr
 webr:
@@ -408,6 +409,7 @@ As we go on, we will often skip obvious argument names to make the code shorter
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+::: {.screen-only}
 ```{webr-r}
 #| classes: webr-plot-right
 #| warning: false
@@ -419,6 +421,26 @@ ggplot(
   geom_point(mapping = aes(color = species)) +
   geom_smooth(method = "lm")
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| classes: webr-plot-right
+#| warning: false
+#| fig-width: 5
+#| fig-height: 2.7
+#| out-width: 550px
+#| out-height: 300px
+#| fig-align: center
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_len,
+                y = body_mass)
+) +
+  geom_point(mapping = aes(color = species)) +
+  geom_smooth(method = "lm")
+```
+:::
 :::
 
 ## Visualization, aesthetics continued
@@ -542,6 +564,7 @@ How a distribution is visualized depends on the variable type: **categorical** o
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| fig-width: 6
@@ -553,6 +576,21 @@ How a distribution is visualized depends on the variable type: **categorical** o
 ggplot(penguins, aes(x = body_mass)) +
   geom_histogram(binwidth = 200)
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| fig-width: 6
+#| fig-height: 1.8
+#| out-width: 520px
+#| out-height: 180px
+#| fig-align: center
+#| warning: false
+ggplot(penguins, aes(x = body_mass)) +
+  geom_histogram(binwidth = 200)
+```
+:::
 :::
 
 ## Visualizing distributions
@@ -610,6 +648,7 @@ Let's make a simple boxplot using the <kbd>geom_boxplot()</kbd> geometry
 :::
 
 ::: {style="font-size: 110%;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| fig-width: 6
@@ -624,6 +663,24 @@ ggplot(penguins, aes(x = species,
 # We can transform how boxplot looks,
 # e.g., with outlier.shape = NA or notch = TRUE, etc.
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| fig-width: 6
+#| fig-height: 2.5
+#| out-width: 520px
+#| out-height: 250px
+#| fig-align: center
+#| warning: false
+ggplot(penguins, aes(x = species,
+                     y = body_mass)) +
+  geom_boxplot()
+# We can transform how boxplot looks,
+# e.g., with outlier.shape = NA or notch = TRUE, etc.
+```
+:::
 :::
 
 ## Visualizing relationships: density plot
@@ -641,6 +698,7 @@ We can again use the density plot using the <kbd>geom_density()</kbd> geometry
 :::
 
 ::: {style="font-size: 100%;"}
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| classes: webr-plot-right
@@ -656,6 +714,23 @@ ggplot(penguins, aes(x = body_mass,
 # We can transform how density plot looks,
 # e.g., alpha = 0.5, etc.
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| classes: webr-plot-right
+#| warning: false
+#| fig-width: 6
+#| fig-height: 2.3
+#| out-width: 520px
+#| out-height: 230px
+#| fig-align: center
+ggplot(penguins, aes(x = body_mass,
+                     color = species)) +
+  geom_density()
+```
+:::
 :::
 
 ## Visualizing relationships: 2 numerical variables

@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - setup.qmd
+    - materials.qmd
+    - R_part*.qmd
+  resources:
+    - downloads/**
+
+website:
+  title: "Data Analysis in R"
+  description: "Installation instructions, interactive presentations, and workshop files for an introductory Data Analysis in R course."
+  site-url: "https://jgacnik.github.io/Data_analysis_in_R/"
+  repo-url: "https://github.com/jgacnik/Data_analysis_in_R"
+  repo-actions: [source, issue]
+  search: true
+  navbar:
+    logo: figures/MPS_logo.png
+    left:
+      - href: index.qmd
+        text: Home
+      - href: setup.qmd
+        text: Setup
+      - href: materials.qmd
+        text: Materials
+    right:
+      - icon: github
+        href: "https://github.com/jgacnik/Data_analysis_in_R"
+        aria-label: "Course repository on GitHub"
+  page-footer:
+    left: "Data Analysis in R"
+    right:
+      - text: "Questions? Contact Jan Gačnik"
+        href: "mailto:jan.gacnik@ijs.si"
+
+format:
+  html:
+    theme: cosmo
+    css: site.css
+    toc: true
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true

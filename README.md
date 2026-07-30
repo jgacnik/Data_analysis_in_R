@@ -1,6 +1,14 @@
 # Data Analysis in R
 
-This repository contains materials for an introductory **Data Analysis in R** workshop. The course is organized as Quarto Reveal.js presentations with interactive R examples powered by webR.
+This repository contains the website and materials for an introductory **Data Analysis in R** workshop. The student website combines setup instructions, interactive Quarto Reveal.js presentations powered by webR, printable PDFs, and workshop downloads.
+
+## Student website
+
+The published course website is:
+
+**https://jgacnik.github.io/Data_analysis_in_R/**
+
+Students should begin with the website's **Setup** page, then use **Materials** to open the presentations and download the starter project.
 
 ## Presentations
 
@@ -14,9 +22,23 @@ This repository contains materials for an introductory **Data Analysis in R** wo
 
 Open an `.html` file in a web browser to view or present the slides. Edit its `.qmd` source when changing content, then render it again to update the presentation.
 
+## Website structure
+
+- `index.qmd` is the student homepage.
+- `setup.qmd` contains R, RStudio, package, and starter-project instructions.
+- `materials.qmd` links all interactive presentations, PDFs, data, and downloads.
+- `_quarto.yml` contains the shared website navigation and publishing configuration.
+- `site.css` contains website styling; `styles.css` remains presentation-specific.
+
 ## Rendering
 
-Install [R 4.6.0 or later](https://cran.r-project.org/) (the slides use the base-R `penguins` dataset), [Quarto](https://quarto.org/), and the R packages used by the slides, including `tidyverse` and `knitr`. Render a presentation from the repository root with:
+Install [R 4.6.0 or later](https://cran.r-project.org/) (the slides use the base-R `penguins` dataset), [Quarto](https://quarto.org/), and the R packages used by the slides, including `tidyverse` and `knitr`. Render the complete website from the repository root with:
+
+```sh
+quarto render
+```
+
+The finished site is written to `_site/`. To render only one presentation:
 
 ```sh
 quarto render R_part4.qmd
@@ -33,4 +55,6 @@ Replace `R_part4.qmd` with the presentation you want to render.
 - `workshop/Example_project/` contains the editable source of the participant starter project.
 - `downloads/Example_project.zip` is the ready-to-download participant starter project used in Part 5.
 
-When sharing a rendered presentation, keep its `.html` file together with the matching `R_partN_files/` folder, `figures/`, `styles.css`, and `_extensions/`. The presentation may not display or run correctly without these supporting assets.
+The GitHub Actions workflow in `.github/workflows/publish.yml` renders and deploys `_site/` to GitHub Pages after changes are pushed to `main`.
+
+When sharing a rendered presentation outside the website, keep its `.html` file together with the matching `R_partN_files/` folder, `figures/`, `styles.css`, and `_extensions/`. The presentation may not display or run correctly without these supporting assets.

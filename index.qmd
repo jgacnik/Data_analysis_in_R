@@ -1,0 +1,113 @@
+---
+pagetitle: "Data Analysis in R workshop"
+description: "Prepare for the workshop, open the interactive course presentations, and download the student project."
+toc: false
+page-layout: full
+---
+
+::: {.course-hero}
+::: {.hero-copy}
+<p class="eyebrow">Introductory workshop</p>
+
+# Data Analysis in R
+
+Build a practical foundation in R through five hands-on parts: from the first line of code to clear visualizations, reproducible transformations, tidy data, and well-organized projects.
+
+::: {.hero-actions}
+[Prepare your computer](setup.qmd){.btn .btn-primary .btn-lg}
+[View course materials](materials.qmd){.btn .btn-outline-primary .btn-lg}
+[Download starter project](downloads/Example_project.zip){.btn .btn-outline-secondary .btn-lg download=""}
+:::
+:::
+
+::: {.hero-mark}
+![](figures/MPS_logo.png){fig-alt="Jožef Stefan International Postgraduate School logo"}
+:::
+:::
+
+::: {.student-note}
+**Before the workshop:** install R and RStudio, install the required packages, and test the starter project. The [setup guide](setup.qmd) walks through every step.
+:::
+
+## What you will learn
+
+::: {.course-grid}
+::: {.course-card}
+<span class="part-number">01</span>
+
+### Introduction to R
+
+Understand why R is useful, meet RStudio, work with objects and functions, and learn how packages extend R.
+
+[Open Part 1](R_part1.qmd)
+:::
+
+::: {.course-card}
+<span class="part-number">02</span>
+
+### Data visualization
+
+Build clear, publication-ready graphics layer by layer with `ggplot2`.
+
+[Open Part 2](R_part2.qmd)
+:::
+
+::: {.course-card}
+<span class="part-number">03</span>
+
+### Data transformation
+
+Filter, mutate, group, and summarize data using a reproducible pipeline.
+
+[Open Part 3](R_part3.qmd)
+:::
+
+::: {.course-card}
+<span class="part-number">04</span>
+
+### Data tidying
+
+Recognize tidy data, reshape tables, and turn difficult inputs into analysis-ready datasets.
+
+[Open Part 4](R_part4.qmd)
+:::
+
+::: {.course-card}
+<span class="part-number">05</span>
+
+### Projects and data import
+
+Use relative paths, organize an RStudio project, and import real data reliably.
+
+[Open Part 5](R_part5.qmd)
+:::
+:::
+
+## How to use these materials
+
+::: {.use-grid}
+::: {.use-item}
+### Before
+
+Complete the [installation and preparation guide](setup.qmd). If possible, do this a day before the workshop so there is time to resolve installation problems.
+:::
+
+::: {.use-item}
+### During
+
+Keep the interactive HTML slides open in your browser and use RStudio for the hands-on exercises. Code examples marked as interactive can also run directly in the browser.
+:::
+
+::: {.use-item}
+### After
+
+Use the PDFs for quick reference and return to the interactive slides whenever you want to rerun an example. The complete source remains available in the [GitHub repository](https://github.com/jgacnik/Data_analysis_in_R).
+:::
+:::
+
+::: {.next-step}
+### Ready to begin?
+
+[Complete the setup →](setup.qmd){.btn .btn-primary}
+[Go directly to Part 1 →](R_part1.qmd){.btn .btn-link}
+:::

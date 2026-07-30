@@ -1,0 +1,126 @@
+---
+title: "Course materials"
+description: "Interactive presentations, printable PDFs, data, and the starter RStudio project."
+toc: false
+---
+
+Use the interactive HTML presentations during the workshop. The PDF versions are provided for printing, offline reading, and quick reference.
+
+::: {.callout-note}
+The browser presentations contain interactive R examples powered by webR. Those examples are not interactive in the PDF versions.
+:::
+
+::: {.materials-list}
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">01</span>
+
+### Introduction to R
+
+Why R, the RStudio interface, objects, functions, packages, and the first analysis workflow.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part1.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part1.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
+
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">02</span>
+
+### Data visualization
+
+The grammar of graphics, aesthetics, geometries, labels, themes, and faceting with `ggplot2`.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part2.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part2.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
+
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">03</span>
+
+### Data transformation
+
+Filtering, creating variables, grouping, summarizing, missing values, and pipelines with `dplyr`.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part3.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part3.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
+
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">04</span>
+
+### Data tidying
+
+Tidy-data principles, long and wide formats, reshaping, and readable R code.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part4.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part4.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
+
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">05</span>
+
+### Projects and data import
+
+Paths, RStudio projects, a reproducible folder structure, and importing a CSV file.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part5.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part5.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
+:::
+
+## Downloads
+
+::: {.download-grid}
+::: {.download-card}
+### Starter RStudio project
+
+The prepared project used in Part 5, including the script, data, and recommended folder structure.
+
+[Download `Example_project.zip`](downloads/Example_project.zip){.btn .btn-primary download=""}
+:::
+
+::: {.download-card}
+### Example dataset
+
+The atmospheric mercury CSV file included in the starter project.
+
+[Download `mercury_air.csv`](data/mercury_air.csv){.btn .btn-outline-primary download=""}
+:::
+
+::: {.download-card}
+### Source repository
+
+All Quarto source files, figures, data, and revision history are available on GitHub.
+
+[Open the GitHub repository](https://github.com/jgacnik/Data_analysis_in_R){.btn .btn-outline-primary}
+:::
+:::
+
+## Presentation controls
+
+When viewing the interactive slides:
+
+- use the **left and right arrow keys** or the on-screen controls to move between slides;
+- press **F** for full screen;
+- press **O** for an overview of all slides;
+- press **M** to open the presentation menu;
+- interactive R cells may take a moment to initialize the first time.

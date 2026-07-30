@@ -242,6 +242,7 @@ Of course, <kbd>NAs</kbd> can also be removed using the already known <kbd>filte
 
 ::: {style="max-height: 450px; overflow-y: auto;"}
 
+::: {.screen-only}
 ```{webr-r}
 #| echo: true
 #| eval: true
@@ -253,6 +254,21 @@ billboard %>%
   ) %>%
   filter(!is.na(rank))
 ```
+:::
+
+::: {.print-only}
+```{r}
+#| echo: true
+#| eval: true
+billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "rank"
+  ) %>%
+  filter(!is.na(rank))
+```
+:::
 
 :::
 
