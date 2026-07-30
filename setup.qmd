@@ -17,10 +17,6 @@ Complete these steps **in order** before the workshop:
 <span><strong>4</strong> Starter project</span>
 :::
 
-::: {.callout-important}
-R and RStudio are different programs. **Install R first**, because RStudio needs R in order to work.
-:::
-
 ## 1. Install R
 
 R is the statistical computing engine that runs your code.
