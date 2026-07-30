@@ -13,6 +13,8 @@ page-layout: full
 
 Build a practical foundation in R through five hands-on parts: from the first line of code to clear visualizations, reproducible transformations, tidy data, and well-organized projects.
 
+<p class="workshop-lead">Workshop developed and led by <strong>Asst. Prof. Jan Gačnik</strong>.</p>
+
 ::: {.hero-actions}
 [Prepare your computer](setup.qmd){.btn .btn-primary .btn-lg}
 [View course materials](materials.qmd){.btn .btn-outline-primary .btn-lg}

@@ -19,6 +19,30 @@ body {
   border-bottom: 1px solid rgba(23, 33, 43, 0.1);
 }
 
+.navbar .navbar-nav .nav-link {
+  padding: 0.52rem 0.85rem;
+  margin: 0 0.12rem;
+  color: var(--course-blue-dark);
+  font-weight: 750;
+  border-radius: 0.45rem;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus-visible {
+  color: var(--course-blue-dark);
+  background: var(--course-blue-soft);
+}
+
+.navbar .navbar-nav .nav-link.active {
+  color: #fff;
+  background: var(--course-blue);
+  box-shadow: 0 4px 12px rgba(37, 99, 168, 0.2);
+}
+
 .navbar-brand img {
   max-height: 34px;
 }
@@ -49,6 +73,17 @@ body {
   max-width: 760px;
   color: rgba(255, 255, 255, 0.86);
   font-size: clamp(1.08rem, 2vw, 1.35rem);
+}
+
+.course-hero .hero-copy > p.workshop-lead {
+  display: inline-block;
+  padding: 0.55rem 0.8rem;
+  margin: 0.7rem 0 0;
+  color: #fff;
+  font-size: 0.98rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.45rem;
 }
 
 .eyebrow {

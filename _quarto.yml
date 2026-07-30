@@ -30,9 +30,9 @@ website:
         href: "https://github.com/jgacnik/Data_analysis_in_R"
         aria-label: "Course repository on GitHub"
   page-footer:
-    left: "Data Analysis in R"
+    left: "Workshop developed and led by Asst. Prof. Jan Gačnik"
     right:
-      - text: "Questions? Contact Jan Gačnik"
+      - text: "Contact Jan Gačnik"
         href: "mailto:jan.gacnik@ijs.si"
 
 format:
