@@ -32,7 +32,7 @@ website:
   page-footer:
     left: "Workshop developed and led by Asst. Prof. Jan Gačnik"
     right:
-      - text: "Contact Jan Gačnik"
+      - text: "Contact Jan Gačnik at jan.gacnik@ijs.si"
         href: "mailto:jan.gacnik@ijs.si"
 
 format:

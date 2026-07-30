@@ -888,7 +888,7 @@ penguins %>%
 ```
 :::
 
-::: {.fragment data-fragment-index="1" style="font-size: 80%; max-height: 250px;"}
+::: {.nostretch data-fragment-index="1" style="font-size: 80%; max-height: 250px;"}
 ```{r}
 #| echo: false
 #| eval: true

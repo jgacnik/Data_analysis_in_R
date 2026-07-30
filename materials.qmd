@@ -99,14 +99,6 @@ The prepared project used in Part 5, including the script, data, and recommended
 :::
 
 ::: {.download-card}
-### Example dataset
-
-The atmospheric mercury CSV file included in the starter project.
-
-[Download `mercury_air.csv`](data/mercury_air.csv){.btn .btn-outline-primary download=""}
-:::
-
-::: {.download-card}
 ### Source repository
 
 All Quarto source files, figures, data, and revision history are available on GitHub.
