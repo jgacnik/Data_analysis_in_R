@@ -21,15 +21,15 @@ R is a programming language built for statistical computing
 
 If one already knows Excel, Origin, SigmaPlot, etc. - why use R?
 
--   *Free* to use
+- *Free* to use
 
--   *Large* community - support and packages
+- *Large* community - support and packages
 
--   Analysis and visualization are *easy to replicate*
+- Analysis and visualization are *easy to replicate*
 
--   *Freedom* - almost anything is possible and modifiable
+- *Freedom* - almost anything is possible and modifiable
 
--   *Automation* of plotting
+- *Automation* of plotting
 
 ##  {background-image="figures/map_plots.png" background-size="60%" background-position="center"}
 
@@ -72,8 +72,8 @@ Analogy: With what can you cook rice?
 Why not just ![](figures/chatgpt.png){style="vertical-align: -20px;" width="15%"} & ![](figures/claude.png){style="vertical-align: -15px;" width="13%"} ?
 
 ::: {.fragment fragment-index="1" style="font-size: 0.75em;"}
--   People who know R get dramatically more value from AI assistants than beginners
--   AI as a copilot – you still need to know how to fly
+- People who know R get dramatically more value from AI assistants than beginners
+- AI as a copilot – you still need to know how to fly
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 1em;"}
@@ -81,7 +81,7 @@ Other considerations
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 0.75em;"}
--   R script is a reproducible record of what was done with data. AI conversation is not.
+- R script is a reproducible record of what was done with data. AI conversation is not.
 :::
 
 . . .
@@ -90,33 +90,33 @@ Other considerations
 Open access to all research outputs from publicly funded projects - **data analysis and visualization included**
 :::
 
-## Overview
+## Workshop overview
 
 :::: {.fragment data-fragment-index="0"}
-(1) R and R studio orientation
+(1) Introduction to R
 
-(2) Creating and using objects
+(2) Data visualization
 
-(3) Packages
+(3) Data transformation
 
-(4) Basic visualization
+(4) Data tidying
 
-(5) Basic analyses
+(5) Projects and data import
 
-(6) Demonstration on a precipitation isotopes dataset
+(6) Demonstration on an example project
 
 ::: {style="font-size: 0.5em; margin-top: 1em;"}
 Workshop materials based on:
 
--   Hadley Wickham, R for Data Science, https://r4ds.hadley.nz/
+- Hadley Wickham, R for Data Science, https://r4ds.hadley.nz/
 
--   Charles Lanfear, Introduction to R, https://clanfear.github.io/Intro_R_Workshop/
+- Charles Lanfear, Introduction to R, https://clanfear.github.io/Intro_R_Workshop/
 :::
 ::::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 1\) R and R studio orientation
 :::
 
@@ -131,9 +131,45 @@ RStudio can:
 :::
 
 ::: {style="font-size:70%;"}
--   Write & run R code with helpful features like auto-complete and syntax highlighting
--   Enables viewing created objects (tables, graphs)
--   Files, code, graphs, outputs → all in one window
+- Write & run R code with helpful features like auto-complete and syntax highlighting
+- Enables viewing created objects (tables, graphs)
+- Files, code, graphs, outputs → all in one window
+:::
+
+## RStudio
+
+This is how RStudio looks when opened for the first time:
+
+![](figures/RStudio_orientation.png)
+
+## RStudio
+
+We should open a new R script the following way:
+
+![](figures/RStudio_orientation_2.png)
+
+## RStudio
+
+Finally, we have the 4 RStudio windows open, let's explain what is what
+
+::: {style="position: relative;"}
+![](figures/RStudio_orientation_3.png){width="80%"}
+
+::: {.fragment data-fragment-index="1" style="position: absolute; top: 25%; left: 15%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
+**Source** – write & save scripts
+:::
+
+::: {.fragment data-fragment-index="2" style="position: absolute; bottom: 7%; left: 15%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
+**Console** – run code, see output
+:::
+
+::: {.fragment data-fragment-index="3" style="position: absolute; top: 20%; right: 5%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
+**Environment/History** – objects you've created
+:::
+
+::: {.fragment data-fragment-index="4" style="position: absolute; bottom: 20%; right: 10%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
+**Outputs** – browse, view, look up, help
+:::
 :::
 
 ## Editing and running code
@@ -157,7 +193,7 @@ Three ways to run R code in RStudio:
 What if you mess up (e.g., forget to close brackets)?
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   In console window, R might show <kbd>+</kbd> sign, indicating that the command has to be finished
+- In console window, R might show <kbd>+</kbd> sign, indicating that the command has to be finished
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
@@ -168,7 +204,7 @@ What if you mess up (e.g., forget to close brackets)?
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   You can finish the command or hit <kbd>Esc</kbd> to get out of it
+- You can finish the command or hit <kbd>Esc</kbd> to get out of it
 :::
 
 ## R as a calculator
@@ -176,7 +212,7 @@ What if you mess up (e.g., forget to close brackets)?
 In the console, type <kbd>12 + 34 + 56</kbd> and hit <kbd>Enter</kbd>.
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
--   The outcome should look like this:
+- The outcome should look like this:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
@@ -187,7 +223,7 @@ In the console, type <kbd>12 + 34 + 56</kbd> and hit <kbd>Enter</kbd>.
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   The <kbd>\[1\]</kbd> indicates the numeric index of the first element in that line
+- The <kbd>\[1\]</kbd> indicates the numeric index of the first element in that line
 :::
 
 ::: {.fragment data-fragment-index="3"}
@@ -226,11 +262,11 @@ Functions can get complex – documentation is your friend!
 By using the <kbd>\#</kbd> sign, you can create a comment, which will be ignored when you run code.
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   Comments are useful for describing what was done:
+- Comments are useful for describing what was done:
 :::
 
-::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
-::: {.screen-only}
+::::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 # This calculates square root of 400
@@ -238,17 +274,17 @@ sqrt(400)
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 # This calculates square root of 400
 sqrt(400)
 ```
 :::
-:::
+:::::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
--   Comments are also useful to "comment-out" the code you want to ignore
+- Comments are also useful to "comment-out" the code you want to ignore
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 120%;"}
@@ -259,9 +295,9 @@ sqrt(400)
 ```
 :::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 2\) Creating and using objects
 :::
 
@@ -269,12 +305,12 @@ sqrt(400)
 
 R stores *everything* as an object - data, functions, models, output. Objects are created using the assignment operator <kbd>\<-</kbd>, shortcut for it: <kbd>Alt</kbd> + <kbd>-</kbd>
 
-::: {.screen-only}
+::::::::::::::: screen-only
 :::::::::: swap-area
 :::::: {.fragment .fade-out data-fragment-index="3"}
 ::::: {.fragment .fade-in data-fragment-index="1"}
 ::: {style="font-size: 80%;"}
--   Try creating an object named <kbd>new_object</kbd>:
+- Try creating an object named <kbd>new_object</kbd>:
 :::
 
 ::: {style="font-size: 120%;"}
@@ -288,7 +324,7 @@ new_object <- 144 # This stores 144 as an object
 
 ::::: {.fragment .fade-in data-fragment-index="3"}
 ::: {style="font-size: 80%;"}
--   Try using objects in one of the following ways:
+- Try using objects in one of the following ways:
 :::
 
 ::: {style="font-size: 120%;"}
@@ -305,7 +341,7 @@ sqrt(new_object)
 :::::: {.fragment .fade-out data-fragment-index="3"}
 ::::: {.fragment .fade-in data-fragment-index="2"}
 ::: {style="font-size: 80%;"}
--   If you want to display or "call" an object, simply type its name in console
+- If you want to display or "call" an object, simply type its name in console
 :::
 
 ::: {style="font-size: 120%;"}
@@ -316,9 +352,9 @@ new_object # This calls the contents of the object
 :::
 :::::
 ::::::
-:::
+:::::::::::::::
 
-::: {.print-only}
+:::: print-only
 ::: {style="font-size: 80%;"}
 - Create an object, display it, and use it in calculations:
 :::
@@ -330,6 +366,33 @@ new_object
 new_object + 10
 sqrt(new_object)
 ```
+::::
+
+## Data types/classes
+
+Every object in R has a **type** (also called a **class**)
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- **numeric** – numbers, e.g. <kbd>144</kbd>, <kbd>3.14</kbd>
+- **character** – text (strings), e.g. <kbd>"Atlantic"</kbd>
+- **logical** – <kbd>TRUE</kbd> / <kbd>FALSE</kbd>
+- **factor** – categorical data with fixed levels, e.g. <kbd>"low"</kbd>, <kbd>"medium"</kbd>, <kbd>"high"</kbd>
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 70%; margin-top: 1em;"}
+- You can check an object's type using <kbd>class()</kbd> function:
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 120%;"}
+```{r}
+#| echo: true
+#| eval: true
+class(new_object)
+```
+:::
+
+::: {.fragment data-fragment-index="3" style="font-size: 70%;"}
+- Many errors in R happen because a function expected one type and got another
 :::
 
 ## Creating vectors
@@ -349,11 +412,11 @@ numeric_vector
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%; margin-top: 1.5em;"}
--   If you name an object the same name as an existing object *it will overwrite it*
+- If you name an object the same name as an existing object *it will overwrite it*
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 70%;"}
--   You can provide vectors as arguments to many functions:
+- You can provide vectors as arguments to many functions:
 :::
 
 ::: {.fragment data-fragment-index="3" style="font-size: 120%;"}
@@ -378,7 +441,7 @@ string_vector
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
--   Functions can also be used on character vectors, such as the <kbd>sort()</kbd> function
+- Functions can also be used on character vectors, such as the <kbd>sort()</kbd> function
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
@@ -389,7 +452,7 @@ sort(string_vector)
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   As we go on, we will see functions which accept more than just one argument, such as the <kbd>decreasing = TRUE</kbd> argument of the <kbd>sort()</kbd> function:
+- As we go on, we will see functions which accept more than just one argument, such as the <kbd>decreasing = TRUE</kbd> argument of the <kbd>sort()</kbd> function:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 120%;"}
@@ -399,28 +462,117 @@ sort(string_vector, decreasing = TRUE)
 ```
 :::
 
-## More complex objects
+## Logical vectors and comparisons
 
-Same principles show with vectors can be used with more complex objects, such as **matrices**, **arrays**, **lists**, and **dataframes**
+R can evaluate whether something is <kbd>TRUE</kbd> or <kbd>FALSE</kbd> using **comparison operators**:
 
-::: {style="font-size: 70%;"}
--   **Dataframe** is the object we will focus on the most
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- <kbd>==</kbd> equal to &nbsp;&nbsp;&nbsp; <kbd>!=</kbd> not equal to
+- <kbd>\></kbd> / <kbd>\<</kbd> greater/less than
+- <kbd>\>=</kbd> / <kbd>\<=</kbd> greater/less than or equal to
 :::
 
-::: {.fragment data-fragment-index="1"}
-Easiest way to import data into R – *delimited text files* (e.g., .csv), but many data formats can be imported (.xlsx, .nc, .shp, .json, …)
+::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+```{r}
+#| echo: true
+numeric_vector > 20
+```
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
--   For *delimited text files*, <kbd>read.table()</kbd> and <kbd>read.csv()</kbd> are common import functions
+::: {.fragment data-fragment-index="2" style="font-size: 70%; margin-top: 1em;"}
+- The result is a **logical vector** – itself a type we can store, count, or use to filter data
+:::
+
+## Logical vectors and comparisons
+
+R can evaluate whether something is <kbd>TRUE</kbd> or <kbd>FALSE</kbd> using **comparison operators**:
+
+::: {style="font-size: 80%;"}
+- <kbd>==</kbd> equal to &nbsp;&nbsp;&nbsp; <kbd>!=</kbd> not equal to
+- <kbd>\></kbd> / <kbd>\<</kbd> greater/less than
+- <kbd>\>=</kbd> / <kbd>\<=</kbd> greater/less than or equal to
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
+- <kbd>&</kbd> (and), <kbd>\|</kbd> (or) combine multiple conditions:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+```{r}
+#| echo: true
+numeric_vector > 10 & numeric_vector < 30
+```
+:::
+
+## Missing values
+
+Real datasets almost always have gaps. R represents a missing value as <kbd>NA</kbd>.
+
+::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+```{r}
+#| echo: true
+na_vector <- c(4, 9, NA, 25, 36)
+na_vector
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 70%; margin-top: 1em;"}
+- <kbd>NA</kbd> is "contagious" – most calculations involving <kbd>NA</kbd> return <kbd>NA</kbd>:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 120%;"}
 ```{r}
 #| echo: true
-#| eval: false
-new_df <- read.csv("Some_spreasheet.csv")
+sum(na_vector)
 ```
+:::
+
+## Missing values
+
+Real datasets almost always have gaps. R represents a missing value as <kbd>NA</kbd>.
+
+::: {style="font-size: 120%;"}
+```{r}
+#| echo: true
+na_vector <- c(4, 9, NA, 25, 36)
+na_vector
+```
+:::
+
+::: {style="font-size: 70%;"}
+- Use <kbd>is.na()</kbd> to detect missing values, and <kbd>na.rm = TRUE</kbd> to ignore them in calculations:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 120%;"}
+```{r}
+#| echo: true
+is.na(na_vector)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 120%;"}
+```{r}
+#| echo: true
+sum(na_vector, na.rm = TRUE)
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
+- Keep an eye out for <kbd>NA</kbd>s – forgetting about them is one of the most common beginner mistakes!
+:::
+
+## More complex objects
+
+Same principles shown with vectors can be used with more complex objects, such as **matrices**, **arrays**, **lists**, and **dataframes**
+
+::: {style="font-size: 90%;"}
+- **Dataframe** is the object we will focus on the most
+
+  ::: {.fragment style="font-size: 80%;"}
+  - The same concept as an Excel table, with more defined contents
+  - Can store different vector types inside it, e.g. a character column, a numeric column, a logical column, ...
+  :::
+
 :::
 
 ## Accessing data in objects
@@ -447,9 +599,9 @@ penguins[1:3, 3:5] # Rows 1-3 and columns 3-5
 ```
 :::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 3\) Packages
 :::
 
@@ -458,9 +610,9 @@ penguins[1:3, 3:5] # Rows 1-3 and columns 3-5
 Packages contain useful functions (and sometimes data) created by the community
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   These are not included in base R
+- These are not included in base R
 
--   The Comprehensive R Archive Network (CRAN): packages go through a *peer-review process by statisticians and computer scientists*
+- The Comprehensive R Archive Network (CRAN): packages go through a *peer-review process by statisticians and computer scientists*
 :::
 
 ::: {.fragment data-fragment-index="2"}
@@ -483,13 +635,13 @@ Too many to list, but <kbd>tidyverse</kbd> is by far the most useful
 A package that includes a *family of packages*:
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
--   <kbd>ggplot2</kbd> for *plotting*
+- <kbd>ggplot2</kbd> for *plotting*
 
--   <kbd>dplyr</kbd> and <kbd>tidyr</kbd> for *data manipulation*
+- <kbd>dplyr</kbd> and <kbd>tidyr</kbd> for *data manipulation*
 
--   <kbd>lubridate</kbd> for working with *dates*
+- <kbd>lubridate</kbd> for working with *dates*
 
--   ...
+- ...
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}

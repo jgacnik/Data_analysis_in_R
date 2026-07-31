@@ -408,8 +408,8 @@ As we go on, we will often skip obvious argument names to make the code shorter
 - For example, <kbd>data = penguins</kbd> becomes <kbd>penguins</kbd>, and <kbd>mapping = aes(...)</kbd> becomes <kbd>aes(...)</kbd>:
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
-::: {.screen-only}
+::::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+::: screen-only
 ```{webr-r}
 #| classes: webr-plot-right
 #| warning: false
@@ -423,7 +423,7 @@ ggplot(
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| classes: webr-plot-right
 #| warning: false
@@ -441,7 +441,7 @@ ggplot(
   geom_smooth(method = "lm")
 ```
 :::
-:::
+:::::
 
 ## Visualization, aesthetics continued
 
@@ -563,8 +563,8 @@ How a distribution is visualized depends on the variable type: **categorical** o
 - **Numerical** variables can be discrete or continuous. For continuous numerical variables, *histograms* are commonly used (<kbd>geom_histogram()</kbd>).
 :::
 
-::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
-::: {.screen-only}
+::::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| fig-width: 6
@@ -578,7 +578,7 @@ ggplot(penguins, aes(x = body_mass)) +
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| fig-width: 6
@@ -591,7 +591,7 @@ ggplot(penguins, aes(x = body_mass)) +
   geom_histogram(binwidth = 200)
 ```
 :::
-:::
+:::::
 
 ## Visualizing distributions
 
@@ -647,8 +647,8 @@ Source: Hadley Wickham, *R for Data Science*
 Let's make a simple boxplot using the <kbd>geom_boxplot()</kbd> geometry
 :::
 
-::: {style="font-size: 110%;"}
-::: {.screen-only}
+::::: {style="font-size: 110%;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| fig-width: 6
@@ -665,7 +665,7 @@ ggplot(penguins, aes(x = species,
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| fig-width: 6
@@ -681,7 +681,7 @@ ggplot(penguins, aes(x = species,
 # e.g., with outlier.shape = NA or notch = TRUE, etc.
 ```
 :::
-:::
+:::::
 
 ## Visualizing relationships: density plot
 
@@ -697,8 +697,8 @@ We can again use the density plot using the <kbd>geom_density()</kbd> geometry
 - We can also add the <kbd>fill</kbd> aesthetic
 :::
 
-::: {style="font-size: 100%;"}
-::: {.screen-only}
+::::: {style="font-size: 100%;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| classes: webr-plot-right
@@ -716,7 +716,7 @@ ggplot(penguins, aes(x = body_mass,
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| classes: webr-plot-right
@@ -731,7 +731,7 @@ ggplot(penguins, aes(x = body_mass,
   geom_density()
 ```
 :::
-:::
+:::::
 
 ## Visualizing relationships: 2 numerical variables
 
@@ -854,7 +854,7 @@ Splitting the plot into multiple subplots - **faceting** - can be very useful to
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 65%;"}
-- Faceting by a *two variables* is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula <kbd>variable1 \~ variable2</kbd>.
+- Faceting by *two variables* is done using <kbd>facet_grid()</kbd> — specify the 2 variables using the formula <kbd>variable1 \~ variable2</kbd>.
 :::
 
 :::::::: columns
@@ -868,8 +868,8 @@ Splitting the plot into multiple subplots - **faceting** - can be very useful to
 ggplot(penguins, aes(x = flipper_len,
                      y = body_mass)) +
   geom_point(aes(color = species,
-                 shape = species))
-  facet_wrap(island ~ sex)
+                 shape = species)) +
+  facet_grid(island ~ sex)
 ```
 :::
 
@@ -885,7 +885,7 @@ ggplot(penguins, aes(x = flipper_len,
 ```{r}
 #| echo: false
 #| fig-width: 5
-#| fig-height: 4
+#| fig-height: 2.5
 #| fig-align: right
 ggplot(penguins, aes(x = flipper_len,
                      y = body_mass)) +

@@ -159,6 +159,20 @@ html.print-pdf .print-only {
   display: block !important;
 }
 
+/* Keep browser-only chrome and scroll containers out of PDF handouts. */
+html.print-pdf .reveal .slide-logo {
+  display: none !important;
+}
+
+html.print-pdf .reveal [style*="overflow-y: auto"] {
+  overflow-y: hidden !important;
+}
+
+html.print-pdf .reveal [style*="overflow-y: auto"]:has(.cell-output) {
+  font-size: 70% !important;
+  line-height: 1.1;
+}
+
 html.print-pdf .swap-area > .fragment {
   display: none !important;
 }
@@ -170,6 +184,19 @@ html.print-pdf .swap-area > .fragment.fade-in[data-fragment-index="3"] {
 }
 
 @media print {
+  .reveal .slide-logo {
+    display: none !important;
+  }
+
+  .reveal [style*="overflow-y: auto"] {
+    overflow-y: hidden !important;
+  }
+
+  .reveal [style*="overflow-y: auto"]:has(.cell-output) {
+    font-size: 70% !important;
+    line-height: 1.1;
+  }
+
   .screen-only {
     display: none !important;
   }

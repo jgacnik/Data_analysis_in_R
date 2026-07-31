@@ -16,6 +16,7 @@ webr:
   packages: ["dplyr"]
 editor: visual
 ---
+
 ```{r}
 #| label: setup
 #| include: false
@@ -36,7 +37,6 @@ In this presentation, we will learn how to:
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
-
 - Filter the data
 
 - Transform existing columns and create new ones
@@ -53,7 +53,7 @@ Illustration of the data transformation process
 ![](figures/pipeline.png){fig-align="center" width="85%"}
 
 ::: {style="font-size: 50%; color: grey; text-align: center;"}
-Source: Celina Cheng, _R for Ecology_
+Source: Celina Cheng, *R for Ecology*
 :::
 
 ## Data transformation in R
@@ -72,7 +72,6 @@ Benefits:
 - Intuitive piping, code as a sequence of steps
 
 - Option to translate dplyr syntax to SQL query for databases
-
 :::
 ::::
 
@@ -80,7 +79,7 @@ Benefits:
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
 Cons:
 
-- Slower than some other packages, can't handle giant data (>1 million rows)
+- Slower than some other packages, can't handle giant data (\>1 million rows)
 
 - Functions keep improving and updating - old code may not work
 :::
@@ -92,16 +91,14 @@ Cons:
 Broadly, first functions studied today can be classified into these families:
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
-
 - Functions that operate on **rows** of a data frame
 
 - Functions that operate on **columns** of a data frame
-
 :::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 1\) Functions that operate on ROWS
 :::
 
@@ -110,25 +107,24 @@ Broadly, first functions studied today can be classified into these families:
 ::: {style="font-size: 90%;" data-id="filter-intro"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
-```{.r data-id="filter-code"}
+``` {.r data-id="filter-code"}
 penguins_filtered <- filter(penguins, island == "Dream")
 ```
 
 ::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
-
-| Logical operator | Meaning |
-|---|---|
-| `<` | Less than |
-| `<=` | Less than or equal to |
-| `>` | More than |
-| `>=` | More than or equal to |
-| `==` | Equal to |
-| `!=` | Not equal to |
-| `A | B` | A or B |
-| `A & B` | A and B |
+| Logical operator | Meaning               |
+|------------------|-----------------------|
+| `<`              | Less than             |
+| `<=`             | Less than or equal to |
+| `>`              | More than             |
+| `>=`             | More than or equal to |
+| `==`             | Equal to              |
+| `!=`             | Not equal to          |
+| `A | B`          | A or B                |
+| `A & B`          | A and B               |
 :::
 
 ## <kbd>filter()</kbd> {data-auto-animate="true"}
@@ -136,26 +132,25 @@ penguins_filtered <- filter(penguins, island == "Dream")
 ::: {style="font-size: 90%;" data-id="filter-intro"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
-```{.r data-id="filter-code"}
+``` {.r data-id="filter-code"}
 penguins_filtered <- filter(penguins, island == "Dream")
 penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
 ```
 
 ::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
-
-| Logical operator | Meaning |
-|---|---|
-| `<` | Less than |
-| `<=` | Less than or equal to |
-| `>` | More than |
-| `>=` | More than or equal to |
-| `==` | Equal to |
-| `!=` | Not equal to |
-| `A | B` | A or B |
-| `A & B` | A and B |
+| Logical operator | Meaning               |
+|------------------|-----------------------|
+| `<`              | Less than             |
+| `<=`             | Less than or equal to |
+| `>`              | More than             |
+| `>=`             | More than or equal to |
+| `==`             | Equal to              |
+| `!=`             | Not equal to          |
+| `A | B`          | A or B                |
+| `A & B`          | A and B               |
 :::
 
 ## <kbd>filter()</kbd> {data-auto-animate="true"}
@@ -163,27 +158,26 @@ penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
 ::: {style="font-size: 90%;" data-id="filter-intro"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
-```{.r data-id="filter-code"}
+``` {.r data-id="filter-code"}
 penguins_filtered <- filter(penguins, island == "Dream")
 penguins_filtered_2 <- filter(penguins, flipper_len >= 190)
 penguins_filtered_3 <- filter(penguins, island == "Dream" & flipper_len >= 190)
 ```
 
 ::: {style="font-size: 55%; text-align: center;" data-id="operator-table"}
-
-| Logical operator | Meaning |
-|---|---|
-| `<` | Less than |
-| `<=` | Less than or equal to |
-| `>` | More than |
-| `>=` | More than or equal to |
-| `==` | Equal to |
-| `!=` | Not equal to |
-| `A | B` | A or B |
-| `A & B` | A and B |
+| Logical operator | Meaning               |
+|------------------|-----------------------|
+| `<`              | Less than             |
+| `<=`             | Less than or equal to |
+| `>`              | More than             |
+| `>=`             | More than or equal to |
+| `==`             | Equal to              |
+| `!=`             | Not equal to          |
+| `A | B`          | A or B                |
+| `A & B`          | A and B               |
 :::
 
 ## <kbd>filter()</kbd> {data-auto-animate="true"}
@@ -191,11 +185,11 @@ penguins_filtered_3 <- filter(penguins, island == "Dream" & flipper_len >= 190)
 ::: {style="font-size: 90%;"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
-- Writing many <kbd>|</kbd> and <kbd>==</kbd> can get tedious:
+- Writing many <kbd>\|</kbd> and <kbd>==</kbd> can get tedious:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
@@ -223,13 +217,13 @@ penguins_filtered_4 <- filter(penguins, year %in% c(2007, 2008))
 ::: {style="font-size: 90%;"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
 Common mistakes:
 
--  Using <kbd>=</kbd> instead of <kbd>==</kbd>:
+- Using <kbd>=</kbd> instead of <kbd>==</kbd>:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
@@ -255,13 +249,13 @@ filter(penguins, year = 2007)
 ::: {style="font-size: 90%;"}
 Subsets a data frame, retaining all rows that satisfy your conditions.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: logical test
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: logical test
 :::
 
 ::: {style="font-size: 75%;"}
 Common mistakes:
 
--  Using "OR" statements like you would in English (will result in "silent error"):
+- Using "OR" statements like you would in English (will result in "silent error"):
 :::
 
 ::: {style="font-size: 110%;"}
@@ -291,10 +285,10 @@ filter(penguins, year == 2007 | 2008)
 ::: {style="font-size: 90%;"}
 Keeps only unique/distinct rows from a data frame
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: variables from the data frame for which a distinct combination is wanted
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: variables from the data frame for which a distinct combination is wanted
 :::
 
-::: {.fragment data-fragment-index="1"style="font-size: 110%;"}
+::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
 ```{r}
 #| echo: true
 #| eval: false
@@ -302,7 +296,7 @@ distinct(penguins, species, island)
 ```
 :::
 
-::: {.fragment data-fragment-index="2"style="font-size: 110%;"}
+::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
 ```{r}
 #| echo: false
 #| eval: true
@@ -316,11 +310,11 @@ distinct(penguins, species, island)
 ::: {style="font-size: 90%;"}
 Similar to <kbd>distinct()</kbd>, but rather than showing you unique instances it counts the number of occurrences
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: variables whose unique combinations are counted
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: variables whose unique combinations are counted
 :::
 
-::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
-::: {.screen-only}
+::::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| eval: true
@@ -328,17 +322,16 @@ count(penguins, species, island)
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| eval: true
 count(penguins, species, island)
 ```
 :::
-:::
+:::::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
-
 - Optionally, you can arrange the results in descending order using <kbd>sort = TRUE</kbd> argument.
 :::
 
@@ -347,7 +340,7 @@ count(penguins, species, island)
 ::: {style="font-size: 90%;"}
 Allows you to select, remove, and duplicate rows based on their (integer) location. E.g., rows 1-5, rows 20-last row, etc.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: integers of the row location.
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: integers of the row location.
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
@@ -367,7 +360,7 @@ slice(penguins, 2:4)
 ::: {style="font-size: 90%;"}
 Allows you to select, remove, and duplicate rows based on their (integer) location. E.g., rows 1-5, rows 20-last row, etc.
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: integers of the row location.
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: integers of the row location.
 :::
 
 ::: {style="font-size: 80%;"}
@@ -382,10 +375,9 @@ slice(penguins, -(2:4))
 ```
 :::
 
+##  {.transition-slide background-color="#444444"}
 
-## {.transition-slide background-color="#444444"}
-
-::: {.transition-title}
+::: transition-title
 2\) Functions that operate on COLUMNS
 :::
 
@@ -394,7 +386,7 @@ slice(penguins, -(2:4))
 ::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: name-value pair
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 95%;"}
@@ -418,7 +410,7 @@ head(penguins_mutated)
 ::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: name-value pair
 :::
 
 ::: {style="font-size: 95%;"}
@@ -443,7 +435,7 @@ head(penguins_mutated_2)
 ::: {style="font-size: 90%;"}
 Creates new or modifies existing variables in the object
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">second argument</span>: name-value pair
+[First argument]{style="color: grey;"}: data frame, [second argument]{style="color: grey;"}: name-value pair
 :::
 
 ::: {style="font-size: 90%;"}
@@ -469,7 +461,7 @@ head(penguins_mutated_3)
 ::: {style="font-size: 90%;"}
 Select (and optionally rename) variables in a data frame
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: names of columns to keep or remove
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
@@ -493,12 +485,12 @@ select(penguins, species, bill_len, bill_dep)
 ::: {style="font-size: 90%;"}
 Select/remove variables in a data frame
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: names of columns to keep or remove
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
-- Useful functions that can be used as arguments of <kbd>select()</kbd>:  
-<kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
+- Useful functions that can be used as arguments of <kbd>select()</kbd>:\
+  <kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -522,16 +514,16 @@ select(penguins, starts_with("bill"))
 ::: {style="font-size: 90%;"}
 Select/remove variables (columns) in a data frame
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: names of columns to keep or remove
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: names of columns to keep or remove
 :::
 
 ::: {style="font-size: 80%;"}
-- Useful functions that can be used as arguments of <kbd>select()</kbd>:  
-<kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
+- Useful functions that can be used as arguments of <kbd>select()</kbd>:\
+  <kbd>starts_with()</kbd>, <kbd>ends_with()</kbd>, and <kbd>contains()</kbd>
 :::
 
-::: {style="font-size: 110%; max-height: 200px; overflow-y: auto;"}
-::: {.screen-only}
+::::: {style="font-size: 110%; max-height: 200px; overflow-y: auto;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| eval: false
@@ -539,14 +531,14 @@ select(penguins, contains("_"))
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| eval: false
 select(penguins, contains("_"))
 ```
 :::
-:::
+:::::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
 - As before, putting <kbd>-</kbd> in front of the argument will remove the specified columns
@@ -557,7 +549,7 @@ select(penguins, contains("_"))
 ::: {style="font-size: 90%;"}
 Rename variables in a data frame
 
-<span style="color: grey;">First argument</span>: data frame, <span style="color: grey;">next arguments</span>: "new_name" = old_name, "new_name_2" = old_name_2, ...
+[First argument]{style="color: grey;"}: data frame, [next arguments]{style="color: grey;"}: "new_name" = old_name, "new_name_2" = old_name_2, ...
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 110%;"}
@@ -576,19 +568,18 @@ rename(penguins, "bill_len_mm" = bill_len)
 ```
 :::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 3\) Grouping
 :::
-
 
 ## Group & summarise data
 
 ::: {style="font-size: 85%;"}
-Function <kbd>group_by()</kbd> _silently_ creates grouping of data by a specified variable
+Function <kbd>group_by()</kbd> *silently* creates grouping of data by a specified variable
 
-This means you will see only <kbd># Groups</kbd> added to the data frame header, nothing will change with data itself
+This means you will see only <kbd>\# Groups</kbd> added to the data frame header, nothing will change with data itself
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 110%;"}
@@ -610,7 +601,7 @@ group_by(penguins, species)
 ## Group & summarise data
 
 ::: {style="font-size: 85%;"}
-Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+Function <kbd>summarise()</kbd> then collapses many rows into single summary value *per group*, the summary statistic can be mean, median, quartiles, etc.
 
 If data is not grouped, the function will be used on complete data.
 :::
@@ -638,7 +629,7 @@ summarise(penguins, avg_len = mean(flipper_len))
 ## Group & summarise data
 
 ::: {style="font-size: 85%;"}
-Function <kbd>summarise()</kbd> then collapses many rows into single summary value _per group_, the summary statistic can be mean, median, quartiles, etc.
+Function <kbd>summarise()</kbd> then collapses many rows into single summary value *per group*, the summary statistic can be mean, median, quartiles, etc.
 
 If data is not grouped, the function will be used on complete data.
 :::
@@ -663,7 +654,6 @@ summarise(penguins, avg_len = mean(flipper_len, na.rm = TRUE))
 
 ::: {style="font-size: 85%;"}
 <kbd>group_by()</kbd> and <kbd>summarise()</kbd> usually work in tandem, where data is first grouped, and then summarised by group.
-
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 70%;"}
@@ -691,7 +681,7 @@ summarise(group_by(penguins, species),
 ## Code readability
 
 ::: {style="font-size: 85%;"}
-Our code chunks will slowly become longer and _more nested_, or we will encounter _naming issues_. Examples:
+Our code chunks will slowly become longer and *more nested*, or we will encounter *naming issues*. Examples:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
@@ -727,18 +717,18 @@ penguins_3 <- select(penguins_2, species, year, size)
 Solution? **Data pipelines**
 :::
 
-## {.transition-slide background-color="#444444"}
+##  {.transition-slide background-color="#444444"}
 
-::: {.transition-title}
+::: transition-title
 4\) Pipelines
 :::
 
 ## Data pipelines {data-auto-animate="true"}
 
 ::: {.fragment data-fragment-index="1" style="font-size: 85%;"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%\>%</kbd> (tidyverse) or <kbd>\|\></kbd> (base R).
 
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 70%;"}
@@ -770,9 +760,9 @@ penguins %>%
 ## Data pipelines {data-auto-animate="true"}
 
 ::: {style="font-size: 85%;"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%\>%</kbd> (tidyverse) or <kbd>\|\></kbd> (base R).
 
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.
 :::
 
 ::: {style="font-size: 70%;"}
@@ -805,9 +795,9 @@ penguins %>%
 ## Data pipelines {data-auto-animate="true"}
 
 ::: {style="font-size: 85%;"}
-Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%>%</kbd> (tidyverse) or <kbd>|></kbd> (base R).
+Data pipelines are a way of changing multiple operations into a clear, readable sequence using the pipe operator: <kbd>%\>%</kbd> (tidyverse) or <kbd>\|\></kbd> (base R).
 
-A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>. 
+A shortcut for writing the pipe operator is <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>M</kbd>.
 :::
 
 ::: {style="font-size: 70%;"}
@@ -841,7 +831,7 @@ penguins %>%
 ## Data pipelines
 
 ::: {style="font-size: 80%;"}
-- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+- Let's try to get medians with interquartile ranges *per penguin species* and *per penguin sex*
 :::
 
 ::: {.fragment data-fragment-index="1"}
@@ -856,7 +846,7 @@ penguins %>%
 ## Data pipelines
 
 ::: {style="font-size: 80%;"}
-- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+- Let's try to get medians with interquartile ranges *per penguin species* and *per penguin sex*
 :::
 
 ::: {style="font-size: 100%;"}
@@ -872,7 +862,7 @@ penguins %>%
 ## Data pipelines
 
 ::: {style="font-size: 80%;"}
-- Let's try to get medians with interquartile ranges _per penguin species_ and _per penguin sex_
+- Let's try to get medians with interquartile ranges *per penguin species* and *per penguin sex*
 :::
 
 ::: {style="font-size: 90%;"}
@@ -900,7 +890,6 @@ penguins %>%
             q75 = quantile(flipper_len, 0.75))
 ```
 :::
-
 
 ::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 Important functions and concepts, let's revise briefly before moving to next topics
