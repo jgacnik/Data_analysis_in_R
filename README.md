@@ -52,9 +52,23 @@ Replace `R_part4.qmd` with the presentation you want to render.
 - `figures/` contains images and graphics used by the slides.
 - `R_partN_files/` contains generated Reveal.js and web assets for the matching presentation.
 - `_extensions/` contains the Quarto extensions used by the presentations.
-- `workshop/Example_project/` contains the editable source of the participant starter project.
-- `downloads/Example_project.zip` is the ready-to-download participant starter project used in Part 5.
 
-The GitHub Actions workflow in `.github/workflows/publish.yml` renders and deploys `_site/` to GitHub Pages after changes are pushed to `main`.
+### Automated starter-project ZIP
+
+- `workshop/Example_project/` is the single editable source of the participant starter project.
+- `downloads/Example_project.zip` is an ignored, generated file created from that source and should not be edited or committed directly.
+
+To rebuild the student ZIP locally, run:
+
+```powershell
+.\scripts\build-student-project.ps1
+```
+
+After changes are pushed to `main`, GitHub Actions:
+
+1. checks out the editable project source;
+2. runs the ZIP-building script;
+3. renders the Quarto website, which copies the new ZIP into `_site/downloads/`;
+4. publishes the website and its updated student download together.
 
 When sharing a rendered presentation outside the website, keep its `.html` file together with the matching `R_partN_files/` folder, `figures/`, `styles.css`, and `_extensions/`. The presentation may not display or run correctly without these supporting assets.
