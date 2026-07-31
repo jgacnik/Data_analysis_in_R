@@ -13,8 +13,6 @@ Complete these steps **in order** before the workshop:
 <span><strong>2</strong> RStudio</span>
 <span class="path-arrow">→</span>
 <span><strong>3</strong> Packages</span>
-<span class="path-arrow">→</span>
-<span><strong>4</strong> Starter project</span>
 :::
 
 ## 1. Install R
@@ -90,30 +88,14 @@ install.packages(c("readxl", "tidyverse"))
 
 Installation may take several minutes. Messages and warnings are common; an `ERROR` message means that something needs attention.
 
-When installation finishes, test the packages:
+When installation finishes, you can test if the packages can be loaded:
 
 ```r
 library(tidyverse)
 library(readxl)
-
-head(mtcars)
 ```
 
-If a small table appears and there are no error messages, the software is ready.
-
-## 4. Download the starter project
-
-1. [Download the Example RStudio project](downloads/Example_project.zip){download=""}.
-2. Extract the ZIP file. Do not work from inside the compressed ZIP.
-3. Open the extracted `Example_project` folder.
-4. Double-click `Example_project.Rproj`.
-5. In RStudio, open `scripts/import_data.R` and run the script.
-
-The script should import `data/mercury_air.csv` and display a summary of the dataset.
-
-::: {.callout-note}
-Keep the complete `Example_project` folder together. The relative path used in the script depends on the `data`, `scripts`, and `outputs` folders remaining inside the project.
-:::
+If a there are no error messages, the software is ready. Warnings are normal.
 
 ## Troubleshooting
 
@@ -125,10 +107,6 @@ Close RStudio, reinstall R, and then open RStudio again. Remember that R must be
 
 Restart RStudio and run the installation command again. Copy the complete final error message if you need to ask for help.
 
-### The starter script cannot find the data
-
-Confirm that you extracted the ZIP and opened `Example_project.Rproj` before running the script.
-
 ### Still stuck?
 
 Report installation problems before the workshop by emailing [jan.gacnik@ijs.si](mailto:jan.gacnik@ijs.si). Include your operating system and a screenshot or copy of the complete error message.
@@ -136,7 +114,7 @@ Report installation problems before the workshop by emailing [jan.gacnik@ijs.si]
 ::: {.setup-complete}
 ### Setup complete
 
-You are ready when RStudio opens, both packages load without errors, and the starter script imports the data.
+You are ready when RStudio opens and both packages load without errors.
 
 [View the course materials →](materials.qmd){.btn .btn-primary}
 :::
