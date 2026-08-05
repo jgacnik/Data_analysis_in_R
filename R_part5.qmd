@@ -32,7 +32,7 @@ data("penguins", package = "datasets", envir = environment())
 Paths are directions that tell R where to look for data or place outputs on our computer.
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
-- Example Windows path: <kbd>C:&#92;Users&#92;gacnik&#92;Desktop</kbd>
+- Example Windows path: <kbd>C:\\Users\\gacnik\\Desktop</kbd>
 - Example Mac path: <kbd>/Users/gacnik/Desktop</kbd>
 :::
 
@@ -47,16 +47,17 @@ R only accepts paths with forward slash character (<kbd>/</kbd>), meaning that:
 
 ## Paths
 
-Use <kbd>getwd()</kbd> to **get** your _current_ R working directory. This is where R currently looks for data and saves outputs to.
+Use <kbd>getwd()</kbd> to **get** your *current* R working directory. This is where R currently looks for data and saves outputs to.
+
 ```{r}
 #| echo: true
 #| eval: true
 getwd()
 ```
 
-
 ::: {.fragment data-fragment-index="1" style="margin-top: 1em;"}
-Use <kbd>setwd()</kbd> to **set** your _new_ R working directory.
+Use <kbd>setwd()</kbd> to **set** your *new* R working directory.
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -75,7 +76,6 @@ As your data analysis skill improve, tasks become larger, and supporting files s
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
-
 - We started our work in an R script, then we generated some plots, tables... if we started saving these outputs and adding new data, things could get disorganized fast:
 
 ![Personal archive, my first messy R project](figures/messy_project.png)
@@ -106,13 +106,11 @@ We said RStudio project uses relative paths, not absolute, what does it mean?
 :::
 
 ::: {.incremental style="font-size: 80%;"}
-
-- **Absolute path:** starts from a fixed location on one computer  
+- **Absolute path:** starts from a fixed location on one computer\
   <kbd>C:/Users/gacnik/Desktop/Example_project/data/penguins.csv</kbd>
 
-- **Relative path:** starts from the project folder  
+- **Relative path:** starts from the project folder\
   <kbd>data/penguins.csv</kbd>
-
 :::
 
 ::: {.fragment style="font-size: 80%; margin-top: 1em;"}
@@ -138,15 +136,14 @@ Here, we will focus on plain-text rectangular files such as CSV, TSV, and Excel 
 ## Data import with a relative path
 
 ::: {style="font-size: 90%;"}
-1) Download and extract the prepared [**Example RStudio project**](https://jgacnik.github.io/Data_analysis_in_R/downloads/Example_project.zip).
+1)  Download and extract the prepared [**Example RStudio project**](https://jgacnik.github.io/Data_analysis_in_R/downloads/Example_project.zip).
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
-2) Open <kbd>Example_project.Rproj</kbd>. Then import the file with <kbd>read_csv()</kbd> using a relative path:
+2)  Open <kbd>Example_project.Rproj</kbd>. Then import the file with <kbd>read_csv()</kbd> using a relative path:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%;"}
-
 ```{r}
 #| echo: true
 #| eval: false
@@ -173,7 +170,6 @@ print(mercury_air, n = 7)
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%; max-height: 400px; overflow-y: auto;"}
-
 ```{r}
 #| echo: true
 #| eval: true
@@ -189,7 +185,6 @@ The names of columns have white space, and as it is annoying to manually rename 
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%; max-height: 450px; overflow-y: auto;"}
-
 ```{r}
 #| echo: true
 #| eval: true
@@ -212,7 +207,6 @@ Depending on the mess level of your data files, more arguments of <kbd>read_csv(
 - using the <kbd>col_types</kbd> argument to explicitly tell <kbd>read_csv()</kbd> what type each column should be, instead of relying on guessing
 
 - using one of <kbd>parse_number()</kbd>, <kbd>parse_date()</kbd>, <kbd>parse_time()</kbd>, ... functions to **convert values in columns to their correct type**
-
 :::
 
 ## Import several similar files at once
@@ -242,10 +236,9 @@ mercury_air_all
 
 ::: {style="font-size: 85%;"}
 The result is a data frame which contains data from all three CSV files:
-::: 
+:::
 
 ::: {.nostretch style="max-height: 450px; overflow-y: auto;"}
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -258,17 +251,16 @@ mercury_files <- c("data/mercury_air_2022.csv",
 mercury_air_all <- read_csv(mercury_files, id = "file_name")
 print(mercury_air_all, n = Inf)
 ```
-
 :::
 
 ## Data export
 
 ::: {style="font-size: 85%;"}
-_Data export_ or _data writing_ is the reverse process of data import. Data can be saved to CSV or TSV using <kbd>write_csv()</kbd> and <kbd>write_tsv()</kbd>, respectively.
+*Data export* or *data writing* is the reverse process of data import. Data can be saved to CSV or TSV using <kbd>write_csv()</kbd> and <kbd>write_tsv()</kbd>, respectively.
 :::
 
 ::: {.fragment fragment-index="1" style="font-size: 85%;"}
-  - Two arguments are used: <kbd>x</kbd> - data frame to be saved, and <kbd>file</kbd> - the location where to save it:
+- Two arguments are used: <kbd>x</kbd> - data frame to be saved, and <kbd>file</kbd> - the location where to save it:
 :::
 
 ::: {.fragment fragment-index="1" style="font-size: 100%;"}
@@ -282,7 +274,7 @@ write.csv(mercury_air_all, "outputs/mercury_air_all.csv")
 ::: {.fragment fragment-index="2" style="font-size: 85%; margin-top: 1.5em;"}
 Note that the file was saved into the <kbd>outputs</kbd> sub directory of our project directory
 
-  - Handy for saving text file outputs, figures, models, or any other output results.
+- Handy for saving text file outputs, figures, models, or any other output results.
 :::
 
 ## Data entry
@@ -292,10 +284,7 @@ Sometimes we need to make a table "by hand" using <kbd>data.frame()</kbd>. This 
 :::
 
 ::: {.fragment fragment-index="1" style="font-size: 85%;"}
-  - The layout follows this structure: column_name1 = c(value1, value2, value3),
-                                       column_name2 = c(value4, value5, value6),
-                                       ...          = ...
-
+- The layout follows this structure: column_name1 = c(value1, value2, value3), column_name2 = c(value4, value5, value6), ... = ...
 :::
 
 ::: {.fragment fragment-index="1" style="font-size: 100%;"}
@@ -326,36 +315,33 @@ data.frame(
 
 ## Part 1 · Introduction (1/2)
 
-:::: {.columns}
-
-::: {.column width="50%"}
+::::::: columns
+:::: {.column width="50%"}
 **Work in a script**
 
 ::: {style="font-size: 75%;"}
 - Run the current line with <kbd>Ctrl</kbd> + <kbd>Enter</kbd>
-- Use <kbd>#</kbd> comments to explain **why**
+- Use <kbd>\#</kbd> comments to explain **why**
 - Use <kbd>?function_name</kbd> when you need help
 - Read errors from the first line and check brackets, commas, and spelling
 :::
-:::
+::::
 
-::: {.column width="50%"}
+:::: {.column width="50%"}
 **Think in functions and objects**
 
 ::: {style="font-size: 75%;"}
 - Functions perform actions: <kbd>mean(x)</kbd>
 - Arguments control them: <kbd>mean(x, na.rm = TRUE)</kbd>
-- <kbd>&lt;-</kbd> stores a result in an object
+- <kbd>\<-</kbd> stores a result in an object
 - Clear names make later steps easier to follow
 :::
-:::
-
 ::::
+:::::::
 
 ## Part 1 · Introduction (2/2)
 
-:::: {.columns}
-
+:::::: columns
 ::: {.column width="55%"}
 ```{r}
 #| echo: true
@@ -369,17 +355,16 @@ mean_mass <- mean(mass)
 ```
 :::
 
-::: {.column width="45%"}
+:::: {.column width="45%"}
 ::: {style="font-size: 72%;"}
 - A vector contains values of one basic type
 - A data frame organizes vectors into columns
-- Use <kbd>object[row, column]</kbd> to subset a data frame
+- Use <kbd>object\[row, column\]</kbd> to subset a data frame
 - Installing adds a package; loading makes its functions available
 - Reassigning an existing name overwrites the object
 :::
-:::
-
 ::::
+::::::
 
 ## Part 2 · Visualization (1/2)
 
@@ -387,8 +372,7 @@ mean_mass <- mean(mass)
 **Data** → **aesthetic mappings** → **geometric layers**
 :::
 
-:::: {.columns}
-
+:::::: columns
 ::: {.column width="56%"}
 ```{r}
 #| echo: true
@@ -405,7 +389,7 @@ ggplot(
 ```
 :::
 
-::: {.column width="44%"}
+:::: {.column width="44%"}
 ::: {style="font-size: 72%;"}
 - Put variables inside <kbd>aes()</kbd>
 - Put fixed choices outside <kbd>aes()</kbd>
@@ -413,15 +397,13 @@ ggplot(
 - Choose a geometry that answers the question
 - Add labels and a theme only after the plot communicates clearly
 :::
-:::
-
 ::::
+::::::
 
 ## Part 2 · Visualization (2/2)
 
-:::: {.columns}
-
-::: {.column width="50%"}
+:::::: columns
+:::: {.column width="50%"}
 ::: {style="font-size: 75%;"}
 **What do you want to see?**
 
@@ -430,7 +412,7 @@ ggplot(
 - Two numeric variables → scatter plot
 - Patterns within groups → color, shape, or facets
 :::
-:::
+::::
 
 ::: {.column width="50%"}
 ```{r}
@@ -451,8 +433,7 @@ penguins %>%
   theme_minimal()
 ```
 :::
-
-::::
+::::::
 
 ::: {.fragment style="font-size: 75%; margin-top: 0.6em; width: 82%;"}
 Save the final plot with <kbd>ggsave()</kbd>; set its filename, size, and resolution.
@@ -461,14 +442,12 @@ Save the final plot with <kbd>ggsave()</kbd>; set its filename, size, and resolu
 ## Part 3 · Data transformation (1/2)
 
 ::: {style="font-size: 72%;"}
-
 | Goal | Main verbs |
-|---|---|
+|------------------------------------|------------------------------------|
 | Keep rows | <kbd>filter()</kbd>, <kbd>slice()</kbd>, <kbd>distinct()</kbd> |
 | Work with columns | <kbd>select()</kbd>, <kbd>rename()</kbd>, <kbd>mutate()</kbd> |
 | Count observations | <kbd>count()</kbd> |
 | Calculate by group | <kbd>group_by()</kbd> + <kbd>summarise()</kbd> |
-
 :::
 
 ::: {.fragment style="font-size: 80%; margin-top: 0.8em; width: 82%;"}
@@ -497,18 +476,16 @@ Read top to bottom: **start with data**, then add one clear step per line.
 
 ## Part 4 · Data tidying (1/2)
 
-:::: {.columns}
-
-::: {.column width="52%"}
+::::::: columns
+:::: {.column width="52%"}
 ::: {style="font-size: 82%;"}
 - Each **variable** is a column
 - Each **observation** is a row
 - Each **value** is one cell
 :::
+::::
 
-:::
-
-::: {.column width="48%"}
+:::: {.column width="48%"}
 ::: {style="font-size: 75%;"}
 Tidy data makes it easier to:
 
@@ -517,14 +494,12 @@ Tidy data makes it easier to:
 - compare observations
 - reuse code across variables and groups
 :::
-:::
-
 ::::
+:::::::
 
 ## Part 4 · Data tidying (2/2)
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 **Wide → long**
 
@@ -555,8 +530,7 @@ Orange %>%
   )
 ```
 :::
-
-::::
+:::::
 
 ::: {.fragment style="font-size: 72%; margin-top: 0.6em; width: 82%;"}
 Use consistent spacing and indentation; break long pipelines and named arguments across lines.
@@ -564,8 +538,7 @@ Use consistent spacing and indentation; break long pipelines and named arguments
 
 ## Part 5 · Paths, projects, and data import
 
-:::: {.columns}
-
+:::::: columns
 ::: {.column width="48%"}
 ``` text
 my_project/
@@ -576,7 +549,7 @@ my_project/
 ```
 :::
 
-::: {.column width="52%"}
+:::: {.column width="52%"}
 ::: {style="font-size: 75%;"}
 - Open the <kbd>.Rproj</kbd> file before working
 - Keep inputs, scripts, and outputs in predictable folders
@@ -584,10 +557,20 @@ my_project/
 - Avoid paths tied to one person or computer
 - Treat original data as read-only
 :::
-:::
-
 ::::
+::::::
 
 ::: {.fragment style="font-size: 80%; margin-top: 0.8em; width: 82%;"}
 **Test:** move the project folder; the scripts should still run.
+:::
+
+# Final project
+
+::: {style="font-size: 90%;"}
+We have covered the core R concepts. Now, let's use a real environmental dataset to demonstrate a complete data-analysis workflow in R.
+
+:::
+
+::: {.fragment style="font-size: 100%; margin-top: 1em;"}
+**Final – project demo**
 :::

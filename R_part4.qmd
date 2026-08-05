@@ -16,6 +16,7 @@ webr:
   packages: ["tidyverse"]
 editor: visual
 ---
+
 ```{r}
 #| label: setup
 #| include: false
@@ -27,17 +28,17 @@ data("penguins", package = "datasets", envir = environment())
 
 ## Data tidying in R
 
-_Happy families are all alike; every unhappy family is unhappy in its own way._
-— Leo Tolstoy
+*Happy families are all alike; every unhappy family is unhappy in its own way.* — Leo Tolstoy
 
-_Tidy datasets are all alike, but every messy dataset is messy in its own way._
-— Hadley Wickham
+*Tidy datasets are all alike, but every messy dataset is messy in its own way.* — Hadley Wickham
 
 ::: {.fragment data-fragment-index="1"}
 ![](figures/tidy_data.png){fig-align="center"}
 
 <p style="font-size: 50%; color: grey; margin-top: -1em;">
-Source: Hadley Wickham, _R for Data Science_
+
+Source: Hadley Wickham, *R for Data Science*
+
 </p>
 :::
 
@@ -54,60 +55,56 @@ What makes a dataset **tidy**?
 :::
 
 ::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
-- _Variable names_ are descriptive: e.g. <kbd>temperature</kbd> and not <kbd>t1</kbd>
+- *Variable names* are descriptive: e.g. <kbd>temperature</kbd> and not <kbd>t1</kbd>
 
-- _Missing values_ are treated consistently: e.g. <kbd>NA</kbd> only, without <kbd>NULL</kbd>, <kbd>-9999</kbd>, <kbd>none</kbd>, etc.
+- *Missing values* are treated consistently: e.g. <kbd>NA</kbd> only, without <kbd>NULL</kbd>, <kbd>-9999</kbd>, <kbd>none</kbd>, etc.
 :::
 
 ## Tidy data
 
 Let's take a look at some example datasets that demonstrate both messy and tidy data, again coming from the <kbd>tidyverse</kbd> package:
 
-:::::: {columns}
-
-:::: {.column width="45%" .fragment data-fragment-index="1"}
+::::: {columns}
+::: {.column .fragment width="45%" data-fragment-index="1"}
 ```{r}
 #| echo: true
 #| eval: true
 library(tidyverse)
 table1
 ```
-::::
+:::
 
-:::: {.column width="55%" .fragment data-fragment-index="2"}
+::: {.column .fragment width="55%" data-fragment-index="2"}
 ```{r}
 #| echo: true
 #| eval: true
 table2
 ```
-::::
-
-::::::
+:::
+:::::
 
 ## Tidy data
 
 Let's take a look at some example datasets that demonstrate both messy and tidy data, again coming from the <kbd>tidyverse</kbd> package:
 
-:::::: {columns}
-
-:::: {.column width="45%"}
+::::: {columns}
+::: {.column width="45%"}
 ```{r}
 #| echo: true
 #| eval: true
 library(tidyverse)
 table1
 ```
-::::
+:::
 
-:::: {.column width="55%"}
+::: {.column width="55%"}
 ```{r}
 #| echo: true
 #| eval: true
 table3
 ```
-::::
-
-::::::
+:::
+:::::
 
 ## Benefits of tidy data
 
@@ -130,16 +127,20 @@ Unfortunately, real-life datasets are messy, because:
 :::
 
 ::: {.fragment data-fragment-index="2"}
-We will learn how to **pivot** the data into a tidy form by _lengthening_ or _widening_.
+We will learn how to **pivot** the data into a tidy form by *lengthening* or *widening*.
 :::
 
 ## Data lengthening
-First, we will learn data lengthening using <kbd>pivot_longer()</kbd> function
+
+First, we will learn data lengthening using the <kbd>pivot_longer()</kbd> function.
 
 ::: {.fragment data-fragment-index="1"}
 ![](figures/pivot_longer.png){fig-align="center" width="85%"}
+
 <p style="font-size: 50%; color: grey; margin-top: -1em;">
-Source: Batra, Neale, et al. _The Epidemiologist R Handbook_. 2021
+
+Source: Batra, Neale, et al. *The Epidemiologist R Handbook*. 2021
+
 </p>
 :::
 
@@ -160,11 +161,13 @@ billboard
 The <kbd>pivot_longer()</kbd> function requires minimum 3 arguments:
 
 ::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
-- <kbd>cols</kbd>:  a vector of columns to be pivoted
+- <kbd>cols</kbd>: a vector of columns to be pivoted
 :::
+
 ::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
 - <kbd>names_to</kbd>: a character vector which specifies the name of the new column containing column NAMES from <kbd>cols</kbd> argument
 :::
+
 ::: {.fragment data-fragment-index="3" style="font-size: 75%;"}
 - <kbd>values_to</kbd>: a character vector which specifies the name of the new column containing column VALUES from <kbd>cols</kbd> argument
 :::
@@ -240,9 +243,8 @@ billboard %>%
 Of course, <kbd>NAs</kbd> can also be removed using the already known <kbd>filter()</kbd> function:
 :::
 
-::: {style="max-height: 450px; overflow-y: auto;"}
-
-::: {.screen-only}
+::::: {style="max-height: 450px; overflow-y: auto;"}
+::: screen-only
 ```{webr-r}
 #| echo: true
 #| eval: true
@@ -256,7 +258,7 @@ billboard %>%
 ```
 :::
 
-::: {.print-only}
+::: print-only
 ```{r}
 #| echo: true
 #| eval: true
@@ -269,8 +271,7 @@ billboard %>%
   filter(!is.na(rank))
 ```
 :::
-
-:::
+:::::
 
 ## Data lengthening
 
@@ -284,10 +285,9 @@ We can further transform the obtained long data.
 - Function <kbd>parse_number()</kbd>: finds the first number and keeps it, e.g. <kbd>wk12</kbd> transforms to <kbd>12</kbd>
 :::
 
-:::::: {.columns}
-
-::: {.column width="45%"}
-:::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+::::::: columns
+:::: {.column width="45%"}
+::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
 ```{r}
 #| echo: true
 #| eval: false
@@ -301,11 +301,11 @@ billboard %>%
   ) %>%
   mutate(week = parse_number(week))
 ```
-::::
 :::
+::::
 
-::: {.column width="55%"}
-:::: {.fragment data-fragment-index="3" style="font-size: 75%; max-height: 300px; overflow-y: auto;"}
+:::: {.column width="55%"}
+::: {.fragment data-fragment-index="3" style="font-size: 75%; max-height: 300px; overflow-y: auto;"}
 ```{r}
 #| echo: false
 #| eval: true
@@ -318,10 +318,9 @@ billboard %>%
   ) %>%
   mutate(week = parse_number(week))
 ```
-::::
 :::
-
-::::::
+::::
+:::::::
 
 ## Data lengthening
 
@@ -333,10 +332,9 @@ We can further transform the obtained long data.
 - Finally, we could check how many songs stayed on top 100 billboard for more than a year (52 weeks)
 :::
 
-:::::: {.columns}
-
-::: {.column width="45%"}
-:::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
+::::::: columns
+:::: {.column width="45%"}
+::: {.fragment data-fragment-index="2" style="font-size: 90%;"}
 ```{r}
 #| echo: true
 #| eval: false
@@ -352,11 +350,11 @@ billboard %>%
   filter(week > 52) %>%
   distinct(artist, track)
 ```
-::::
 :::
+::::
 
-::: {.column width="55%"}
-:::: {.fragment data-fragment-index="3" style="max-height: 300px; overflow-y: auto;"}
+:::: {.column width="55%"}
+::: {.fragment data-fragment-index="3" style="max-height: 300px; overflow-y: auto;"}
 ```{r}
 #| echo: false
 #| eval: true
@@ -371,10 +369,9 @@ billboard %>%
   filter(week > 52) %>%
   distinct(artist, track)
 ```
-::::
 :::
-
-::::::
+::::
+:::::::
 
 ## Data widening
 
@@ -386,8 +383,11 @@ Data widening is done using the <kbd>pivot_wider()</kbd> function
 
 ::: {.fragment data-fragment-index="1"}
 ![](figures/pivot_wider.png){fig-align="center" width="80%"}
+
 <p style="font-size: 50%; color: grey; margin-top: -1em;">
-Source: Batra, Neale, et al. _The Epidemiologist R Handbook_. 2021
+
+Source: Batra, Neale, et al. *The Epidemiologist R Handbook*. 2021
+
 </p>
 :::
 
@@ -410,6 +410,7 @@ The <kbd>pivot_wider()</kbd> function requires at least two arguments:
 ::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
 - <kbd>names_from</kbd>: specifies the column whose values will become the new column names
 :::
+
 ::: {.fragment data-fragment-index="2" style="font-size: 75%;"}
 - <kbd>values_from</kbd>: specifies the column whose values will fill the new columns
 :::
@@ -445,6 +446,7 @@ The column names now represent the <kbd>age</kbd> of the tree, but they are not 
 :::
 
 ## Data widening
+
 ::: {style="font-size: 85%;"}
 We can add a prefix for each new column name using the optional <kbd>names_prefix</kbd> argument:
 :::
@@ -475,6 +477,7 @@ Orange %>%
 :::
 
 ## Data widening
+
 ::: {style="font-size: 85%;"}
 For complex names, we can use the optional <kbd>names_glue</kbd> argument (advanced), which uses a placeholder inside <kbd>{ }</kbd>:
 :::
@@ -504,6 +507,7 @@ Orange %>%
 :::
 
 ## Tidy code
+
 Messy code can run just as well as clean code. However, clean code makes life easier for you and others when it is revisited in the future.
 
 ![](figures/clean_code.png){.nostretch fig-align="center" width="50%"}
@@ -513,7 +517,8 @@ Source: freeCodeCamp.org
 :::
 
 ## Tidy code: spacing
-Use spaces on both sides of mathematical operators (<kbd>+</kbd>, <kbd>-</kbd>, etc.), assignment operators (<kbd>&lt;-</kbd>), and pipes (<kbd>%>%</kbd>).
+
+Use spaces on both sides of mathematical operators (<kbd>+</kbd>, <kbd>-</kbd>, etc.), assignment operators (<kbd>\<-</kbd>), and pipes (<kbd>%\>%</kbd>).
 
 . . .
 
@@ -542,7 +547,8 @@ median (x ,na.rm=TRUE)
 ```
 
 ## Tidy code: pipes
-Pipes (<kbd>%>%</kbd>) should be surrounded by spaces and typically placed at the end of a line.
+
+Pipes (<kbd>%\>%</kbd>) should be surrounded by spaces and typically placed at the end of a line.
 
 . . .
 
@@ -585,7 +591,6 @@ penguins %>%
   summarize(avg_mass = mean(body_mass, na.rm = TRUE), n = n())
 ```
 
-
 ## Tidy code: pipes
 
 Some of these rules can be relaxed if your pipeline fits easily on one line.
@@ -608,7 +613,7 @@ df %>%
 
 ## Tidy code: ggplot2
 
-The same rules apply as for pipes: treat <kbd>+</kbd> the same way as <kbd>%>%</kbd>.
+The same rules apply as for pipes: treat <kbd>+</kbd> the same way as <kbd>%\>%</kbd>.
 
 ```{r}
 #| echo: true
@@ -638,3 +643,22 @@ Create a section using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on Wind
 
 # Plot data --------------------------------------
 ```
+
+## Recap
+
+::: {style="font-size: 80%;"}
+- Tidy data: one variable per column, one observation per row
+- <kbd>pivot_longer()</kbd> / <kbd>pivot_wider()</kbd> to reshape data
+- Clean, consistent code style makes scripts easier to read and debug
+:::
+
+# Next up
+
+::: {style="font-size: 90%;"}
+Now that we know how to visualize, transform, and tidy our data, we can start focusing on specific datasets and projects.
+
+:::
+
+::: {.fragment style="font-size: 100%; margin-top: 1em;"}
+**Part 5 – Paths, projects, and data import**
+:::

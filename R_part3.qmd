@@ -894,3 +894,26 @@ penguins %>%
 ::: {.fragment data-fragment-index="2" style="font-size: 85%;"}
 Important functions and concepts, let's revise briefly before moving to next topics
 :::
+
+## Recap
+
+Key <kbd>dplyr</kbd> functions ([cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-transformation.pdf)):
+
+::: {.fragment style="font-size: 80%;"}
+- <kbd>filter()</kbd> – choose rows based on logic operations
+- <kbd>select()</kbd> – choose columns based on column names
+- <kbd>mutate()</kbd> – create new columns or modify existing ones using calculations or functions
+- <kbd>group_by()</kbd> + <kbd>summarise()</kbd> – aggregate by group to create summary statistics
+- <kbd>%>%</kbd> – chain steps into a pipeline
+:::
+
+# Next up
+
+::: {style="font-size: 90%;"}
+Transformed data still needs the right *shape* to work well with <kbd>ggplot2</kbd>, <kbd>dplyr</kbd>, and other common R functions.
+
+:::
+
+::: {.fragment style="font-size: 100%; margin-top: 1em;"}
+**Part 4 – Data tidying**
+:::

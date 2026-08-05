@@ -152,7 +152,7 @@ We should open a new R script the following way:
 
 Finally, we have the 4 RStudio windows open, let's explain what is what
 
-::: {style="position: relative;"}
+::::::: {style="position: relative;"}
 ![](figures/RStudio_orientation_3.png){width="80%"}
 
 ::: {.fragment data-fragment-index="1" style="position: absolute; top: 25%; left: 15%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
@@ -170,7 +170,7 @@ Finally, we have the 4 RStudio windows open, let's explain what is what
 ::: {.fragment data-fragment-index="4" style="position: absolute; bottom: 20%; right: 10%; background: rgba(0,0,0,0.75); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.5em;"}
 **Outputs** – browse, view, look up, help
 :::
-:::
+:::::::
 
 ## Editing and running code
 
@@ -467,7 +467,7 @@ sort(string_vector, decreasing = TRUE)
 R can evaluate whether something is <kbd>TRUE</kbd> or <kbd>FALSE</kbd> using **comparison operators**:
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
-- <kbd>==</kbd> equal to &nbsp;&nbsp;&nbsp; <kbd>!=</kbd> not equal to
+- <kbd>==</kbd> equal to     <kbd>!=</kbd> not equal to
 - <kbd>\></kbd> / <kbd>\<</kbd> greater/less than
 - <kbd>\>=</kbd> / <kbd>\<=</kbd> greater/less than or equal to
 :::
@@ -488,7 +488,7 @@ numeric_vector > 20
 R can evaluate whether something is <kbd>TRUE</kbd> or <kbd>FALSE</kbd> using **comparison operators**:
 
 ::: {style="font-size: 80%;"}
-- <kbd>==</kbd> equal to &nbsp;&nbsp;&nbsp; <kbd>!=</kbd> not equal to
+- <kbd>==</kbd> equal to     <kbd>!=</kbd> not equal to
 - <kbd>\></kbd> / <kbd>\<</kbd> greater/less than
 - <kbd>\>=</kbd> / <kbd>\<=</kbd> greater/less than or equal to
 :::
@@ -572,7 +572,6 @@ Same principles shown with vectors can be used with more complex objects, such a
   - The same concept as an Excel table, with more defined contents
   - Can store different vector types inside it, e.g. a character column, a numeric column, a logical column, ...
   :::
-
 :::
 
 ## Accessing data in objects
@@ -671,4 +670,29 @@ Once a package is loaded, you can use functions and/or data inside them:
 data("diamonds") # Places data in your global environment
 head(diamonds) # Displays first six elements of an object
 ```
+:::
+
+## Recap
+
+::: {.incremental style="font-size: 80%;"}
+- RStudio: editor, console, environment, and outputs—the underlying engine is R
+
+- Objects: the building block of everything in R
+
+  - Vectors
+  - Data frames
+  - ...
+
+- Packages: extend what R can do—<kbd>tidyverse</kbd> is a widely used collection of packages
+:::
+
+# Next up
+
+::: {style="font-size: 90%;"}
+Now that we can orient ourselves in RStudio, create objects, and load packages, it is time to make something with them.
+
+:::
+
+::: {.fragment style="font-size: 100%; margin-top: 1em;"}
+**Part 2 – Visualization** with <kbd>ggplot2</kbd>
 :::
