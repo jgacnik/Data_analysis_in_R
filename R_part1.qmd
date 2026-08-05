@@ -675,7 +675,7 @@ head(diamonds) # Displays first six elements of an object
 ## Recap
 
 ::: {.incremental style="font-size: 80%;"}
-- RStudio: editor, console, environment, and outputs—the underlying engine is R
+- RStudio includes the editor, console, environment, and outputs. R is the underlying engine.
 
 - Objects: the building block of everything in R
 
@@ -683,7 +683,7 @@ head(diamonds) # Displays first six elements of an object
   - Data frames
   - ...
 
-- Packages: extend what R can do—<kbd>tidyverse</kbd> is a widely used collection of packages
+- Packages extend what R can do. <kbd>tidyverse</kbd> is a widely used collection of packages.
 :::
 
 # Next up
