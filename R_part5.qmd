@@ -136,7 +136,7 @@ Here, we will focus on plain-text rectangular files such as CSV, TSV, and Excel 
 ## Data import with a relative path
 
 ::: {style="font-size: 90%;"}
-1)  Download and extract the prepared [**Example RStudio project**](https://jgacnik.github.io/Data_analysis_in_R/downloads/Example_project.zip).
+1)  Download and extract the prepared [**Example RStudio project**](https://jgacnik.github.io/r-data-workshop/downloads/Example_project.zip).
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}

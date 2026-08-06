@@ -6,7 +6,7 @@ This repository contains the website and materials for an introductory **Data An
 
 The published course website is:
 
-**https://jgacnik.github.io/Data_analysis_in_R/**
+**https://jgacnik.github.io/r-data-workshop/**
 
 Students should begin with the website's **Setup** page, then use **Materials** to open the presentations and download the starter project.
 

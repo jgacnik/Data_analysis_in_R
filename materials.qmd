@@ -103,7 +103,7 @@ The prepared project used in Part 5, including the script, data, and recommended
 
 All Quarto source files, figures, data, and revision history are available on GitHub.
 
-[Open the GitHub repository](https://github.com/jgacnik/Data_analysis_in_R){.btn .btn-outline-primary}
+[Open the GitHub repository](https://github.com/jgacnik/r-data-workshop){.btn .btn-outline-primary}
 :::
 :::
 

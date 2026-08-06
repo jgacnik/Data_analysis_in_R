@@ -12,8 +12,8 @@ project:
 website:
   title: "Data Analysis in R"
   description: "Installation instructions, interactive presentations, and workshop files for an introductory Data Analysis in R course."
-  site-url: "https://jgacnik.github.io/Data_analysis_in_R/"
-  repo-url: "https://github.com/jgacnik/Data_analysis_in_R"
+  site-url: "https://jgacnik.github.io/r-data-workshop/"
+  repo-url: "https://github.com/jgacnik/r-data-workshop"
   repo-actions: [source, issue]
   search: true
   navbar:
@@ -27,7 +27,7 @@ website:
         text: Materials
     right:
       - icon: github
-        href: "https://github.com/jgacnik/Data_analysis_in_R"
+        href: "https://github.com/jgacnik/r-data-workshop"
         aria-label: "Course repository on GitHub"
   page-footer:
     left: "Workshop developed and led by Asst. Prof. Jan Gačnik"

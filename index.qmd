@@ -103,7 +103,7 @@ Keep the interactive HTML slides open in your browser and use RStudio for the ha
 ::: {.use-item}
 ### After
 
-Use the PDFs for quick reference and return to the interactive slides whenever you want to rerun an example. The complete source remains available in the [GitHub repository](https://github.com/jgacnik/Data_analysis_in_R).
+Use the PDFs for quick reference and return to the interactive slides whenever you want to rerun an example. The complete source remains available in the [GitHub repository](https://github.com/jgacnik/r-data-workshop).
 :::
 :::
 
