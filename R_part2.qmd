@@ -962,7 +962,6 @@ Creativity is the limit with visualization in R
 
 ::: {style="font-size: 90%;"}
 Plots are only as good as the data behind them. Next, we'll learn to reshape and summarize data so it is ready to plot.
-
 :::
 
 ::: {.fragment style="font-size: 100%; margin-top: 1em;"}

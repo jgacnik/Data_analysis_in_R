@@ -656,7 +656,6 @@ Create a section using <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> on Wind
 
 ::: {style="font-size: 90%;"}
 Now that we know how to visualize, transform, and tidy our data, we can start focusing on specific datasets and projects.
-
 :::
 
 ::: {.fragment style="font-size: 100%; margin-top: 1em;"}

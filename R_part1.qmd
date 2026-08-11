@@ -571,23 +571,57 @@ Same principles shown with vectors can be used with more complex objects, such a
   ::: {.fragment style="font-size: 80%;"}
   - The same concept as an Excel table, with more defined contents
   - Can store different vector types inside it, e.g. a character column, a numeric column, a logical column, ...
+
   :::
+
 :::
 
-## Accessing data in objects
+## More complex objects
+As an example data frame, we will use the <kbd>penguins</kbd> dataset
+
+::::: columns
+::: {.column width="32%"}
+![](figures/palmer_penguins.png){.nostretch fig-align="center" width="70%" fig-alt="Palmer Penguins dataset logo"}
+:::
+
+::: {.column width="68%"}
+::: {.incremental style="font-size: 72%;"}
+- A built-in dataset included with recent versions of R
+- Measurements from **344 adult penguins** representing **three species** on **three islands** near Palmer Station, Antarctica
+- Eight variables describing species, island, bill size, flipper length, body mass, sex, and year
+:::
+:::
+:::::
+
+## Loading the penguins dataset
+
+::: {style="font-size: 85%;"}
+Use <kbd>data()</kbd> to place the dataset in our environment, then use <kbd>head()</kbd> to inspect its first six rows:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 100%; max-height: 360px; overflow-y: auto;"}
+```{r}
+#| echo: true
+#| eval: true
+data(penguins)
+head(penguins)
+```
+:::
+
+## Accessing rows and columns
 
 ::: {style="font-size: 80%;"}
-There are two main ways to access data inside objects: square brackets (<kbd>\[\]</kbd> or <kbd>\[\[\]\]</kbd>), and <kbd>\$</kbd>. How you access an object depends on its *dimensions*.
+Data frames have two dimensions: **rows** and **columns**. Use <kbd>object\[rows, columns\]</kbd> to select part of a data frame.
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 80%;"}
-Dataframes have *2* dimensions: **rows** and **columns**. Using square brackets we can **subset** it using the format: <kbd>object\[row, column\]</kbd>. If you leave row or column place empty, all elements in that dimension will be selected.
+- R starts counting at **1**. Leaving the row or column position empty selects **all** elements in that dimension.
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%;"}
 ```{r}
 #| echo: true
-penguins[2,] # Second row
+penguins[2, ] # Second row, all columns
 ```
 :::
 
@@ -596,6 +630,59 @@ penguins[2,] # Second row
 #| echo: true
 penguins[1:3, 3:5] # Rows 1-3 and columns 3-5
 ```
+:::
+
+## Accessing columns
+
+::: {style="font-size: 80%;"}
+Columns can be selected by their **position index** or their **name**. When <kbd>\[, \]</kbd> selects exactly one column from a base R data frame, the result is simplified to a vector.
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 90%; max-height: 120px; overflow-y: auto;"}
+```{r}
+#| echo: true
+#| eval: true
+penguins[, 3] # Third column, selected by POSITION
+```
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 90%; max-height: 120px; overflow-y: auto; margin-top: 0.4em;"}
+```{r}
+#| echo: true
+#| eval: true
+penguins[, "bill_len"] # The same column, selected by NAME
+```
+:::
+
+## <kbd>\[\]</kbd> vs <kbd>\[\[\]\]</kbd>?
+
+::: {style="font-size: 80%;"}
+A data frame is also a collection of column vectors. The operator determines whether we keep the data-frame structure or extract the column itself:
+:::
+
+::: {.fragment data-fragment-index="1" style="font-size: 75%;"}
+- <kbd>penguins\["bill_len"\]</kbd> returns a **one-column data frame**.
+- <kbd>penguins\[\["bill_len"\]\]</kbd> extracts the **numeric vector**.
+- <kbd>penguins\$bill_len</kbd> extracts the same vector using a convenient shortcut.
+:::
+
+::: {.fragment data-fragment-index="2" style="font-size: 80%;"}
+In short: <kbd>\[\]</kbd> keeps the **container**; <kbd>\[\[\]\]</kbd> and <kbd>\$</kbd> take the values **out of the container**.
+:::
+
+## Accessing rows and columns
+
+::: {style="font-size: 64%;"}
+
+| Command | What does it return? |
+|---|---|
+| <kbd>penguins\[1:3, 3:5\]</kbd> | A data frame containing rows 1-3 and columns 3-5 |
+| <kbd>penguins\[, 3\]</kbd> | The third column as a vector |
+| <kbd>penguins\[, "bill_len"\]</kbd> | The named column as a vector |
+| <kbd>penguins\["bill_len"\]</kbd> | A one-column data frame |
+| <kbd>penguins\[\["bill_len"\]\]</kbd> | The named column as a vector |
+| <kbd>penguins\$bill_len</kbd> | The same vector, using a named shortcut |
+
 :::
 
 ##  {.transition-slide background-color="#444444"}
@@ -690,7 +777,6 @@ head(diamonds) # Displays first six elements of an object
 
 ::: {style="font-size: 90%;"}
 Now that we can orient ourselves in RStudio, create objects, and load packages, it is time to make something with them.
-
 :::
 
 ::: {.fragment style="font-size: 100%; margin-top: 1em;"}

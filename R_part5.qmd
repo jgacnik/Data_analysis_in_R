@@ -568,7 +568,6 @@ my_project/
 
 ::: {style="font-size: 90%;"}
 We have covered the core R concepts. Now, let's use a real environmental dataset to demonstrate a complete data-analysis workflow in R.
-
 :::
 
 ::: {.fragment style="font-size: 100%; margin-top: 1em;"}

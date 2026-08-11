@@ -6,3 +6,4 @@
 /downloads/Example_project.zip
 
 **/*.quarto_ipynb
+.Rproj.user
