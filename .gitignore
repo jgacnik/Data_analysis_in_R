@@ -3,7 +3,7 @@
 .Rproj.user/
 /.quarto/
 /_site/
-/downloads/Example_project.zip
+/downloads/example_project.zip
 
 **/*.quarto_ipynb
 .Rproj.user

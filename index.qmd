@@ -11,14 +11,14 @@ page-layout: full
 
 # Data Analysis in R
 
-Build a practical foundation in R through five hands-on parts: from the first line of code to clear visualizations, reproducible transformations, tidy data, and well-organized projects.
+Build a practical foundation in R through six hands-on parts: from the first line of code to clear visualizations, reproducible transformations, tidy data, well-organized projects, and a complete demonstration.
 
 <p class="workshop-lead">Workshop developed and led by <strong>Asst. Prof. Jan Gačnik</strong>.</p>
 
 ::: {.hero-actions}
 [Prepare your computer](setup.qmd){.btn .btn-primary .btn-lg}
 [View course materials](materials.qmd){.btn .btn-outline-primary .btn-lg}
-[Download starter project](downloads/Example_project.zip){.btn .btn-outline-secondary .btn-lg download=""}
+[Download starter project](downloads/example_project.zip){.btn .btn-outline-secondary .btn-lg download=""}
 :::
 :::
 

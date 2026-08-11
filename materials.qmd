@@ -85,6 +85,21 @@ Paths, RStudio projects, a reproducible folder structure, and importing a CSV fi
 [PDF](downloads/slides/R_part5.pdf){.btn .btn-outline-secondary download=""}
 :::
 :::
+
+::: {.material-row}
+::: {.material-part}
+<span class="part-number">06</span>
+
+### Complete project demonstration
+
+A guided analysis that connects importing, transforming, tidying, visualising, modelling, and exporting.
+:::
+
+::: {.material-actions}
+[Interactive slides](R_part6.qmd){.btn .btn-primary}
+[PDF](downloads/slides/R_part6.pdf){.btn .btn-outline-secondary download=""}
+:::
+:::
 :::
 
 ## Downloads
@@ -93,9 +108,9 @@ Paths, RStudio projects, a reproducible folder structure, and importing a CSV fi
 ::: {.download-card}
 ### Starter RStudio project
 
-The prepared project used in Part 5, including the script, data, and recommended folder structure.
+The prepared project used in Parts 5 and 6, including the scripts, data, and recommended folder structure.
 
-[Download `Example_project.zip`](downloads/Example_project.zip){.btn .btn-primary download=""}
+[Download `example_project.zip`](downloads/example_project.zip){.btn .btn-primary download=""}
 :::
 
 ::: {.download-card}

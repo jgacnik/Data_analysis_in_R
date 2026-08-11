@@ -107,7 +107,7 @@ We said RStudio project uses relative paths, not absolute, what does it mean?
 
 ::: {.incremental style="font-size: 80%;"}
 - **Absolute path:** starts from a fixed location on one computer\
-  <kbd>C:/Users/gacnik/Desktop/Example_project/data/penguins.csv</kbd>
+  <kbd>C:/Users/gacnik/Desktop/example_project/data/penguins.csv</kbd>
 
 - **Relative path:** starts from the project folder\
   <kbd>data/penguins.csv</kbd>
@@ -136,11 +136,11 @@ Here, we will focus on plain-text rectangular files such as CSV, TSV, and Excel 
 ## Data import with a relative path
 
 ::: {style="font-size: 90%;"}
-1)  Download and extract the prepared [**Example RStudio project**](https://jgacnik.github.io/r-data-workshop/downloads/Example_project.zip).
+1)  Download and extract the prepared [**example_project RStudio project**](https://jgacnik.github.io/r-data-workshop/downloads/example_project.zip).
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 90%;"}
-2)  Open <kbd>Example_project.Rproj</kbd>. Then import the file with <kbd>read_csv()</kbd> using a relative path:
+2)  Open <kbd>example_project.Rproj</kbd>. Then import the file with <kbd>read_csv()</kbd> using a relative path:
 :::
 
 ::: {.fragment data-fragment-index="1" style="font-size: 100%;"}

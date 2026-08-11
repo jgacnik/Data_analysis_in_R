@@ -2,10 +2,10 @@ $ErrorActionPreference = "Stop"
 
 $repositoryRoot = Split-Path -Parent $PSScriptRoot
 $workshopDirectory = Join-Path $repositoryRoot "workshop"
-$sourceDirectory = Join-Path $workshopDirectory "Example_project"
+$sourceDirectory = Join-Path $workshopDirectory "example_project"
 $destinationDirectory = Join-Path $repositoryRoot "downloads"
-$destinationPath = Join-Path $destinationDirectory "Example_project.zip"
-$temporaryPath = Join-Path $destinationDirectory ("Example_project-{0}.tmp" -f [guid]::NewGuid())
+$destinationPath = Join-Path $destinationDirectory "example_project.zip"
+$temporaryPath = Join-Path $destinationDirectory ("example_project-{0}.tmp" -f [guid]::NewGuid())
 
 if (-not (Test-Path -LiteralPath $sourceDirectory -PathType Container)) {
     throw "Student project source was not found: $sourceDirectory"
@@ -14,7 +14,16 @@ if (-not (Test-Path -LiteralPath $sourceDirectory -PathType Container)) {
 New-Item -ItemType Directory -Path $destinationDirectory -Force | Out-Null
 
 $excludedDirectories = @(".git", ".Rproj.user")
-$excludedFiles = @(".RData", ".Rhistory", ".DS_Store", "Thumbs.db")
+$excludedFiles = @(
+    ".RData",
+    ".Rhistory",
+    ".DS_Store",
+    "Thumbs.db",
+    "project_demonstration.R",
+    "annual_isotope_summary.csv",
+    "isotope_relationship.png",
+    "isotopes_through_time.png"
+)
 
 $projectFiles = @(
     Get-ChildItem -LiteralPath $sourceDirectory -Recurse -File |
@@ -53,7 +62,7 @@ try {
         try {
             foreach ($file in $projectFiles) {
                 $relativePath = $file.FullName.Substring($sourceDirectory.Length).TrimStart("\", "/")
-                $entryName = "Example_project/" + ($relativePath -replace "\\", "/")
+                $entryName = "example_project/" + ($relativePath -replace "\\", "/")
 
                 [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
                     $zipArchive,
@@ -79,4 +88,4 @@ finally {
     }
 }
 
-Write-Host "Created downloads/Example_project.zip from $($projectFiles.Count) source files."
+Write-Host "Created downloads/example_project.zip from $($projectFiles.Count) source files."
