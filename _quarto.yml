@@ -19,8 +19,6 @@ website:
   navbar:
     logo: figures/MPS_logo.png
     left:
-      - href: index.qmd
-        text: Home
       - href: setup.qmd
         text: Setup
       - href: materials.qmd

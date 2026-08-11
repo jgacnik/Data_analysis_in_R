@@ -6,10 +6,6 @@ toc: false
 
 Use the interactive HTML presentations during the workshop. The PDF versions are provided for printing, offline reading, and quick reference.
 
-::: {.callout-note}
-The browser presentations contain interactive R examples powered by webR. Those examples are not interactive in the PDF versions.
-:::
-
 ::: {.materials-list}
 ::: {.material-row}
 ::: {.material-part}
