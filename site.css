@@ -317,6 +317,36 @@ a {
   text-underline-offset: 0.16em;
 }
 
+/* Soft side wash for Setup and Materials. Remove this block and the
+   course-inner-page body class in those two QMD files to revert. */
+body.course-inner-page {
+  background: #edf3f8;
+}
+
+body.course-inner-page #quarto-content {
+  background: transparent;
+}
+
+body.course-inner-page main.content {
+  align-self: start;
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  background: var(--course-paper);
+  border: 1px solid rgba(23, 75, 130, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 18px 50px rgba(23, 75, 130, 0.08);
+}
+
+@media (max-width: 700px) {
+  body.course-inner-page main.content {
+    padding: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.75rem;
+  }
+}
+
 @media (max-width: 900px) {
   .course-grid,
   .use-grid,

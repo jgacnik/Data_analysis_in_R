@@ -1,6 +1,7 @@
 ---
 title: "Course materials"
 description: "Interactive presentations, printable PDFs, data, and the starter RStudio project."
+body-classes: course-inner-page
 toc: false
 ---
 
