@@ -11,6 +11,7 @@ project:
 
 website:
   title: "Data Analysis in R"
+  favicon: figures/MPS_logo.png
   description: "Installation instructions, interactive presentations, and workshop files for an introductory Data Analysis in R course."
   site-url: "https://jgacnik.github.io/r-data-workshop/"
   repo-url: "https://github.com/jgacnik/r-data-workshop"
